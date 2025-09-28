@@ -1,0 +1,23 @@
+{
+  "name": "Freespirits Utility Workflow",
+  "version": "1.0.0",
+  "description": "A lightweight Node-based workflow that demonstrates npm scripts for development, building, and previewing output.",
+  "maintainer": "Floopy",
+  "steps": [
+    {
+      "id": "dev",
+      "title": "Development readiness check",
+      "details": "Validates that the project metadata is accessible before running a build."
+    },
+    {
+      "id": "build",
+      "title": "Build artifact generation",
+      "details": "Transforms the project metadata into a distributable summary file in the dist directory."
+    },
+    {
+      "id": "preview",
+      "title": "Preview generated output",
+      "details": "Displays the contents of the generated summary file as a quick preview."
+    }
+  ]
+}
