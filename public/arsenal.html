@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Arsenal | HackTech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="module" src="/assets/js/site.js" defer></script>
+    <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body data-page="arsenal">
+    <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+    <div class="scanline-overlay"></div>
+    <main class="container">
+        <header>
+            <h1 class="site-title">HackTech</h1>
+            <p class="site-subtitle">:: YOUR SOURCE FOR CYBER INTELLIGENCE ::</p>
+        </header>
+        <nav>
+            <a class="nav-link" data-nav-link data-page-target="home" href="/index.html"> <i data-lucide="scan"></i> Home</a>
+            <a class="nav-link" data-nav-link data-page-target="daily" href="/daily-briefing.html"> <i data-lucide="shield-check"></i> Daily Briefing</a>
+            <a class="nav-link" data-nav-link data-page-target="breaches" href="/breach-archives.html"> <i data-lucide="shield-alert"></i> Breach Archives</a>
+            <a class="nav-link" data-nav-link data-page-target="arsenal" href="/arsenal.html"> <i data-lucide="wrench"></i> Arsenal</a>
+            <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> Contact</a>
+        </nav>
+        <section class="cyber-panel">
+            <h2><i data-lucide="terminal"></i> The Arsenal: Tools &amp; Platforms</h2>
+            <p class="highlight">
+                A curated list of essential platforms and tools for security professionals. Authorization is required before using these on any network.
+            </p>
+            <div class="grid" style="gap: 1.75rem;">
+                <article class="data-card">
+                    <p class="font-mono" style="font-size: 1.5rem; color: rgba(204,255,204,0.95);">Kali Linux</p>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.7;">
+                        An open-source, Debian-based Linux distribution geared towards various information security tasks, such as penetration testing, security research, computer forensics, and reverse engineering. It comes pre-installed with over 600 penetration-testing programs.
+                    </p>
+                </article>
+                <article class="data-card">
+                    <p class="font-mono" style="font-size: 1.5rem; color: rgba(204,255,204,0.95);">Parrot OS</p>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.7;">
+                        A free and open-source Linux distribution based on Debian with a focus on security, privacy, and development. It includes a full portable laboratory for security and digital forensics experts, but it also includes all you need to develop your own software or keep your data secure.
+                    </p>
+                </article>
+                <article class="data-card">
+                    <p class="font-mono" style="font-size: 1.5rem; color: rgba(204,255,204,0.95);">Mobile Security &amp; Auditing</p>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.7;">
+                        For developers and security professionals, specialized applications like Stryker exist for rooted Android systems to enable deep-level wireless network auditing and analysis. These tools provide granular control for testing network security but require expert knowledge and explicit permissions to operate legally and ethically.
+                    </p>
+                </article>
+                <article class="data-card">
+                    <p class="font-mono" style="font-size: 1.25rem; color: rgba(204,255,204,0.95);">Nmap (Network Mapper)</p>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.7;">
+                        A free and open-source utility for network discovery and security auditing. It's used to discover hosts and services on a computer network by sending packets and analyzing the responses.
+                    </p>
+                </article>
+                <article class="data-card">
+                    <p class="font-mono" style="font-size: 1.25rem; color: rgba(204,255,204,0.95);">Wireshark</p>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.7;">
+                        A widely-used network protocol analyzer. It lets you see what's happening on your network at a microscopic level and is the de facto standard across many industries for troubleshooting and analysis.
+                    </p>
+                </article>
+                <article class="data-card">
+                    <p class="font-mono" style="font-size: 1.25rem; color: rgba(204,255,204,0.95);">Metasploit Framework</p>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.7;">
+                        An open-source penetration testing framework. Security professionals use it to probe for systematic vulnerabilities on networks and servers to verify and validate security defenses.
+                    </p>
+                </article>
+            </div>
+        </section>
+        <footer>
+            <div class="socials">
+                <a href="https://facebook.com/YOUR_PAGE_HERE" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+            </div>
+            // HackTech &copy; 2024. Information for educational purposes only. //
+        </footer>
+    </main>
+</body>
+</html>

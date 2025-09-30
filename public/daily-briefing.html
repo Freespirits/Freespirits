@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackTech Daily Briefing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="module" src="/assets/js/site.js" defer></script>
+    <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="/assets/js/briefing.js" defer></script>
+</head>
+<body data-page="daily">
+    <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+    <div class="scanline-overlay"></div>
+    <main class="container">
+        <header>
+            <h1 class="site-title">HackTech</h1>
+            <p class="site-subtitle">:: YOUR SOURCE FOR CYBER INTELLIGENCE ::</p>
+        </header>
+        <nav>
+            <a class="nav-link" data-nav-link data-page-target="home" href="/index.html"> <i data-lucide="scan"></i> Home</a>
+            <a class="nav-link" data-nav-link data-page-target="daily" href="/daily-briefing.html"> <i data-lucide="shield-check"></i> Daily Briefing</a>
+            <a class="nav-link" data-nav-link data-page-target="breaches" href="/breach-archives.html"> <i data-lucide="shield-alert"></i> Breach Archives</a>
+            <a class="nav-link" data-nav-link data-page-target="arsenal" href="/arsenal.html"> <i data-lucide="wrench"></i> Arsenal</a>
+            <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> Contact</a>
+        </nav>
+        <section class="cyber-panel">
+            <h2><i data-lucide="shield-check"></i> AI-Powered Daily Briefing</h2>
+            <div id="briefing-content" class="font-mono" style="text-align: center;">
+                <p>Fetching latest intel from the grid...</p>
+                <div class="loading-dots" style="justify-content: center; margin-top: 1.5rem;">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="socials">
+                <a href="https://facebook.com/YOUR_PAGE_HERE" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+            </div>
+            // HackTech &copy; 2024. Information for educational purposes only. //
+        </footer>
+    </main>
+</body>
+</html>
