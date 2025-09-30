@@ -52,6 +52,15 @@ functions/
 
    When prompted, select the Pages project you configured above. Wrangler will reuse the environment variables defined in the dashboard.
 
+## Deploying to Vercel
+
+1. Create a new Vercel project and import this repository.
+2. In the Vercel dashboard, add the following Environment Variables (recommended scope: **Production** and **Preview**):
+   - `CLOUDFLARE_ACCOUNT_ID` → `e8823131dce5e3dcaedec59bb4f7c093`
+   - `CLOUDFLARE_AI_TOKEN` → the Cloudflare API token with **Workers AI** permissions (do **not** commit the token to git).
+3. Deploy the project. Vercel will serve the static assets in `public/` and expose the `/api/briefing` Serverless Function defined in `api/briefing.js`.
+4. The front-end uses the same `/api/briefing` path, so no additional configuration is required after the environment variables are set.
+
 ## Updating integrations
 
 - **Daily Briefing**: The front end calls `/api/briefing`, which in turn invokes Cloudflare's `@cf/meta/llama-3-8b-instruct` model. Adjust the prompt in `functions/api/briefing.js` or point it at a different [Cloudflare AI model](https://developers.cloudflare.com/workers-ai/models/) by changing the endpoint path.
