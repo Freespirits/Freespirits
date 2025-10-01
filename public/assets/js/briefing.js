@@ -1,6 +1,14 @@
-async function fetchDailyBriefing() {
+const PROVIDER_STORAGE_KEY = 'hacktech-ai-provider';
+const PROVIDER_COPY = {
+    cloudflare: 'Cloudflare Workers AI (Meta Llama 3 8B Instruct)',
+    huggingface: 'Hugging Face Inference (Mistral 7B Instruct)',
+};
+
+async function fetchDailyBriefing(provider) {
+    const activeProvider = provider || getSelectedProvider();
+
     try {
-        const response = await fetch('/api/briefing');
+        const response = await fetch(`/api/briefing?provider=${encodeURIComponent(activeProvider)}`);
 
         if (!response.ok) {
             throw new Error(`API Error: ${response.status} ${response.statusText}`);
@@ -10,11 +18,13 @@ async function fetchDailyBriefing() {
 
         if (payload?.markdown) {
             renderBriefing(payload.markdown);
+            updateProviderLabel(payload.provider || activeProvider);
         } else {
             throw new Error('Malformed response payload');
         }
     } catch (error) {
         console.error('Error fetching daily briefing:', error);
+        updateProviderLabel(activeProvider);
         renderError('Could not connect to the intelligence grid. Check the console for details.');
     }
 }
@@ -39,4 +49,71 @@ function renderError(message) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', fetchDailyBriefing);
+function renderLoading() {
+    const container = document.getElementById('briefing-content');
+    if (!container) return;
+
+    container.innerHTML = `
+        <p>Routing request through the mesh...</p>
+        <div class="loading-dots" style="justify-content: center; margin-top: 1.5rem;">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    `;
+}
+
+function updateProviderLabel(provider) {
+    const providerLabel = document.getElementById('active-provider');
+    if (!providerLabel) return;
+
+    providerLabel.textContent = PROVIDER_COPY[provider] || provider;
+}
+
+function getSelectedProvider() {
+    const selector = document.getElementById('ai-provider');
+    return selector?.value || 'cloudflare';
+}
+
+function hydrateProviderSelector() {
+    const selector = document.getElementById('ai-provider');
+    if (!selector) return;
+
+    const savedProvider = readStoredProvider();
+    if (savedProvider && PROVIDER_COPY[savedProvider]) {
+        selector.value = savedProvider;
+    }
+
+    updateProviderLabel(selector.value);
+
+    selector.addEventListener('change', () => {
+        const nextProvider = selector.value;
+        writeStoredProvider(nextProvider);
+        updateProviderLabel(nextProvider);
+        renderLoading();
+        fetchDailyBriefing(nextProvider);
+    });
+}
+
+function readStoredProvider() {
+    try {
+        return localStorage.getItem(PROVIDER_STORAGE_KEY);
+    } catch (error) {
+        console.warn('Unable to read stored AI provider preference:', error);
+        return null;
+    }
+}
+
+function writeStoredProvider(value) {
+    try {
+        localStorage.setItem(PROVIDER_STORAGE_KEY, value);
+    } catch (error) {
+        console.warn('Unable to persist AI provider preference:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    hydrateProviderSelector();
+    renderLoading();
+    fetchDailyBriefing();
+});
