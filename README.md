@@ -23,11 +23,14 @@ functions/
 ## Local development
 
 1. Install [Wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/) if you have not already.
-2. Create a `.dev.vars` file in the project root so the local dev server can reach Cloudflare AI:
+2. Create a `.dev.vars` file in the project root so the local dev server can reach the AI providers:
    ```bash
    cat <<'EOF' > .dev.vars
    CLOUDFLARE_ACCOUNT_ID=e8823131dce5e3dcaedec59bb4f7c093
    CLOUDFLARE_AI_TOKEN=YOUR_TEMP_DEVELOPMENT_TOKEN
+   # Optional: enable the Hugging Face fallback provider
+   HUGGINGFACE_API_TOKEN=YOUR_HUGGINGFACE_TOKEN
+   # HUGGINGFACE_API_URL=https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2
    EOF
    ```
    Replace `YOUR_TEMP_DEVELOPMENT_TOKEN` with a valid API token. The token is read only by Wrangler during local development and should **not** be committed to git.
@@ -44,6 +47,9 @@ functions/
 3. In the Pages project settings, add the following environment variables under **Functions → Environment variables**:
    - `CLOUDFLARE_ACCOUNT_ID` → `e8823131dce5e3dcaedec59bb4f7c093`
    - `CLOUDFLARE_AI_TOKEN` → (create a [Cloudflare API token](https://dash.cloudflare.com/profile/api-tokens) with the **AI** scope and paste it here)
+   - Optional Hugging Face integration:
+     - `HUGGINGFACE_API_TOKEN` → A [Hugging Face access token](https://huggingface.co/docs/api-inference/quicktour#get-your-api-token) with **read** scope
+     - `HUGGINGFACE_API_URL` → (optional override) Defaults to the free community model `mistralai/Mistral-7B-Instruct-v0.2`
 4. Trigger a deploy. Cloudflare will publish every file inside `public` and execute `functions/api/briefing.js` for `/api/briefing` requests.
 5. If you prefer deploying from the CLI, run:
    ```bash
@@ -52,9 +58,12 @@ functions/
 
    When prompted, select the Pages project you configured above. Wrangler will reuse the environment variables defined in the dashboard.
 
-## Updating integrations
+## Configuring AI integrations
 
-- **Daily Briefing**: The front end calls `/api/briefing`, which in turn invokes Cloudflare's `@cf/meta/llama-3-8b-instruct` model. Adjust the prompt in `functions/api/briefing.js` or point it at a different [Cloudflare AI model](https://developers.cloudflare.com/workers-ai/models/) by changing the endpoint path.
+- **Supported providers**: The `/api/briefing` Pages Function now supports both [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/) and the free [Hugging Face Inference API](https://huggingface.co/docs/api-inference/quicktour). Visitors can toggle between the providers directly on the Daily Briefing page. When no provider is explicitly chosen (the initial load), the function automatically attempts the first available provider and transparently falls back to the next configured option if the call fails.
+- **Daily Briefing prompts**: The shared prompt lives in `functions/api/briefing.js`. Adjust the text once and both providers receive the same instruction set.
+- **Adding more providers**: Extend the `PROVIDER_HANDLERS` map in `functions/api/briefing.js` with a new async function. Each handler simply needs to return a markdown string. If you introduce a provider that requires special environment variables, update `isProviderConfigured` so the auto-fallback logic only selects providers that are ready to use. The API also accepts a `fallback=1` query parameter so the UI can respect a stored provider preference while still attempting the rest of the configured providers when the first call fails.
+
 - **Contact form**: Replace `YOUR_UNIQUE_FORMSPREE_ENDPOINT` in `public/contact.html` with the endpoint provided by Formspree (or swap in your preferred provider).
 
 ## Notes

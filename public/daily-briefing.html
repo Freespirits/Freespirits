@@ -29,6 +29,15 @@
         </nav>
         <section class="cyber-panel">
             <h2><i data-lucide="shield-check"></i> AI-Powered Daily Briefing</h2>
+            <div class="provider-controls">
+                <label class="font-mono provider-label" for="ai-provider">Select AI Provider</label>
+                <select id="ai-provider" class="provider-select font-mono">
+                    <option value="cloudflare">Cloudflare Workers AI (Meta Llama 3 8B)</option>
+                    <option value="huggingface">Hugging Face Inference (Mistral 7B)</option>
+                </select>
+            </div>
+            <p class="provider-note font-mono">Routing through <span id="active-provider">Cloudflare Workers AI (Meta Llama 3 8B Instruct)</span>.</p>
+            <p id="provider-status" class="provider-status font-mono" aria-live="polite"></p>
             <div id="briefing-content" class="font-mono" style="text-align: center;">
                 <p>Fetching latest intel from the grid...</p>
                 <div class="loading-dots" style="justify-content: center; margin-top: 1.5rem;">
