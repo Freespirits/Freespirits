@@ -94,5 +94,61 @@ test('onRequestGet fails when AI credentials are missing', async () => {
 
     assert.equal(response.status, 500);
     const payload = await response.clone().json();
-    assert.match(payload.error, /not configured/i);
+    assert.match(payload.error, /no ai providers/i);
+});
+
+test('onRequestGet falls back to Vercel AI Gateway when Cloudflare fails', async () => {
+    const waitUntilPromises = [];
+    const fetchCalls = [];
+
+    const cloudflareFailure = new Response('boom', { status: 500, statusText: 'Internal Server Error' });
+    const vercelSuccess = new Response(
+        JSON.stringify({
+            choices: [
+                {
+                    message: {
+                        content: '### Recent Data Breaches\n* fallback detail',
+                    },
+                },
+            ],
+        }),
+        {
+            headers: { 'content-type': 'application/json' },
+        }
+    );
+
+    const responses = [cloudflareFailure, vercelSuccess];
+
+    globalThis.fetch = async (...args) => {
+        fetchCalls.push(args);
+        return responses.shift() ?? vercelSuccess;
+    };
+
+    const context = {
+        env: {
+            CLOUDFLARE_ACCOUNT_ID: 'acct',
+            CLOUDFLARE_AI_TOKEN: 'token',
+            VERCEL_AI_GATEWAY_URL: 'https://gateway.example.com/openai/chat/completions',
+            VERCEL_AI_GATEWAY_TOKEN: 'vercel-token',
+            VERCEL_AI_MODEL: 'gpt-test',
+        },
+        request: new Request('https://example.com/api/briefing'),
+        waitUntil(promise) {
+            waitUntilPromises.push(promise);
+        },
+    };
+
+    const response = await onRequestGet(context);
+    assert.equal(response.status, 200);
+
+    const body = await response.clone().json();
+    assert.equal(body.markdown, '### Recent Data Breaches\n* fallback detail');
+
+    await Promise.all(waitUntilPromises);
+
+    assert.equal(fetchCalls.length, 2, 'should attempt Cloudflare and then Vercel');
+    assert.ok(
+        fetchCalls.some(([url]) => String(url).includes('gateway.example.com')),
+        'should call Vercel gateway'
+    );
 });
