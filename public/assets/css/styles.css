@@ -140,6 +140,39 @@ nav {
     box-shadow: 0 0 20px var(--color-neon-secondary), 0 0 40px rgba(0, 204, 68, 0.25);
 }
 
+.resource-actions {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 0.95rem;
+    border-radius: 0.6rem;
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    background: rgba(0, 0, 0, 0.2);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.resource-link:hover {
+    border-color: var(--color-neon-primary);
+    box-shadow: 0 0 16px rgba(0, 255, 136, 0.4);
+    transform: translateY(-2px);
+}
+
+.resource-link i {
+    width: 1rem;
+    height: 1rem;
+}
+
 .font-mono {
     font-family: 'Roboto Mono', monospace;
 }
