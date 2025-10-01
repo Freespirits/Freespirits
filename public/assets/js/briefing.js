@@ -19,11 +19,29 @@ async function fetchDailyBriefing() {
     }
 }
 
+function escapeHtml(value) {
+    if (value == null) {
+        return '';
+    }
+
+    const escapeMap = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+    };
+
+    return String(value).replace(/[&<>"']/g, (char) => escapeMap[char]);
+}
+
 function renderBriefing(rawText, generatedAt) {
     const container = document.getElementById('briefing-content');
     if (!container) return;
 
-    const htmlContent = rawText
+    const escapedText = escapeHtml(rawText);
+
+    const htmlContent = escapedText
         .replace(/### (.*)/g, '<span class="highlight-heading font-mono">&gt;&gt; $1</span>')
         .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-strong">$1</strong>')
         .replace(/\* ([^*]+)/g, '<p class="briefing-paragraph">$1</p>')
