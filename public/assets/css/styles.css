@@ -282,7 +282,10 @@ button:hover {
     width: 100vw;
     height: 100vh;
     z-index: 0;
-    opacity: 0.2;
+    opacity: 0.35;
+    mix-blend-mode: screen;
+    filter: saturate(160%) blur(0.15px);
+    pointer-events: none;
 }
 
 .scanline-overlay {
