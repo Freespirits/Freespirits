@@ -46,6 +46,22 @@
                     LESSON: Supply chain security is paramount; trust in software vendors must be verified continuously.
                 </p>
             </article>
+            <article class="data-card" style="margin-top: 1.75rem;">
+                <h3 class="font-mono" style="color: rgba(204,255,204,0.95); font-size: 1.2rem;">&gt;&gt; Playbook Integration: Data Breach Incident Response</h3>
+                <p class="font-mono" style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.7;">
+                    Bridge the gap between historical lessons and hands-on response by referencing the open-source
+                    <a href="https://github.com/keusuanl-sec/Security-Incident-Response-Playbooks/tree/main/playbooks/data_breach" target="_blank" rel="noopener noreferrer" style="color: var(--color-neon-primary); text-decoration: none;">Data Breach Incident Response playbook</a>.
+                    The repository packages runnable detection scripts, sample evidence, and automation to rehearse the first hours of a breach.
+                </p>
+                <ul class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.85rem; line-height: 1.8; padding-left: 1.2rem;">
+                    <li><strong style="color: var(--color-neon-primary);">Validate evidence:</strong> Review the provided <code>examples/sample_log.txt</code> file to understand the indicators that trigger the workflow.</li>
+                    <li><strong style="color: var(--color-neon-primary);">Run detection locally:</strong> Execute <code>python scripts/detect_breach.py</code> to parse the logs and generate <code>example_output.txt</code> containing alerts for suspicious authentication attempts.</li>
+                    <li><strong style="color: var(--color-neon-primary);">Automate containment:</strong> Follow the Ansible recipe with <code>ansible-playbook -i automation/inventory automation/ansible_playbook.yml -K</code> to practice rapid hardening tasks that follow the initial detection.</li>
+                </ul>
+                <p class="font-mono" style="color: rgba(255,255,255,0.8); font-size: 0.85rem; line-height: 1.7;">
+                    Treat this as a dry run: swap in logs from your environment, update the inventory with sandbox systems, and rehearse the notification flow so the next breach response is muscle memory.
+                </p>
+            </article>
         </section>
         <footer>
             <div class="socials">
