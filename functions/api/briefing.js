@@ -1,5 +1,13 @@
 export async function onRequestGet(context) {
-    const { env } = context;
+    const { env, request, waitUntil } = context;
+    const cache = caches.default;
+    const cacheKey = new Request(request);
+
+    const cachedResponse = await cache.match(cacheKey);
+    if (cachedResponse) {
+        return cachedResponse;
+    }
+
     const accountId = env.CLOUDFLARE_ACCOUNT_ID;
     const apiToken = env.CLOUDFLARE_AI_TOKEN;
 
@@ -51,9 +59,25 @@ export async function onRequestGet(context) {
             throw new Error('Unexpected response from Cloudflare AI');
         }
 
-        return new Response(JSON.stringify({ markdown: aiText }), {
-            headers: { 'content-type': 'application/json' },
+        const responseBody = JSON.stringify({
+            markdown: aiText,
+            generatedAt: new Date().toISOString(),
         });
+
+        const response = new Response(responseBody, {
+            headers: {
+                'content-type': 'application/json',
+                'cache-control': 'public, max-age=0, s-maxage=7200',
+            },
+        });
+
+        if (typeof waitUntil === 'function') {
+            waitUntil(cache.put(cacheKey, response.clone()));
+        } else {
+            await cache.put(cacheKey, response.clone());
+        }
+
+        return response;
     } catch (error) {
         console.error('Daily briefing function error:', error);
         return new Response(
