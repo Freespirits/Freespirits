@@ -1,0 +1,20 @@
+{
+  "name": "freespirits",
+  "version": "1.0.0",
+  "description": "Utility scripts to demonstrate a simple dev/build/preview workflow.",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build": "node scripts/build.js",
+    "preview": "node scripts/preview.js"
+  },
+  "keywords": [
+    "workflow",
+    "demo"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "chalk": "^5.3.0"
+  }
+}
