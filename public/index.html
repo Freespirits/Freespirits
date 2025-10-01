@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/chat.css">
     <script type="module" src="/assets/js/site.js" defer></script>
     <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
 </head>
@@ -40,6 +41,45 @@
                     <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">Breach Archives</h3>
                     <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">Learn from the past. We dissect major historical data breaches to understand their impact and prevention.</p>
                 </a>
+            </div>
+        </section>
+        <section class="cyber-panel">
+            <h2><i data-lucide="message-circle"></i> Active Chat: Memorable Intel Exchange</h2>
+            <p class="highlight">
+                Engage with the HackTech community through our active chat hub. Drop in memorable intel, share defensive tactics, and keep the conversation thriving with every text you enter.
+            </p>
+            <div class="chat-shell" data-chat-shell>
+                <div class="chat-window" id="activeChatLog" aria-live="polite"></div>
+                <noscript class="chat-noscript">
+                    Activate JavaScript to join the live intel exchange.
+                </noscript>
+                <div class="chat-meta">
+                    <div class="chat-status" aria-live="polite">
+                        <span class="chat-status-indicator" data-chat-status-indicator></span>
+                        <span data-chat-status-text>Standing by</span>
+                    </div>
+                    <button class="chat-clear" type="button" id="activeChatReset">
+                        <i data-lucide="rotate-ccw"></i>
+                        Reset Thread
+                    </button>
+                </div>
+                <form class="chat-entry" id="activeChatForm" autocomplete="off">
+                    <label class="chat-label" for="activeChatInput">Transmit a message</label>
+                    <div class="chat-controls">
+                        <input
+                            type="text"
+                            id="activeChatInput"
+                            name="message"
+                            placeholder="Type a field report..."
+                            required
+                            minlength="1"
+                        />
+                        <button type="submit" class="chat-send">
+                            <i data-lucide="send"></i>
+                            Send
+                        </button>
+                    </div>
+                </form>
             </div>
         </section>
         <footer>
