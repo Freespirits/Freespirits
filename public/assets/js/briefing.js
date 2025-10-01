@@ -9,7 +9,7 @@ async function fetchDailyBriefing() {
         const payload = await response.json();
 
         if (payload?.markdown) {
-            renderBriefing(payload.markdown);
+            renderBriefing(payload.markdown, payload.generatedAt);
         } else {
             throw new Error('Malformed response payload');
         }
@@ -19,7 +19,7 @@ async function fetchDailyBriefing() {
     }
 }
 
-function renderBriefing(rawText) {
+function renderBriefing(rawText, generatedAt) {
     const container = document.getElementById('briefing-content');
     if (!container) return;
 
@@ -29,13 +29,37 @@ function renderBriefing(rawText) {
         .replace(/\* ([^*]+)/g, '<p class="briefing-paragraph">$1</p>')
         .replace(/\n/g, '<br>');
 
-    container.innerHTML = `<div class="data-card">${htmlContent}</div>`;
+    const metaBlock = [
+        '<div class="briefing-meta font-mono">',
+        '<span class="meta-pill">Automated refresh every 2 hours</span>',
+        generatedAt ? `<span class="meta-timestamp">Last updated: ${formatTimestamp(generatedAt)}</span>` : '',
+        '</div>',
+    ].join('');
+
+    container.innerHTML = `<div class="data-card">${metaBlock}${htmlContent}</div>`;
 }
 
 function renderError(message) {
     const container = document.getElementById('briefing-content');
     if (container) {
         container.innerHTML = `<p class="font-mono" style="color: #f87171; text-align: center;">${message}</p>`;
+    }
+}
+
+function formatTimestamp(isoString) {
+    try {
+        const date = new Date(isoString);
+        if (Number.isNaN(date.getTime())) {
+            return isoString;
+        }
+
+        return new Intl.DateTimeFormat(undefined, {
+            dateStyle: 'medium',
+            timeStyle: 'short',
+        }).format(date);
+    } catch (error) {
+        console.warn('Unable to format timestamp:', error);
+        return isoString;
     }
 }
 
