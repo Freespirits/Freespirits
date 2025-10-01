@@ -1,4 +1,5 @@
 import { startMatrixRain } from './matrix.js';
+import { initActiveChat } from './chat.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     startMatrixRain();
@@ -14,4 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.add('active');
         }
     });
+
+    if (document.querySelector('[data-chat-shell]')) {
+        initActiveChat();
+    }
 });
