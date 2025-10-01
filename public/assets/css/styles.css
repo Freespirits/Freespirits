@@ -187,6 +187,181 @@ nav {
     font-size: 0.95rem;
 }
 
+.chat-shell {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.chat-noscript {
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px dashed rgba(148, 163, 184, 0.4);
+    background: rgba(15, 23, 42, 0.5);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(226, 232, 240, 0.7);
+}
+
+.chat-window {
+    max-height: 340px;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    border-radius: 0.9rem;
+    padding: 1.1rem;
+    background: radial-gradient(circle at top left, rgba(0, 255, 136, 0.12), rgba(0, 0, 0, 0.55));
+    display: grid;
+    gap: 1rem;
+}
+
+.chat-window::-webkit-scrollbar {
+    width: 0.6rem;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 136, 0.35);
+    border-radius: 999px;
+}
+
+.chat-message {
+    padding: 0.85rem 1rem;
+    border-radius: 0.8rem;
+    border: 1px solid transparent;
+    background: rgba(2, 12, 8, 0.75);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.12);
+    position: relative;
+    display: grid;
+    gap: 0.35rem;
+}
+
+.chat-message p {
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1.5;
+    color: rgba(240, 255, 245, 0.9);
+}
+
+.chat-author {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-neon-primary);
+}
+
+.chat-message time {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.45);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.chat-message--user {
+    background: rgba(0, 255, 136, 0.12);
+    border-color: rgba(0, 255, 136, 0.35);
+    justify-self: end;
+}
+
+.chat-message--ally {
+    border-color: rgba(59, 130, 246, 0.35);
+    background: rgba(12, 19, 44, 0.9);
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.25);
+}
+
+.chat-message--system {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(10, 10, 10, 0.8);
+}
+
+.chat-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+}
+
+.chat-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.chat-status-indicator {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 9999px;
+    background: rgba(148, 163, 184, 0.6);
+    box-shadow: 0 0 10px rgba(148, 163, 184, 0.4);
+}
+
+.chat-entry {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.chat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+}
+
+.chat-controls {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+}
+
+.chat-send {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.9rem 1.35rem;
+}
+
+.chat-send i,
+.chat-clear i {
+    width: 1rem;
+    height: 1rem;
+}
+
+.chat-clear {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    box-shadow: none;
+}
+
+.chat-clear:hover {
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.25);
+    background: rgba(15, 23, 42, 0.85);
+}
+
+.chat-shell button {
+    letter-spacing: 0.15em;
+}
+
+.chat-controls input {
+    margin: 0;
+}
+
+.chat-shell input {
+    background: rgba(4, 9, 16, 0.85);
+}
+
+.chat-shell input::placeholder {
+    color: rgba(226, 232, 240, 0.45);
+}
+
 .grid {
     display: grid;
     gap: 1.5rem;
@@ -323,6 +498,19 @@ button:hover {
 
     .site-subtitle {
         letter-spacing: 0.35em;
+    }
+
+    .chat-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .chat-send {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .chat-window {
+        max-height: 260px;
     }
 }
 
