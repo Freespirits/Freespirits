@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <script type="module" src="/assets/js/site.js" defer></script>
+    <script type="module" src="/assets/js/midjourney.js" defer></script>
     <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
 </head>
 <body data-page="midjourney">
@@ -55,6 +56,17 @@
                         <li>Expose the proxy endpoint (for example, <code>https://your-proxy.example.com</code>) and confirm <code>/mj</code> responds with the available APIs.</li>
                         <li>Open the settings panel inside the Midjourney deck, paste the proxy URL, and authenticate. The UI immediately syncs queued jobs and prompt presets.</li>
                     </ol>
+                    <div class="midjourney-status" data-midjourney-status data-state="loading">
+                        <div class="midjourney-status-indicator" data-status-indicator aria-hidden="true"></div>
+                        <div class="midjourney-status-body">
+                            <p class="midjourney-status-text" data-status-text>Checking proxy status…</p>
+                            <pre class="midjourney-status-details" data-status-details hidden></pre>
+                        </div>
+                        <button class="midjourney-status-refresh" type="button" data-status-refresh>
+                            <i data-lucide="refresh-ccw"></i>
+                            Refresh
+                        </button>
+                    </div>
                     <p class="midjourney-note">
                         Need the full runbook? Follow the official setup guide bundled with the Lobe Midjourney Web UI repository for port mappings, optional task stores, and advanced tuning tips.
                     </p>
