@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HackTech Daily Briefing</title>
+    <title>Analyst Chat Console | HackTech</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <script type="module" src="/assets/js/site.js" defer></script>
     <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
-    <script src="/assets/js/briefing.js" defer></script>
     <script src="/assets/js/chat.js" defer></script>
 </head>
-<body data-page="daily">
+<body data-page="chat">
     <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
     <div class="scanline-overlay"></div>
     <main class="container">
@@ -31,26 +30,35 @@
             <a class="nav-link" data-nav-link data-page-target="arsenal" href="/arsenal.html"> <i data-lucide="wrench"></i> Arsenal</a>
             <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> Contact</a>
         </nav>
-        <div class="briefing-layout">
-            <section class="cyber-panel" aria-labelledby="daily-briefing-heading">
-                <h2 id="daily-briefing-heading"><i data-lucide="shield-check"></i> AI-Powered Daily Briefing</h2>
-                <div id="briefing-content" class="font-mono" style="text-align: center;">
-                    <p>Fetching latest intel from the grid...</p>
-                    <div class="loading-dots" style="justify-content: center; margin-top: 1.5rem;">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
+        <section class="cyber-panel" aria-labelledby="chat-console-heading">
+            <h2 id="chat-console-heading"><i data-lucide="messages-square"></i> Analyst Chat Console</h2>
+            <p class="highlight">
+                The console links you directly with HackTech's embedded analyst. Ask for deeper context on a briefing item, talk through mitigation strategies, or map the next steps of an engagement. Responses are sourced from Cloudflare Workers AI and tuned for lawful, defensive operations.
+            </p>
+            <div class="chat-layout">
+                <div class="chat-intel">
+                    <article class="data-card" style="display: grid; gap: 0.85rem;">
+                        <h3 class="font-mono" style="margin: 0; font-size: 1.1rem; letter-spacing: 0.08em; color: rgba(204,255,214,0.95);">Signal Boost: Suggested Prompts</h3>
+                        <ul class="quick-prompts">
+                            <li>"Summarize likely impact of the latest briefing for a healthcare SOC."</li>
+                            <li>"Outline immediate containment steps for a suspected ransomware beacon."</li>
+                            <li>"Compare tooling choices for external recon versus internal threat hunting."</li>
+                            <li>"Map MITRE ATT&amp;CK techniques involved in a supply-chain intrusion."</li>
+                        </ul>
+                    </article>
+                    <article class="data-card" style="display: grid; gap: 0.85rem;">
+                        <h3 class="font-mono" style="margin: 0; font-size: 1.1rem; letter-spacing: 0.08em; color: rgba(204,255,214,0.95);">Usage Protocol</h3>
+                        <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.7;">
+                            The analyst focuses on authorized testing, defense, and incident response. Keep transmissions free of personal data, and never attempt unauthorized access. Consult the tutorials deck for hands-on practice environments before working in production.
+                        </p>
+                        <p class="legal-note">Operate responsibly. Confirm you have written authorization before executing any intrusive action.</p>
+                    </article>
                 </div>
-            </section>
-
-            <section class="cyber-panel" id="analyst-chat" aria-labelledby="analyst-chat-heading">
-                <h2 id="analyst-chat-heading"><i data-lucide="messages-square"></i> Analyst Chat Console</h2>
                 <div class="chat-wrapper" data-chat-wrapper>
                     <div class="chat-thread" id="chat-thread" aria-live="polite" aria-busy="false"></div>
                     <form id="chat-form" class="chat-form" autocomplete="off">
                         <label class="sr-only" for="chat-input">Send a message to the HackTech analyst</label>
-                        <textarea id="chat-input" class="chat-input font-mono" name="message" rows="3" placeholder="Ask the analyst to expand on any threat, mitigation, or tooling..." required></textarea>
+                        <textarea id="chat-input" class="chat-input font-mono" name="message" rows="3" placeholder="Ask the analyst to expand on a threat, mitigation, or workflow..." required></textarea>
                         <div class="chat-actions">
                             <span class="chat-hint font-mono">Shift + Enter for new line</span>
                             <button type="submit" class="chat-send" data-chat-send>
@@ -60,8 +68,8 @@
                         </div>
                     </form>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
         <footer>
             <div class="socials">
                 <a href="https://facebook.com/YOUR_PAGE_HERE" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
