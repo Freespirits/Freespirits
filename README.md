@@ -5,12 +5,14 @@ This repository contains a static, multi-page version of the original HackTech e
 ## Project structure
 
 ```
-public/
-  index.html                # Landing page
-  daily-briefing.html       # AI briefing page powered by Cloudflare Workers AI
-  breach-archives.html      # Historical case studies
-  arsenal.html              # Curated tooling collection
-  contact.html              # Secure contact form instructions
+  public/
+    index.html                # Landing page
+    daily-briefing.html       # AI briefing page powered by Cloudflare Workers AI
+    chat-console.html         # Dedicated analyst console backed by Workers AI chat
+    ethical-hacking-tutorials.html # Curated training tracks and resources
+    breach-archives.html      # Historical case studies
+    arsenal.html              # Curated tooling collection
+    contact.html              # Secure contact form instructions
   assets/
     css/styles.css          # Shared visual design
     js/matrix.js            # Matrix rain background effect

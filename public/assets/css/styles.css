@@ -316,6 +316,50 @@ nav {
     box-shadow: none;
 }
 
+.chat-layout {
+    display: grid;
+    gap: 1.75rem;
+    margin-top: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .chat-layout {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        align-items: start;
+    }
+}
+
+.chat-intel {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.quick-prompts {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.6rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.quick-prompts li::marker {
+    color: var(--color-neon-primary);
+}
+
+.legal-note {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border-left: 0.2rem solid rgba(255, 255, 255, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 179, 189, 0.85);
+}
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -346,6 +390,61 @@ nav {
     margin: 1.5rem 0;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.95rem;
+}
+
+.tutorial-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .tutorial-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.tutorial-card {
+    display: grid;
+    gap: 1rem;
+}
+
+.tutorial-card h3 {
+    margin: 0;
+    font-size: 1.35rem;
+    letter-spacing: 0.06em;
+    color: rgba(204, 255, 214, 0.95);
+}
+
+.tutorial-meta {
+    display: inline-flex;
+    gap: 0.6rem;
+    align-items: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.tutorial-topics {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 0.55rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.tutorial-topics li::marker {
+    color: var(--color-neon-primary);
+}
+
+.tutorial-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
 }
 
 .grid {

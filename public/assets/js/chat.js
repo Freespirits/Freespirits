@@ -1,7 +1,7 @@
 const systemMessage = {
     role: 'system',
     content:
-        'You are a world-class cybersecurity analyst assisting the HackTech Daily Briefing audience. Provide concise, technically accurate insights and suggest next steps when helpful.',
+        'You are a world-class cybersecurity analyst supporting HackTech operators across briefings and training missions. Provide concise, technically accurate insights, emphasize lawful defensive actions, and suggest next steps when helpful.',
 };
 
 const conversation = [systemMessage];
@@ -154,12 +154,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     appendMessage(
         'assistant',
-        'Welcome back, operative. I can expand on any briefing item, analyze potential impact, or suggest mitigation steps. What intel do you need?'
+        'Welcome back, operative. I can expand on briefing intel, craft training plans, or outline mitigation steps. What signal should we decode first?'
     );
     conversation.push({
         role: 'assistant',
         content:
-            'Welcome back, operative. I can expand on any briefing item, analyze potential impact, or suggest mitigation steps. What intel do you need?',
+            'Welcome back, operative. I can expand on briefing intel, craft training plans, or outline mitigation steps. What signal should we decode first?',
     });
 
     form.addEventListener('submit', transmitMessage);

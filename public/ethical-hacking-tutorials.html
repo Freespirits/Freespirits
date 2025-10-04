@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical Hacking Tutorials | HackTech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="module" src="/assets/js/site.js" defer></script>
+    <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body data-page="tutorials">
+    <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+    <div class="scanline-overlay"></div>
+    <main class="container">
+        <header>
+            <h1 class="site-title">HackTech</h1>
+            <p class="site-subtitle">:: YOUR SOURCE FOR CYBER INTELLIGENCE ::</p>
+        </header>
+        <nav>
+            <a class="nav-link" data-nav-link data-page-target="home" href="/index.html"> <i data-lucide="scan"></i> Home</a>
+            <a class="nav-link" data-nav-link data-page-target="daily" href="/daily-briefing.html"> <i data-lucide="shield-check"></i> Daily Briefing</a>
+            <a class="nav-link" data-nav-link data-page-target="chat" href="/chat-console.html"> <i data-lucide="messages-square"></i> Analyst Chat</a>
+            <a class="nav-link" data-nav-link data-page-target="tutorials" href="/ethical-hacking-tutorials.html"> <i data-lucide="book-open-check"></i> Tutorials</a>
+            <a class="nav-link" data-nav-link data-page-target="midjourney" href="/midjourney.html"> <i data-lucide="sparkles"></i> Midjourney</a>
+            <a class="nav-link" data-nav-link data-page-target="breaches" href="/breach-archives.html"> <i data-lucide="shield-alert"></i> Breach Archives</a>
+            <a class="nav-link" data-nav-link data-page-target="arsenal" href="/arsenal.html"> <i data-lucide="wrench"></i> Arsenal</a>
+            <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> Contact</a>
+        </nav>
+        <section class="cyber-panel" aria-labelledby="tutorials-heading">
+            <h2 id="tutorials-heading"><i data-lucide="book-open-check"></i> Ethical Hacking Tutorials</h2>
+            <p class="highlight">
+                Build expertise the right way. Each track below combines trusted study material, hands-on labs, and professional certifications to reinforce lawful, defensible security practice. Pair them with the Analyst Chat console whenever you need clarification or a tailored learning plan.
+            </p>
+            <div class="tutorial-grid">
+                <article class="data-card tutorial-card">
+                    <h3 class="font-mono">Foundations &amp; Certifications</h3>
+                    <div class="tutorial-meta">
+                        <i data-lucide="layers"></i>
+                        <span>Skill Floor</span>
+                    </div>
+                    <ul class="tutorial-topics">
+                        <li>Study CompTIA Security+ or Network+ to cement terminology, protocols, and defensive patterns.</li>
+                        <li>Follow TryHackMe's "Pre-Security" and "Jr Penetration Tester" learning paths for guided labs.</li>
+                        <li>Track progress with a personal runbook and collect write-ups for every lab completed.</li>
+                    </ul>
+                    <div class="tutorial-actions">
+                        <a class="resource-link" href="https://tryhackme.com/path/outline/presecurity" target="_blank" rel="noopener noreferrer">
+                            <span>TryHackMe Pre-Security</span>
+                            <i data-lucide="external-link"></i>
+                        </a>
+                        <a class="resource-link" href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener noreferrer">
+                            <span>CompTIA Security+</span>
+                            <i data-lucide="external-link"></i>
+                        </a>
+                    </div>
+                </article>
+                <article class="data-card tutorial-card">
+                    <h3 class="font-mono">Hands-On Lab Operations</h3>
+                    <div class="tutorial-meta">
+                        <i data-lucide="target"></i>
+                        <span>Practice Ranges</span>
+                    </div>
+                    <ul class="tutorial-topics">
+                        <li>Spin up the OWASP Juice Shop or WebGoat locally to learn application security through deliberate exploitation.</li>
+                        <li>Enroll in Hack The Box Academy modules focused on enumeration, privilege escalation, and Active Directory.</li>
+                        <li>Document every attack chain, highlighting detection opportunities for blue teams.</li>
+                    </ul>
+                    <div class="tutorial-actions">
+                        <a class="resource-link" href="https://owasp.org/www-project-juice-shop/" target="_blank" rel="noopener noreferrer">
+                            <span>OWASP Juice Shop</span>
+                            <i data-lucide="external-link"></i>
+                        </a>
+                        <a class="resource-link" href="https://academy.hackthebox.com/" target="_blank" rel="noopener noreferrer">
+                            <span>Hack The Box Academy</span>
+                            <i data-lucide="external-link"></i>
+                        </a>
+                    </div>
+                </article>
+                <article class="data-card tutorial-card">
+                    <h3 class="font-mono">Defensive Countermeasures</h3>
+                    <div class="tutorial-meta">
+                        <i data-lucide="shield"></i>
+                        <span>Blue Team</span>
+                    </div>
+                    <ul class="tutorial-topics">
+                        <li>Complete the SANS Blue Team Operations exercises or the open Sigma rules workshops to sharpen detection engineering.</li>
+                        <li>Deploy the Elastic Security or Wazuh stack in a lab to practice log ingestion, correlation, and automated response.</li>
+                        <li>Use MITRE D3FEND to map remediations against observed ATT&amp;CK techniques.</li>
+                    </ul>
+                    <div class="tutorial-actions">
+                        <a class="resource-link" href="https://www.elastic.co/security-labs" target="_blank" rel="noopener noreferrer">
+                            <span>Elastic Security Labs</span>
+                            <i data-lucide="external-link"></i>
+                        </a>
+                        <a class="resource-link" href="https://github.com/wazuh/wazuh" target="_blank" rel="noopener noreferrer">
+                            <span>Deploy Wazuh</span>
+                            <i data-lucide="github"></i>
+                        </a>
+                    </div>
+                </article>
+                <article class="data-card tutorial-card">
+                    <h3 class="font-mono">Operational Playbooks</h3>
+                    <div class="tutorial-meta">
+                        <i data-lucide="book-marked"></i>
+                        <span>Process</span>
+                    </div>
+                    <ul class="tutorial-topics">
+                        <li>Study NIST SP 800-115 and 800-61 to understand formal testing methodology and incident handling.</li>
+                        <li>Build a repeatable rules-of-engagement template covering scope, escalation, and evidence handling.</li>
+                        <li>Review real-world post-incident reports and convert lessons learned into tabletop drills.</li>
+                    </ul>
+                    <div class="tutorial-actions">
+                        <a class="resource-link" href="https://csrc.nist.gov/publications/detail/sp/800-115/rev-1/draft" target="_blank" rel="noopener noreferrer">
+                            <span>NIST SP 800-115</span>
+                            <i data-lucide="external-link"></i>
+                        </a>
+                        <a class="resource-link" href="https://www.mitre.org/impact/d3fend" target="_blank" rel="noopener noreferrer">
+                            <span>MITRE D3FEND</span>
+                            <i data-lucide="external-link"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+            <p class="legal-note" style="margin-top: 2rem;">Training resources are for authorized research and defense. Always respect privacy, terms of service, and local regulations.</p>
+        </section>
+        <footer>
+            <div class="socials">
+                <a href="https://facebook.com/YOUR_PAGE_HERE" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+            </div>
+            // HackTech &copy; 2024. Information for educational purposes only. //
+        </footer>
+    </main>
+</body>
+</html>
