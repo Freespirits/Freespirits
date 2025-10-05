@@ -200,6 +200,96 @@ nav {
     animation-delay: -0.16s;
 }
 
+.protocols-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    margin-top: 2rem;
+}
+
+.protocol-card {
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background: rgba(2, 8, 23, 0.35);
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.protocol-card:hover {
+    border-color: rgba(14, 165, 233, 0.8);
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
+}
+
+.protocol-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.protocol-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 2px solid rgba(56, 189, 248, 0.8);
+    transform: rotate(45deg);
+    border-radius: 0.35rem;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.protocol-icon::after {
+    content: '';
+    position: absolute;
+    inset: 0.35rem;
+    background: rgba(14, 165, 233, 0.8);
+    border-radius: 0.25rem;
+}
+
+.protocol-header h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.protocol-purpose {
+    margin: 0.35rem 0 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: rgba(224, 242, 254, 0.85);
+}
+
+.protocol-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.protocol-points li strong {
+    color: rgba(125, 211, 252, 0.95);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    margin-right: 0.3rem;
+}
+
+@media (max-width: 640px) {
+    .protocols-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .protocol-header {
+        flex-direction: row;
+    }
+}
+
 .briefing-layout {
     display: grid;
     gap: 1.75rem;
