@@ -5,6 +5,16 @@ const systemMessage = {
 };
 
 const conversation = [systemMessage];
+const MAX_HISTORY = 14;
+
+function snapshotConversation() {
+    const recent = conversation.slice(-MAX_HISTORY);
+    const hasSystem = recent.some((entry) => entry.role === 'system');
+    if (!hasSystem && conversation[0]?.role === 'system') {
+        recent.unshift(conversation[0]);
+    }
+    return recent;
+}
 
 function getElements() {
     return {
@@ -108,7 +118,7 @@ async function transmitMessage(event) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ messages: conversation }),
+            body: JSON.stringify({ messages: snapshotConversation() }),
         });
 
         if (!response.ok) {

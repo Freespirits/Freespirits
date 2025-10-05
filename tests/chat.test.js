@@ -64,6 +64,7 @@ test('onRequestPost forwards chat history and returns analyst reply', async () =
     assert.equal(forwarded.messages[0].role, 'system');
     assert.equal(forwarded.messages[1].role, 'user');
     assert.equal(forwarded.messages[2].role, 'assistant');
+    assert.equal(requests[0].input, 'https://api.cloudflare.com/client/v4/accounts/acct/ai/run/@cf/meta/llama-3-8b-instruct');
 });
 
 test('onRequestPost rejects invalid payloads', async () => {
@@ -104,4 +105,80 @@ test('onRequestPost rejects unsupported methods', async () => {
     });
 
     assert.equal(response.status, 405);
+});
+
+test('onRequestPost prefers client system prompt and removes leading assistant', async () => {
+    const requests = [];
+    globalThis.fetch = async (input, init) => {
+        requests.push({ input, init });
+        return new Response(
+            JSON.stringify({
+                result: {
+                    response: 'Ready.',
+                },
+            }),
+            {
+                headers: { 'content-type': 'application/json' },
+            }
+        );
+    };
+
+    const request = new Request('https://example.com/api/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+            messages: [
+                { role: 'system', content: 'Use pirate voice.' },
+                { role: 'assistant', content: 'Ahoy.' },
+                { role: 'assistant', content: 'What now?' },
+                { role: 'user', content: 'Status update.' },
+            ],
+        }),
+    });
+
+    const response = await onRequestPost({
+        env: { CLOUDFLARE_ACCOUNT_ID: 'acct', CLOUDFLARE_AI_TOKEN: 'token' },
+        request,
+    });
+
+    assert.equal(response.status, 200);
+    const payload = JSON.parse(requests[0].init.body);
+    assert.equal(payload.messages.length, 2); // system + first user message
+    assert.equal(payload.messages[0].content, 'Use pirate voice.');
+    assert.equal(payload.messages[1].role, 'user');
+});
+
+test('onRequestPost supports custom model endpoint configuration', async () => {
+    const requests = [];
+    globalThis.fetch = async (input, init) => {
+        requests.push({ input, init });
+        return new Response(
+            JSON.stringify({
+                result: {
+                    response: 'Configured.',
+                },
+            }),
+            {
+                headers: { 'content-type': 'application/json' },
+            }
+        );
+    };
+
+    const request = new Request('https://example.com/api/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ messages: [{ role: 'user', content: 'Ping' }] }),
+    });
+
+    await onRequestPost({
+        env: {
+            CLOUDFLARE_ACCOUNT_ID: 'acct',
+            CLOUDFLARE_AI_TOKEN: 'token',
+            CLOUDFLARE_AI_BASE_URL: 'https://gateway.ai.cloudflare.com/v1/acct/gateway',
+            CLOUDFLARE_AI_MODEL: '@cf/meta/llama-3-8b-instruct',
+        },
+        request,
+    });
+
+    assert.equal(requests[0].input, 'https://gateway.ai.cloudflare.com/v1/acct/gateway/@cf/meta/llama-3-8b-instruct');
 });
