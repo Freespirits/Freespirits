@@ -30,6 +30,9 @@ functions/
    cat <<'EOF' > .dev.vars
    CLOUDFLARE_ACCOUNT_ID=e8823131dce5e3dcaedec59bb4f7c093
    CLOUDFLARE_AI_TOKEN=YOUR_TEMP_DEVELOPMENT_TOKEN
+   # Optional overrides if you are using an AI Gateway or a different model
+   # CLOUDFLARE_AI_BASE_URL=https://gateway.ai.cloudflare.com/v1/ACCOUNT/GATEWAY
+   # CLOUDFLARE_AI_MODEL=@cf/meta/llama-3-8b-instruct
    MIDJOURNEY_PROXY_URL=https://your-midjourney-proxy.example.com
    EOF
    ```
@@ -46,8 +49,10 @@ functions/
 2. Connect the repository, set the **Framework preset** to **None**, and the **Build output directory** to `public`.
 3. In the Pages project settings, add the following environment variables under **Functions → Environment variables**:
    - `CLOUDFLARE_ACCOUNT_ID` → `e8823131dce5e3dcaedec59bb4f7c093`
-   - `CLOUDFLARE_AI_TOKEN` → (create a [Cloudflare API token](https://dash.cloudflare.com/profile/api-tokens) with the **AI** scope and paste it here)
-   - `MIDJOURNEY_PROXY_URL` → URL of your deployed [midjourney-proxy](https://github.com/novicezk/midjourney-proxy) instance (for example, `https://your-midjourney-proxy.example.com`)
+ - `CLOUDFLARE_AI_TOKEN` → (create a [Cloudflare API token](https://dash.cloudflare.com/profile/api-tokens) with the **AI** scope and paste it here)
+  - `CLOUDFLARE_AI_BASE_URL` (optional) → Base URL for a [Cloudflare AI Gateway](https://developers.cloudflare.com/workers-ai/ai-gateway/) or alternate endpoint. Leave unset to call the default Workers AI API directly.
+  - `CLOUDFLARE_AI_MODEL` (optional) → Workers AI model slug (defaults to `@cf/meta/llama-3-8b-instruct`).
+  - `MIDJOURNEY_PROXY_URL` → URL of your deployed [midjourney-proxy](https://github.com/novicezk/midjourney-proxy) instance (for example, `https://your-midjourney-proxy.example.com`)
 4. Trigger a deploy. Cloudflare will publish every file inside `public` and execute `functions/api/briefing.js` for `/api/briefing` requests.
 5. If you prefer deploying from the CLI, run:
    ```bash
