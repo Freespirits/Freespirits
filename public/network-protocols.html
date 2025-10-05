@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Protocols | HackTech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="module" src="/assets/js/site.js" defer></script>
+    <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body data-page="protocols">
+    <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+    <div class="scanline-overlay"></div>
+    <main class="container">
+        <header>
+            <h1 class="site-title">HackTech</h1>
+            <p class="site-subtitle">:: YOUR SOURCE FOR CYBER INTELLIGENCE ::</p>
+        </header>
+        <nav>
+            <a class="nav-link" data-nav-link data-page-target="home" href="/index.html"> <i data-lucide="scan"></i> Home</a>
+            <a class="nav-link" data-nav-link data-page-target="daily" href="/daily-briefing.html"> <i data-lucide="shield-check"></i> Daily Briefing</a>
+            <a class="nav-link" data-nav-link data-page-target="chat" href="/chat-console.html"> <i data-lucide="messages-square"></i> Analyst Chat</a>
+            <a class="nav-link" data-nav-link data-page-target="tutorials" href="/ethical-hacking-tutorials.html"> <i data-lucide="book-open-check"></i> Tutorials</a>
+            <a class="nav-link" data-nav-link data-page-target="protocols" href="/network-protocols.html"> <i data-lucide="circuit-board"></i> Network Protocols</a>
+            <a class="nav-link" data-nav-link data-page-target="midjourney" href="/midjourney.html"> <i data-lucide="sparkles"></i> Midjourney</a>
+            <a class="nav-link" data-nav-link data-page-target="breaches" href="/breach-archives.html"> <i data-lucide="shield-alert"></i> Breach Archives</a>
+            <a class="nav-link" data-nav-link data-page-target="arsenal" href="/arsenal.html"> <i data-lucide="wrench"></i> Arsenal</a>
+            <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> Contact</a>
+        </nav>
+        <section class="cyber-panel" aria-labelledby="protocols-heading">
+            <h2 id="protocols-heading"><i data-lucide="circuit-board"></i> Network Protocols Field Guide</h2>
+            <p class="highlight">
+                Knowing how data moves lets you defend it. Each protocol brief below mirrors the format of a classic field card—purpose, ports, mechanics, and a tangible use case. Keep it on hand when planning network segmentation, hardening ingress controls, or spotting suspicious traffic on the wire.
+            </p>
+            <div class="protocols-grid">
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>1. FTP (File Transfer Protocol)</h3>
+                            <p class="protocol-purpose">Purpose: Move files between client and server systems.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 21 (control channel) with TCP 20 (active data) or high ports (passive).</li>
+                        <li><strong>How it works:</strong> Clients authenticate, open a control session, and then spin up a secondary data channel to push or pull files—unencrypted by default.</li>
+                        <li><strong>Real-life example:</strong> A web developer uploads site assets to a hosting provider using an FTP client.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Probe for anonymous logins, weak credentials, and cleartext credentials via passive sniffing before escalating to directory traversal or data exfiltration tests.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>2. SSH (Secure Shell)</h3>
+                            <p class="protocol-purpose">Purpose: Provide encrypted remote login and command execution.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 22.</li>
+                        <li><strong>How it works:</strong> Uses key exchange and strong ciphers to establish a secure channel, then transports shell access, file copy (SCP/SFTP), and tunneling.</li>
+                        <li><strong>Real-life example:</strong> An engineer manages Linux servers from a laptop over an encrypted SSH session.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Enumerate banner info, attempt key or password brute force, and hunt for agent or jump-host misconfigurations that enable lateral movement or port forwarding abuse.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>3. Telnet</h3>
+                            <p class="protocol-purpose">Purpose: Offer legacy remote terminal access (insecure).</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 23.</li>
+                        <li><strong>How it works:</strong> Sends keystrokes and responses in cleartext over a simple command-line session.</li>
+                        <li><strong>Real-life example:</strong> Older network appliances that still expose Telnet for maintenance (best disabled or firewalled).</li>
+                        <li><strong>Ethical hacker tactics:</strong> Capture credentials in transit, replay captured sessions, and exploit default accounts to demonstrate downgrade risks versus SSH.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>4. SMTP (Simple Mail Transfer Protocol)</h3>
+                            <p class="protocol-purpose">Purpose: Relay and deliver outbound email between mail servers.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 25 (standard), TCP 587 (submission with STARTTLS), TCP 465 (legacy SSL/TLS).</li>
+                        <li><strong>How it works:</strong> Uses store-and-forward messaging with optional TLS to transfer mail from clients to servers and between MTAs.</li>
+                        <li><strong>Real-life example:</strong> When you send an email, your client hands it to an SMTP server that routes it toward the recipient's domain.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Test for open relays, spoofing weaknesses, command injection in mail handlers, and downgrade attacks on STARTTLS to expose credential leakage.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>5. HTTP (Hypertext Transfer Protocol)</h3>
+                            <p class="protocol-purpose">Purpose: Deliver web pages, APIs, and assets over the open internet.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 80.</li>
+                        <li><strong>How it works:</strong> Stateless request/response protocol where clients ask for resources and servers respond with headers and content.</li>
+                        <li><strong>Real-life example:</strong> Browsing an internal wiki hosted over plain HTTP on a segmented intranet.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Perform reconnaissance for outdated frameworks, inject payloads (XSS, SQLi), and sniff unencrypted sessions to harvest tokens or credentials.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>6. HTTPS (Hypertext Transfer Protocol Secure)</h3>
+                            <p class="protocol-purpose">Purpose: Protect web traffic with TLS encryption and certificate-based trust.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 443.</li>
+                        <li><strong>How it works:</strong> Wraps HTTP inside TLS, negotiating keys and ciphers so data and authentication remain confidential and tamper-evident.</li>
+                        <li><strong>Real-life example:</strong> Secure online banking sessions that display the browser lock icon.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Enumerate certificate flaws, attempt TLS stripping via captive portals, and target application-layer bugs after decrypting traffic with authorized proxy certificates.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>7. DNS (Domain Name System)</h3>
+                            <p class="protocol-purpose">Purpose: Translate human-readable domain names into IP addresses.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> UDP 53 for queries, TCP 53 for zone transfers and large responses.</li>
+                        <li><strong>How it works:</strong> Recursive resolvers query authoritative servers, caching answers and returning the matching resource records.</li>
+                        <li><strong>Real-life example:</strong> Every time you visit a website, your resolver asks DNS which IP address to contact.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Attempt zone transfers, seed cache-poison payloads in lab settings, and map subdomains to inform phishing or attack surface reduction exercises.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>8. DHCP (Dynamic Host Configuration Protocol)</h3>
+                            <p class="protocol-purpose">Purpose: Automatically assign IP configuration to network clients.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> UDP 67 (server) and UDP 68 (client).</li>
+                        <li><strong>How it works:</strong> Clients broadcast discovery, servers offer addressing info, and leases define how long the assignment lasts.</li>
+                        <li><strong>Real-life example:</strong> A laptop joins an office Wi-Fi network and immediately receives an IP, gateway, and DNS settings via DHCP.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Launch rogue DHCP servers, exhaustion attacks, or option spoofing to demonstrate how clients can be redirected to malicious gateways.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>9. SNMP (Simple Network Management Protocol)</h3>
+                            <p class="protocol-purpose">Purpose: Monitor and manage network devices via structured queries.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> UDP 161 for polling, UDP 162 for traps/notifications.</li>
+                        <li><strong>How it works:</strong> Managers query agents using MIB object identifiers; traps signal asynchronous events.</li>
+                        <li><strong>Real-life example:</strong> A NOC dashboard polls switches and routers for interface statistics using SNMPv3.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Enumerate community strings, brute force SNMPv1/v2c, and pull configuration data to illustrate why SNMPv3 with ACLs and encryption is mandatory.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>10. IMAP (Internet Message Access Protocol)</h3>
+                            <p class="protocol-purpose">Purpose: Synchronize email between clients and mailboxes on a server.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 143 (STARTTLS), TCP 993 (IMAPS).</li>
+                        <li><strong>How it works:</strong> Keeps mail on the server while clients maintain folder state, enabling multi-device access with near real-time updates.</li>
+                        <li><strong>Real-life example:</strong> Checking corporate email from phone and laptop while keeping folders aligned.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Assess brute-force protections, downgrade STARTTLS when misconfigured, and script mailbox enumeration to prove the need for MFA and rate limits.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>11. POP3 (Post Office Protocol v3)</h3>
+                            <p class="protocol-purpose">Purpose: Download email from server mailboxes to a single client.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 110 (STARTTLS), TCP 995 (POP3S).</li>
+                        <li><strong>How it works:</strong> Client connects, authenticates, retrieves messages, and typically deletes them from the server after download.</li>
+                        <li><strong>Real-life example:</strong> Legacy desktop mail clients configured to pull mail to an offline archive.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Attempt credential stuffing, intercept cleartext logins on unsecured links, and replay message retrieval to demonstrate confidentiality gaps.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>12. SFTP (SSH File Transfer Protocol)</h3>
+                            <p class="protocol-purpose">Purpose: Securely move files over the SSH transport layer.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 22 (piggybacks on SSH).</li>
+                        <li><strong>How it works:</strong> Provides file operations—list, upload, download, permissions—inside an SSH session with encryption and integrity.</li>
+                        <li><strong>Real-life example:</strong> A security team exchanges forensic images with a partner via SFTP to maintain confidentiality.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Reuse compromised SSH keys, abuse weak chroot setups, and test for command execution via restricted file subsystem misconfigurations.</li>
+                    </ul>
+                </article>
+            </div>
+            <p class="legal-note" style="margin-top: 2rem;">Reference only share with authorized teams. Harden legacy services, prefer encrypted transports, and always document change windows.</p>
+        </section>
+        <footer>
+            <div class="socials">
+                <a href="https://facebook.com/YOUR_PAGE_HERE" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+            </div>
+            // HackTech &copy; 2024. Information for educational purposes only. //
+        </footer>
+    </main>
+</body>
+</html>
