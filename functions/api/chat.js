@@ -6,6 +6,12 @@ const DEFAULT_SYSTEM_PROMPT = [
 ].join(' ');
 
 const DEFAULT_MODEL = '@cf/meta/llama-3-8b-instruct';
+const CORS_HEADERS = Object.freeze({
+    'content-type': 'application/json',
+    'access-control-allow-origin': '*',
+    'access-control-allow-methods': 'POST,OPTIONS',
+    'access-control-allow-headers': 'content-type',
+});
 
 function sanitizeMessages(rawMessages) {
     const allowedRoles = new Set(['system', 'user', 'assistant']);
@@ -71,20 +77,20 @@ export async function onRequestPost(context) {
     const { env, request } = context;
 
     if (request.method !== 'POST') {
-        return new Response('Method Not Allowed', { status: 405, headers: { Allow: 'POST' } });
+        return new Response('Method Not Allowed', {
+            status: 405,
+            headers: { ...CORS_HEADERS, Allow: 'POST' },
+        });
     }
 
     const accountId = env.CLOUDFLARE_ACCOUNT_ID;
     const apiToken = env.CLOUDFLARE_AI_TOKEN;
 
     if (!accountId || !apiToken) {
-        return new Response(
-            JSON.stringify({ error: 'Cloudflare AI environment variables are not configured.' }),
-            {
-                status: 500,
-                headers: { 'content-type': 'application/json' },
-            }
-        );
+        return new Response(JSON.stringify({ error: 'Cloudflare AI environment variables are not configured.' }), {
+            status: 500,
+            headers: CORS_HEADERS,
+        });
     }
 
     let body;
@@ -93,7 +99,7 @@ export async function onRequestPost(context) {
     } catch (error) {
         return new Response(JSON.stringify({ error: 'Invalid JSON payload.' }), {
             status: 400,
-            headers: { 'content-type': 'application/json' },
+            headers: CORS_HEADERS,
         });
     }
 
@@ -101,7 +107,7 @@ export async function onRequestPost(context) {
     if (rawMessages.length === 0) {
         return new Response(JSON.stringify({ error: 'At least one message is required.' }), {
             status: 400,
-            headers: { 'content-type': 'application/json' },
+            headers: CORS_HEADERS,
         });
     }
 
@@ -109,7 +115,7 @@ export async function onRequestPost(context) {
     if (validationError) {
         return new Response(JSON.stringify({ error: validationError }), {
             status: 400,
-            headers: { 'content-type': 'application/json' },
+            headers: CORS_HEADERS,
         });
     }
 
@@ -119,7 +125,7 @@ export async function onRequestPost(context) {
     } catch (error) {
         return new Response(JSON.stringify({ error: error.message }), {
             status: 500,
-            headers: { 'content-type': 'application/json' },
+            headers: CORS_HEADERS,
         });
     }
 
@@ -165,12 +171,9 @@ export async function onRequestPost(context) {
             throw new Error('Unexpected response from Cloudflare AI');
         }
 
-        return new Response(
-            JSON.stringify({ reply: aiText.trim(), createdAt: new Date().toISOString() }),
-            {
-                headers: { 'content-type': 'application/json' },
-            }
-        );
+        return new Response(JSON.stringify({ reply: aiText.trim(), createdAt: new Date().toISOString() }), {
+            headers: CORS_HEADERS,
+        });
     } catch (error) {
         console.error('Analyst chat function error:', error);
 
@@ -184,7 +187,16 @@ export async function onRequestPost(context) {
 
         return new Response(JSON.stringify(payload), {
             status: 500,
-            headers: { 'content-type': 'application/json' },
+            headers: CORS_HEADERS,
         });
     }
 }
+
+export function onRequestOptions() {
+    return new Response(null, {
+        status: 204,
+        headers: CORS_HEADERS,
+    });
+}
+
+export const onRequest = onRequestPost;
