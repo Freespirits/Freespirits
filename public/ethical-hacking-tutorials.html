@@ -30,101 +30,140 @@
             <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> Contact</a>
         </nav>
         <section class="cyber-panel" aria-labelledby="tutorials-heading">
-            <h2 id="tutorials-heading"><i data-lucide="book-open-check"></i> Ethical Hacking Tutorials</h2>
+            <h2 id="tutorials-heading"><i data-lucide="book-open-check"></i> Structured Learning Tracks</h2>
             <p class="highlight">
-                Build expertise the right way. Each track below combines trusted study material, hands-on labs, and professional certifications to reinforce lawful, defensible security practice. Pair them with the Analyst Chat console whenever you need clarification or a tailored learning plan.
+                Everything from <em>awesome-hacking</em>’s curriculum is indexed here—start with fundamentals, branch into reverse
+                engineering, and keep expanding with hands-on practice environments. Pair these with the Analyst Chat to craft a
+                personalized study plan.
             </p>
-            <div class="tutorial-grid">
-                <article class="data-card tutorial-card">
-                    <h3 class="font-mono">Foundations &amp; Certifications</h3>
-                    <div class="tutorial-meta">
-                        <i data-lucide="layers"></i>
-                        <span>Skill Floor</span>
-                    </div>
-                    <ul class="tutorial-topics">
-                        <li>Study CompTIA Security+ or Network+ to cement terminology, protocols, and defensive patterns.</li>
-                        <li>Follow TryHackMe's "Pre-Security" and "Jr Penetration Tester" learning paths for guided labs.</li>
-                        <li>Track progress with a personal runbook and collect write-ups for every lab completed.</li>
-                    </ul>
-                    <div class="tutorial-actions">
-                        <a class="resource-link" href="https://tryhackme.com/path/outline/presecurity" target="_blank" rel="noopener noreferrer">
-                            <span>TryHackMe Pre-Security</span>
-                            <i data-lucide="external-link"></i>
-                        </a>
-                        <a class="resource-link" href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener noreferrer">
-                            <span>CompTIA Security+</span>
-                            <i data-lucide="external-link"></i>
-                        </a>
-                    </div>
-                </article>
-                <article class="data-card tutorial-card">
-                    <h3 class="font-mono">Hands-On Lab Operations</h3>
-                    <div class="tutorial-meta">
-                        <i data-lucide="target"></i>
-                        <span>Practice Ranges</span>
-                    </div>
-                    <ul class="tutorial-topics">
-                        <li>Spin up the OWASP Juice Shop or WebGoat locally to learn application security through deliberate exploitation.</li>
-                        <li>Enroll in Hack The Box Academy modules focused on enumeration, privilege escalation, and Active Directory.</li>
-                        <li>Document every attack chain, highlighting detection opportunities for blue teams.</li>
-                    </ul>
-                    <div class="tutorial-actions">
-                        <a class="resource-link" href="https://owasp.org/www-project-juice-shop/" target="_blank" rel="noopener noreferrer">
-                            <span>OWASP Juice Shop</span>
-                            <i data-lucide="external-link"></i>
-                        </a>
-                        <a class="resource-link" href="https://academy.hackthebox.com/" target="_blank" rel="noopener noreferrer">
-                            <span>Hack The Box Academy</span>
-                            <i data-lucide="external-link"></i>
-                        </a>
-                    </div>
-                </article>
-                <article class="data-card tutorial-card">
-                    <h3 class="font-mono">Defensive Countermeasures</h3>
-                    <div class="tutorial-meta">
-                        <i data-lucide="shield"></i>
-                        <span>Blue Team</span>
-                    </div>
-                    <ul class="tutorial-topics">
-                        <li>Complete the SANS Blue Team Operations exercises or the open Sigma rules workshops to sharpen detection engineering.</li>
-                        <li>Deploy the Elastic Security or Wazuh stack in a lab to practice log ingestion, correlation, and automated response.</li>
-                        <li>Use MITRE D3FEND to map remediations against observed ATT&amp;CK techniques.</li>
-                    </ul>
-                    <div class="tutorial-actions">
-                        <a class="resource-link" href="https://www.elastic.co/security-labs" target="_blank" rel="noopener noreferrer">
-                            <span>Elastic Security Labs</span>
-                            <i data-lucide="external-link"></i>
-                        </a>
-                        <a class="resource-link" href="https://github.com/wazuh/wazuh" target="_blank" rel="noopener noreferrer">
-                            <span>Deploy Wazuh</span>
-                            <i data-lucide="github"></i>
-                        </a>
-                    </div>
-                </article>
-                <article class="data-card tutorial-card">
-                    <h3 class="font-mono">Operational Playbooks</h3>
-                    <div class="tutorial-meta">
-                        <i data-lucide="book-marked"></i>
-                        <span>Process</span>
-                    </div>
-                    <ul class="tutorial-topics">
-                        <li>Study NIST SP 800-115 and 800-61 to understand formal testing methodology and incident handling.</li>
-                        <li>Build a repeatable rules-of-engagement template covering scope, escalation, and evidence handling.</li>
-                        <li>Review real-world post-incident reports and convert lessons learned into tabletop drills.</li>
-                    </ul>
-                    <div class="tutorial-actions">
-                        <a class="resource-link" href="https://csrc.nist.gov/publications/detail/sp/800-115/rev-1/draft" target="_blank" rel="noopener noreferrer">
-                            <span>NIST SP 800-115</span>
-                            <i data-lucide="external-link"></i>
-                        </a>
-                        <a class="resource-link" href="https://www.mitre.org/impact/d3fend" target="_blank" rel="noopener noreferrer">
-                            <span>MITRE D3FEND</span>
-                            <i data-lucide="external-link"></i>
-                        </a>
-                    </div>
-                </article>
+            <div class="resource-section">
+                <h3>System Tutorials</h3>
+                <ul class="resource-list">
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.roppers.org/courses/fundamentals" target="_blank" rel="noopener noreferrer">Roppers Computing Fundamentals</a></p><p class="resource-item-description">Self-paced curriculum covering computing and networking basics from zero experience to confident security learner. Full GitBook available for reference.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/" target="_blank" rel="noopener noreferrer">Corelan Exploit Writing Tutorials</a></p><p class="resource-item-description">Legendary series that teaches stack-based exploitation, SEH bypasses, and payload development in meticulous detail.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://web.archive.org/web/20140916085343/http://www.punter-infosec.com/exploit-writing-tutorials-for-pentesters/" target="_blank" rel="noopener noreferrer">Exploit Writing Tutorials for Pentesters</a></p><p class="resource-item-description">Archived walk-throughs focused on exploit building techniques tailored to penetration testers.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://github.com/r0hi7/BinExp" target="_blank" rel="noopener noreferrer">Understanding Linux Binary Exploitation</a></p><p class="resource-item-description">GitHub curriculum introducing ELF internals, shellcoding, and exploitation patterns on Linux.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.youtube.com/playlist?list=PLyzOVJj3bHQuloKGG59rS43e29ro7I57J" target="_blank" rel="noopener noreferrer">Shells Playlist</a></p><p class="resource-item-description">Video playlist exploring interactive shells, payload delivery, and command execution techniques.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://missing.csail.mit.edu/2020/course-shell/" target="_blank" rel="noopener noreferrer">Missing Semester</a></p><p class="resource-item-description">MIT course that fills in command-line, shell, and tooling fundamentals crucial to efficient security work.</p></div></li>
+                </ul>
             </div>
-            <p class="legal-note" style="margin-top: 2rem;">Training resources are for authorized research and defense. Always respect privacy, terms of service, and local regulations.</p>
+            <div class="resource-section">
+                <h3>Reverse Engineering Tutorials</h3>
+                <ul class="resource-list">
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.begin.re/the-workshop" target="_blank" rel="noopener noreferrer">Begin RE Workshop</a></p><p class="resource-item-description">Guided reverse engineering tutorial series with practical labs for budding analysts.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://fumalwareanalysis.blogspot.kr/p/malware-analysis-tutorials-reverse.html" target="_blank" rel="noopener noreferrer">Malware Analysis Tutorials</a></p><p class="resource-item-description">Comprehensive blog-based curriculum focusing on malware reversing methodologies.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://malwareunicorn.org/workshops/re101.html#0" target="_blank" rel="noopener noreferrer">Malware Unicorn RE101</a></p><p class="resource-item-description">Workshop that combines lecture and labs to teach foundational reversing skills.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://archive.org/details/lena151" target="_blank" rel="noopener noreferrer">Lena151: Reversing With Lena</a></p><p class="resource-item-description">Classic video series delivering progressive Windows cracking and reversing challenges.</p></div></li>
+                </ul>
+            </div>
+        </section>
+        <section class="cyber-panel">
+            <h2><i data-lucide="target"></i> Practice Arenas &amp; Wargames</h2>
+            <div class="resource-section">
+                <h3>System Challenges</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://overthewire.org/wargames/semtex/" target="_blank" rel="noopener noreferrer">OverTheWire: Semtex</a></p><p class="resource-item-description">Tackle progressively harder exploitation problems with a focus on binary mastery.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://overthewire.org/wargames/vortex/" target="_blank" rel="noopener noreferrer">OverTheWire: Vortex</a></p><p class="resource-item-description">Low-level Linux challenges emphasizing network programming and exploitation.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://overthewire.org/wargames/drifter/" target="_blank" rel="noopener noreferrer">OverTheWire: Drifter</a></p><p class="resource-item-description">Explore exploitation of binaries with network interaction and creative payloads.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://pwnable.kr/" target="_blank" rel="noopener noreferrer">pwnable.kr</a></p><p class="resource-item-description">Collection of system-level exploitation problems curated for aspiring pwners.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://exploit-exercises.com/nebula/" target="_blank" rel="noopener noreferrer">Exploit Exercises: Nebula</a></p><p class="resource-item-description">Virtual machine of Linux privilege escalation scenarios with guided write-ups.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://smashthestack.org/" target="_blank" rel="noopener noreferrer">SmashTheStack</a></p><p class="resource-item-description">Community-driven wargames covering stack smashing and other exploitation tactics.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.hacking-lab.com/" target="_blank" rel="noopener noreferrer">HackingLab</a></p><p class="resource-item-description">Multi-disciplinary lab covering system, web, and crypto challenges with scoring.</p></div></li>
+                </ul>
+            </div>
+            <div class="resource-section">
+                <h3>Reverse Engineering Wargames</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://www.reversing.kr/" target="_blank" rel="noopener noreferrer">Reversing.kr</a></p><p class="resource-item-description">Challenge ladder that sharpens code reversing and crackme solving.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://codeengn.com/challenges/" target="_blank" rel="noopener noreferrer">CodeEngn Challenges</a></p><p class="resource-item-description">Korean-language reversing problems exploring anti-debugging and packing.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://simples.kr/" target="_blank" rel="noopener noreferrer">simples.kr</a></p><p class="resource-item-description">Additional Korean reversing missions ideal for cross-language practice.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://crackmes.de/" target="_blank" rel="noopener noreferrer">Crackmes.de</a></p><p class="resource-item-description">Historic archive of crackme binaries organized by difficulty.</p></div></li>
+                </ul>
+            </div>
+            <div class="resource-section">
+                <h3>Web &amp; Full-Stack Practice</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.hackthissite.org/" target="_blank" rel="noopener noreferrer">Hack This Site!</a></p><p class="resource-item-description">Classic legal training ground with missions covering web, app, and programming puzzles.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.hackthebox.com/" target="_blank" rel="noopener noreferrer">Hack The Box</a></p><p class="resource-item-description">Ever-expanding lab of Windows and Linux targets spanning pentest specialties.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://webhacking.kr/" target="_blank" rel="noopener noreferrer">Webhacking.kr</a></p><p class="resource-item-description">Korean challenge site focusing on web application exploitation skills.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://0xf.at/" target="_blank" rel="noopener noreferrer">0xf.at</a></p><p class="resource-item-description">Password riddles and hackits without logins—ideal for quick puzzles.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://fuzzy.land/" target="_blank" rel="noopener noreferrer">fuzzy.land</a></p><p class="resource-item-description">Austrian-hosted archive of CTF challenges ready for replay.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://google-gruyere.appspot.com/" target="_blank" rel="noopener noreferrer">Google Gruyere</a></p><p class="resource-item-description">Deliberately vulnerable web app illustrating cross-site scripting and injection issues.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.owasp.org/index.php/OWASP_Vulnerable_Web_Applications_Directory_Project#tab=On-Line_apps" target="_blank" rel="noopener noreferrer">OWASP Vulnerable Web Apps</a></p><p class="resource-item-description">Index of online applications purposely built for security training.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://tryhackme.com/" target="_blank" rel="noopener noreferrer">TryHackMe</a></p><p class="resource-item-description">Guided paths and virtual rooms covering web, cloud, and defensive tradecraft.</p></div></li>
+                </ul>
+            </div>
+            <div class="resource-section">
+                <h3>Cryptography Wargames</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://overthewire.org/wargames/krypton/" target="_blank" rel="noopener noreferrer">OverTheWire: Krypton</a></p><p class="resource-item-description">Incremental crypto wargame covering substitution ciphers, frequency analysis, and beyond.</p></div></li>
+                </ul>
+            </div>
+        </section>
+        <section class="cyber-panel">
+            <h2><i data-lucide="briefcase"></i> Bug Bounty &amp; Professional Opportunities</h2>
+            <div class="resource-section">
+                <h3>Knowledge Bases</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://github.com/EdOverflow/bugbounty-cheatsheet" target="_blank" rel="noopener noreferrer">Awesome Bug Bounty Resources</a></p><p class="resource-item-description">EdOverflow’s curated collection of recon workflows, report templates, and bounty tips.</p></div></li>
+                </ul>
+            </div>
+            <div class="resource-section">
+                <h3>Bug Bounty Platforms</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.bugcrowd.com/" target="_blank" rel="noopener noreferrer">Bugcrowd</a></p><p class="resource-item-description">Marketplace connecting researchers with public and private bounty programs.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.hackerone.com/start-hacking" target="_blank" rel="noopener noreferrer">HackerOne</a></p><p class="resource-item-description">Industry-leading bug bounty and vulnerability coordination platform.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.intigriti.com/" target="_blank" rel="noopener noreferrer">Intigriti</a></p><p class="resource-item-description">European bug bounty hub offering recurring challenges and managed programs.</p></div></li>
+                </ul>
+            </div>
+        </section>
+        <section class="cyber-panel">
+            <h2><i data-lucide="trophy"></i> CTF Circuits &amp; Reference Hubs</h2>
+            <div class="resource-section">
+                <h3>Competitions</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://legitbs.net/" target="_blank" rel="noopener noreferrer">DEF CON CTF</a></p><p class="resource-item-description">Flagship capture-the-flag contest featuring offense, defense, and mixed rounds.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://ctf.isis.poly.edu/" target="_blank" rel="noopener noreferrer">CSAW CTF</a></p><p class="resource-item-description">Academic-focused competition run by NYU Tandon with global qualifiers.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://hack.lu/" target="_blank" rel="noopener noreferrer">hack.lu CTF</a></p><p class="resource-item-description">European event blending technical challenges with creative problem solving.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://www.plaidctf.com/" target="_blank" rel="noopener noreferrer">Plaid CTF</a></p><p class="resource-item-description">Plaid Parliament of Pwning’s competition known for elegant, tricky tasks.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://ructf.org/e/" target="_blank" rel="noopener noreferrer">RuCTFe</a></p><p class="resource-item-description">Russian Jeopardy-style contest with wide-ranging exploitation categories.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://ghostintheshellcode.com/" target="_blank" rel="noopener noreferrer">Ghost in the Shellcode</a></p><p class="resource-item-description">Team-based CTF emphasizing binary exploitation and creative puzzles.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://www.phdays.com/" target="_blank" rel="noopener noreferrer">PHD CTF</a></p><p class="resource-item-description">Positive Hack Days competition blending attack-defense and jeopardy rounds.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://secuinside.com/" target="_blank" rel="noopener noreferrer">SECUINSIDE CTF</a></p><p class="resource-item-description">Korean security conference CTF with unique exploitation tasks.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://ctf.codegate.org/html/Main.html?lang=eng" target="_blank" rel="noopener noreferrer">Codegate CTF</a></p><p class="resource-item-description">Long-running competition with qualifiers and finals in Seoul.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://bostonkeyparty.net/" target="_blank" rel="noopener noreferrer">Boston Key Party</a></p><p class="resource-item-description">CTF that prides itself on inventive, high-quality reverse engineering and crypto problems.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://zerodays.ie/" target="_blank" rel="noopener noreferrer">ZeroDays CTF</a></p><p class="resource-item-description">Irish security challenge with student and professional divisions.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://insomnihack.ch/" target="_blank" rel="noopener noreferrer">Insomni'hack</a></p><p class="resource-item-description">Swiss-held contest culminating at the Insomni'hack conference.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://picoctf.com/" target="_blank" rel="noopener noreferrer">picoCTF</a></p><p class="resource-item-description">Beginner-friendly competition created by Carnegie Mellon for students.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://prompt.ml/" target="_blank" rel="noopener noreferrer">prompt(1) to win</a></p><p class="resource-item-description">Series of XSS challenges crafted by the Google Security Team.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.hackthebox.com/" target="_blank" rel="noopener noreferrer">Hack The Box</a></p><p class="resource-item-description">In addition to labs, HTB hosts seasonal CTFs and ranked competitions.</p></div></li>
+                </ul>
+            </div>
+            <div class="resource-section">
+                <h3>Reference Hubs &amp; Media</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://hack.plus" target="_blank" rel="noopener noreferrer">Hack+</a></p><p class="resource-item-description">Bot-powered feed aggregating the latest InfoSec and CTF content.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://ctftime.org/" target="_blank" rel="noopener noreferrer">CTFtime.org</a></p><p class="resource-item-description">Global calendar, ratings, and write-ups for the entire CTF ecosystem.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://www.wechall.net/" target="_blank" rel="noopener noreferrer">WeChall</a></p><p class="resource-item-description">Meta-ranking site linking challenges across dozens of hacking platforms.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://shell-storm.org/repo/CTF/" target="_blank" rel="noopener noreferrer">CTF Archives @ shell-storm</a></p><p class="resource-item-description">Repository of past CTF tasks, binaries, and solutions.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://amzn.com/144962636X" target="_blank" rel="noopener noreferrer">Rootkit Arsenal</a></p><p class="resource-item-description">Book focused on operating system reverse engineering and rootkit development.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://github.com/coreb1t/awesome-pentest-cheat-sheets" target="_blank" rel="noopener noreferrer">Pentest Cheat Sheets</a></p><p class="resource-item-description">Collection of quick-reference guides for common offensive tasks.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://github.com/k4m4/movies-for-hackers" target="_blank" rel="noopener noreferrer">Movies for Hackers</a></p><p class="resource-item-description">Curated film list to keep the hacker culture inspiration alive.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://www.roppers.org/courses/ctf" target="_blank" rel="noopener noreferrer">Roppers CTF Fundamentals Course</a></p><p class="resource-item-description">Free course that trains the mindset and skills required to excel in crypto, forensics, and more.</p></div></li>
+                </ul>
+            </div>
+        </section>
+        <section class="cyber-panel">
+            <h2><i data-lucide="server"></i> Security-Focused Operating Systems</h2>
+            <div class="resource-section">
+                <h3>Research Directories</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://inventory.raw.pm/operating_systems.html" target="_blank" rel="noopener noreferrer">Rawsec Security OS Inventory</a></p><p class="resource-item-description">Exhaustive list of security-oriented operating systems for labs and production.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="https://n0where.net/best-linux-penetration-testing-distributions/" target="_blank" rel="noopener noreferrer">CyberPunk: Best Linux PenTest Distros</a></p><p class="resource-item-description">Comparative overview of leading penetration-testing Linux distributions.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title"><a href="http://distrowatch.com/search.php?category=Security" target="_blank" rel="noopener noreferrer">DistroWatch Security Search</a></p><p class="resource-item-description">Searchable index of security-centric distributions with release tracking.</p></div></li>
+                </ul>
+                <p class="resource-note">Always obtain written authorization before deploying offensive operating systems on production networks.</p>
+            </div>
         </section>
         <footer>
             <div class="socials">
