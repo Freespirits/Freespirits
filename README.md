@@ -12,7 +12,7 @@ This repository contains a static, multi-page version of the original HackTech e
     ethical-hacking-tutorials.html # Curated training tracks and resources
     breach-archives.html      # Historical case studies
     arsenal.html              # Curated tooling collection
-    contact.html              # Secure contact form instructions
+    contact.html              # Secure contact form powered by Pages Functions
   assets/
     css/styles.css          # Shared visual design
     js/matrix.js            # Matrix rain background effect
@@ -66,7 +66,11 @@ functions/
 
 - **Daily Briefing**: The front end calls `/api/briefing`, which in turn invokes Cloudflare's `@cf/meta/llama-3-8b-instruct` model. Adjust the prompt in `functions/api/briefing.js` or point it at a different [Cloudflare AI model](https://developers.cloudflare.com/workers-ai/models/) by changing the endpoint path.
 - **Midjourney deck**: Configure `MIDJOURNEY_PROXY_URL` to point at your Midjourney proxy. Pages Functions expose `/api/midjourney/*` as a CORS-enabled pass-through so the embedded Lobe Midjourney UI can route imagine/upscale calls securely. Hit `/api/midjourney/status` to confirm the proxy is reachable—responses include a summarized payload from `/mj`.
-- **Contact form**: Replace `YOUR_UNIQUE_FORMSPREE_ENDPOINT` in `public/contact.html` with the endpoint provided by Formspree (or swap in your preferred provider).
+- **Contact form**: Submissions are routed through `functions/api/contact.js`, which delivers email via MailChannels. Set the following environment variables in Cloudflare Pages → **Functions** → **Environment variables** to customize the delivery details:
+  - `CONTACT_TO_EMAIL` → Destination inbox (defaults to `hoya282@gmail.com`).
+  - `CONTACT_FROM_EMAIL` → Sender address used with MailChannels (defaults to `no-reply@hacktech-contact.pages.dev`).
+  - `CONTACT_FROM_NAME` → Optional human-friendly sender name for the email envelope.
+  The static form POSTs to `/api/contact` and includes progressive enhancement for live status updates.
 
 ## Notes
 

@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <script type="module" src="/assets/js/site.js" defer></script>
+    <script type="module" src="/assets/js/contact.js" defer></script>
     <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
 </head>
 <body data-page="contact">
@@ -36,10 +37,10 @@
             </p>
             <div class="data-card" style="margin-bottom: 2rem;">
                 <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.85rem; line-height: 1.7;">
-                    <strong class="text-strong">Form integration tip:</strong> Create a free account at <a href="https://formspree.io/" target="_blank" rel="noopener noreferrer" style="color: var(--color-neon-primary);">Formspree</a> and copy your unique endpoint. Replace <code>YOUR_UNIQUE_FORMSPREE_ENDPOINT</code> in the form action below with that value to receive submissions directly in your inbox.
+                    <strong class="text-strong">Form integration tip:</strong> Messages are routed through our Cloudflare Pages Function and delivered via MailChannels. Update the <code>CONTACT_TO_EMAIL</code> environment variable to point at your preferred inbox—defaults to <code>hoya282@gmail.com</code>.
                 </p>
             </div>
-            <form action="https://formspree.io/f/YOUR_UNIQUE_FORMSPREE_ENDPOINT" method="POST">
+            <form action="/api/contact" method="POST" data-contact-form>
                 <div>
                     <label for="handle">HANDLE / ALIAS</label>
                     <input type="text" id="handle" name="handle" placeholder="Security_Researcher_01" required>
@@ -53,6 +54,7 @@
                     <textarea id="message" name="message" rows="5" placeholder="Enter your message here..." required></textarea>
                 </div>
                 <button type="submit">Transmit Data Packet</button>
+                <p class="form-status" data-contact-status role="status" aria-live="polite"></p>
             </form>
         </section>
         <footer>
