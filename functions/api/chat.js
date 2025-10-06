@@ -142,14 +142,26 @@ export async function onRequestPost(context) {
         }
 
         const result = await aiResponse.json();
-        const aiText =
-            result?.result?.response ??
-            result?.result?.output_text ??
-            result?.result?.text ??
-            result?.result ??
-            null;
+        const candidates = [
+            result?.result?.response,
+            result?.result?.output_text,
+            result?.result?.text,
+            result?.result?.choices?.[0]?.message?.content,
+            result?.result?.choices?.[0]?.text,
+            result?.result?.data?.[0]?.text,
+            result?.choices?.[0]?.message?.content,
+            result?.choices?.[0]?.text,
+            result?.data?.[0]?.text,
+            result?.response,
+            result?.output_text,
+            result?.text,
+            typeof result?.result === 'string' ? result.result : null,
+            typeof result === 'string' ? result : null,
+        ];
 
-        if (!aiText || typeof aiText !== 'string') {
+        const aiText = candidates.find((entry) => typeof entry === 'string' && entry.trim());
+
+        if (!aiText) {
             throw new Error('Unexpected response from Cloudflare AI');
         }
 
@@ -161,12 +173,18 @@ export async function onRequestPost(context) {
         );
     } catch (error) {
         console.error('Analyst chat function error:', error);
-        return new Response(
-            JSON.stringify({ error: 'Unable to retrieve analyst response. Check Cloudflare logs for details.' }),
-            {
-                status: 500,
-                headers: { 'content-type': 'application/json' },
-            }
-        );
+
+        const payload = {
+            error: 'Unable to retrieve analyst response. Check Cloudflare logs for details.',
+        };
+
+        if (error instanceof Error && error.message) {
+            payload.details = error.message;
+        }
+
+        return new Response(JSON.stringify(payload), {
+            status: 500,
+            headers: { 'content-type': 'application/json' },
+        });
     }
 }

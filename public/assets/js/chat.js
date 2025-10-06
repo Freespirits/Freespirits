@@ -7,6 +7,74 @@ const systemMessage = {
 const conversation = [systemMessage];
 const MAX_HISTORY = 14;
 
+function extractReply(payload) {
+    if (!payload) {
+        return '';
+    }
+
+    if (typeof payload === 'string') {
+        return payload.trim();
+    }
+
+    if (typeof payload !== 'object') {
+        return '';
+    }
+
+    const directReply = payload.reply;
+    if (typeof directReply === 'string' && directReply.trim()) {
+        return directReply.trim();
+    }
+
+    const containers = [payload, payload?.result];
+
+    for (const container of containers) {
+        if (!container) {
+            continue;
+        }
+
+        if (typeof container === 'string') {
+            const trimmed = container.trim();
+            if (trimmed) {
+                return trimmed;
+            }
+            continue;
+        }
+
+        if (typeof container !== 'object') {
+            continue;
+        }
+
+        const directFields = [container.reply, container.response, container.output_text, container.text];
+        for (const field of directFields) {
+            if (typeof field === 'string' && field.trim()) {
+                return field.trim();
+            }
+        }
+
+        const dataEntry = container.data?.[0];
+        if (dataEntry) {
+            const dataCandidates = [dataEntry.message?.content, dataEntry.text];
+            for (const candidate of dataCandidates) {
+                if (typeof candidate === 'string' && candidate.trim()) {
+                    return candidate.trim();
+                }
+            }
+        }
+
+        const choice = container.choices?.[0];
+        if (choice) {
+            const choiceCandidates = [choice.message?.content, choice.text];
+            for (const option of choiceCandidates) {
+                if (typeof option === 'string' && option.trim()) {
+                    return option.trim();
+                }
+            }
+        }
+    }
+
+    return '';
+}
+
 function snapshotConversation() {
     const recent = conversation.slice(-MAX_HISTORY);
     const hasSystem = recent.some((entry) => entry.role === 'system');
@@ -122,11 +190,24 @@ async function transmitMessage(event) {
         });
 
         if (!response.ok) {
-            throw new Error(`Chat API error: ${response.status}`);
+            let errorMessage = `Chat API error: ${response.status}`;
+            try {
+                const errorPayload = await response.clone().json();
+                if (typeof errorPayload?.error === 'string' && errorPayload.error.trim()) {
+                    errorMessage = errorPayload.error.trim();
+                    if (typeof errorPayload.details === 'string' && errorPayload.details.trim()) {
+                        errorMessage = `${errorMessage} (${errorPayload.details.trim()})`;
+                    }
+                }
+            } catch (parseError) {
+                console.warn('Unable to parse chat error payload:', parseError);
+            }
+
+            throw new Error(errorMessage);
         }
 
         const payload = await response.json();
-        const reply = (payload?.reply ?? payload?.result ?? '').toString().trim();
+        const reply = extractReply(payload);
 
         if (!reply) {
             throw new Error('Empty response from analyst');
@@ -138,9 +219,10 @@ async function transmitMessage(event) {
     } catch (error) {
         console.error('Chat console error:', error);
         typingIndicator.remove();
+        const reason = error instanceof Error && error.message ? ` (${error.message})` : '';
         appendMessage(
             'assistant',
-            'Signal lost while contacting the analyst. Check your connection and try again.'
+            `Signal lost while contacting the analyst. Check your connection and try again.${reason}`.trim()
         );
     } finally {
         setBusyState(false);

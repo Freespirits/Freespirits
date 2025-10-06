@@ -98,6 +98,32 @@ test('onRequestPost fails when credentials are missing', async () => {
     assert.match(payload.error, /not configured/i);
 });
 
+test('onRequestPost surfaces upstream AI error details', async () => {
+    globalThis.fetch = async () =>
+        new Response(JSON.stringify({ errors: [{ message: 'Invalid token' }] }), {
+            status: 401,
+            statusText: 'Unauthorized',
+            headers: { 'content-type': 'application/json' },
+        });
+
+    const request = new Request('https://example.com/api/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ messages: [{ role: 'user', content: 'Ping' }] }),
+    });
+
+    const response = await onRequestPost({
+        env: { CLOUDFLARE_ACCOUNT_ID: 'acct', CLOUDFLARE_AI_TOKEN: 'token' },
+        request,
+    });
+
+    assert.equal(response.status, 500);
+    const payload = await response.clone().json();
+    assert.match(payload.error, /Unable to retrieve analyst response/i);
+    assert.match(payload.details, /401 Unauthorized/i);
+    assert.match(payload.details, /Invalid token/i);
+});
+
 test('onRequestPost rejects unsupported methods', async () => {
     const response = await onRequestPost({
         env: { CLOUDFLARE_ACCOUNT_ID: 'acct', CLOUDFLARE_AI_TOKEN: 'token' },
@@ -181,4 +207,33 @@ test('onRequestPost supports custom model endpoint configuration', async () => {
     });
 
     assert.equal(requests[0].input, 'https://gateway.ai.cloudflare.com/v1/acct/gateway/@cf/meta/llama-3-8b-instruct');
+});
+
+test('onRequestPost extracts replies from OpenAI-style choices arrays', async () => {
+    globalThis.fetch = async () =>
+        new Response(
+            JSON.stringify({
+                choices: [
+                    {
+                        message: { content: 'External provider response' },
+                    },
+                ],
+            }),
+            { headers: { 'content-type': 'application/json' } }
+        );
+
+    const request = new Request('https://example.com/api/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ messages: [{ role: 'user', content: 'Status update.' }] }),
+    });
+
+    const response = await onRequestPost({
+        env: { CLOUDFLARE_ACCOUNT_ID: 'acct', CLOUDFLARE_AI_TOKEN: 'token' },
+        request,
+    });
+
+    assert.equal(response.status, 200);
+    const payload = await response.clone().json();
+    assert.equal(payload.reply, 'External provider response');
 });
