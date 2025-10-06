@@ -6,6 +6,7 @@ const DEFAULT_SYSTEM_PROMPT = [
 ].join(' ');
 
 const DEFAULT_MODEL = '@cf/meta/llama-3-8b-instruct';
+const DEFAULT_GATEWAY_ID = 'vck_2v6dyFw9v3TbdmuMDXuJnPD2QWD4M5bRQV5iFQm8nU3aDKW7iT2NAZuo';
 const CORS_HEADERS = Object.freeze({
     'content-type': 'application/json',
     'access-control-allow-origin': '*',
@@ -59,7 +60,8 @@ function resolveModelEndpoint(env, accountId) {
     const baseUrl = (env.CLOUDFLARE_AI_BASE_URL || '').trim();
 
     if (!baseUrl) {
-        return `https://api.cloudflare.com/client/v4/accounts/${accountId}/ai/run/${model.replace(/^\//, '')}`;
+        const gatewayId = (env.CLOUDFLARE_AI_GATEWAY_ID || '').trim() || DEFAULT_GATEWAY_ID;
+        return `https://gateway.ai.cloudflare.com/v1/${accountId}/${gatewayId}/${model.replace(/^\//, '')}`;
     }
 
     try {

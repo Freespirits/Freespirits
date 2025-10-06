@@ -64,7 +64,10 @@ test('onRequestPost forwards chat history and returns analyst reply', async () =
     assert.equal(forwarded.messages[0].role, 'system');
     assert.equal(forwarded.messages[1].role, 'user');
     assert.equal(forwarded.messages[2].role, 'assistant');
-    assert.equal(requests[0].input, 'https://api.cloudflare.com/client/v4/accounts/acct/ai/run/@cf/meta/llama-3-8b-instruct');
+    assert.equal(
+        requests[0].input,
+        'https://gateway.ai.cloudflare.com/v1/acct/vck_2v6dyFw9v3TbdmuMDXuJnPD2QWD4M5bRQV5iFQm8nU3aDKW7iT2NAZuo/@cf/meta/llama-3-8b-instruct'
+    );
 });
 
 test('onRequestPost rejects invalid payloads', async () => {
