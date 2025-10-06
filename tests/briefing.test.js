@@ -86,13 +86,33 @@ test('onRequestGet returns AI response payload and caches the result', async () 
     assert.equal((await secondResponse.clone().json()).markdown, body.markdown);
 });
 
-test('onRequestGet fails when AI credentials are missing', async () => {
+test('onRequestGet uses default credentials when missing', async () => {
+    const calls = [];
+    globalThis.fetch = async (...args) => {
+        calls.push(args);
+        return new Response(
+            JSON.stringify({
+                result: {
+                    response: '### Recent Data Breaches\n* fallback detail',
+                },
+            }),
+            {
+                headers: { 'content-type': 'application/json' },
+            }
+        );
+    };
+
     const response = await onRequestGet({
         env: {},
         request: new Request('https://example.com/api/briefing'),
     });
 
-    assert.equal(response.status, 500);
+    assert.equal(response.status, 200);
     const payload = await response.clone().json();
-    assert.match(payload.error, /not configured/i);
+    assert.equal(payload.markdown, '### Recent Data Breaches\n* fallback detail');
+    assert.equal(
+        calls[0][0],
+        'https://api.cloudflare.com/client/v4/accounts/e8823131dce5e3dcaedec59bb4f7c093/ai/run/@cf/meta/llama-3-8b-instruct'
+    );
+    assert.equal(calls[0][1].headers.Authorization, 'Bearer c1V6ar1TIEW8Qju2TYNIoHUgmrF079EhCSK0sL9M');
 });

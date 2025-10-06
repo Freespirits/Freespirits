@@ -84,7 +84,22 @@ test('onRequestPost rejects invalid payloads', async () => {
     assert.match(payload.error, /message/i);
 });
 
-test('onRequestPost fails when credentials are missing', async () => {
+test('onRequestPost falls back to default credentials when missing', async () => {
+    const calls = [];
+    globalThis.fetch = async (input, init = {}) => {
+        calls.push({ input, init });
+        return new Response(
+            JSON.stringify({
+                result: {
+                    response: 'Fallback operational.',
+                },
+            }),
+            {
+                headers: { 'content-type': 'application/json' },
+            }
+        );
+    };
+
     const request = new Request('https://example.com/api/chat', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
@@ -93,9 +108,15 @@ test('onRequestPost fails when credentials are missing', async () => {
 
     const response = await onRequestPost({ env: {}, request });
 
-    assert.equal(response.status, 500);
+    assert.equal(response.status, 200);
     const payload = await response.clone().json();
-    assert.match(payload.error, /not configured/i);
+    assert.equal(payload.reply, 'Fallback operational.');
+    assert.equal(calls.length, 1);
+    assert.equal(
+        calls[0].input,
+        'https://api.cloudflare.com/client/v4/accounts/e8823131dce5e3dcaedec59bb4f7c093/ai/run/@cf/meta/llama-3-8b-instruct'
+    );
+    assert.equal(calls[0].init.headers.Authorization, 'Bearer c1V6ar1TIEW8Qju2TYNIoHUgmrF079EhCSK0sL9M');
 });
 
 test('onRequestPost surfaces upstream AI error details', async () => {
