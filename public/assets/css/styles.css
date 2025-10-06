@@ -626,6 +626,27 @@ button:hover {
     box-shadow: 0 0 30px rgba(0, 255, 136, 0.55);
 }
 
+.form-status {
+    margin-top: 0.25rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    min-height: 1.25rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-status[data-state='pending'] {
+    color: rgba(0, 255, 136, 0.75);
+}
+
+.form-status[data-state='success'] {
+    color: var(--color-neon-primary);
+}
+
+.form-status[data-state='error'] {
+    color: #ff6b6b;
+}
+
 .matrix-canvas {
     position: fixed;
     inset: 0;
