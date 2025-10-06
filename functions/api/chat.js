@@ -6,6 +6,8 @@ const DEFAULT_SYSTEM_PROMPT = [
 ].join(' ');
 
 const DEFAULT_MODEL = '@cf/meta/llama-3-8b-instruct';
+const DEFAULT_ACCOUNT_ID = 'e8823131dce5e3dcaedec59bb4f7c093';
+const DEFAULT_API_TOKEN = 'c1V6ar1TIEW8Qju2TYNIoHUgmrF079EhCSK0sL9M';
 const CORS_HEADERS = Object.freeze({
     'content-type': 'application/json',
     'access-control-allow-origin': '*',
@@ -83,8 +85,10 @@ export async function onRequestPost(context) {
         });
     }
 
-    const accountId = env.CLOUDFLARE_ACCOUNT_ID;
-    const apiToken = env.CLOUDFLARE_AI_TOKEN;
+    const normalize = (value) => (typeof value === 'string' ? value.trim() : '');
+
+    const accountId = normalize(env.CLOUDFLARE_ACCOUNT_ID) || DEFAULT_ACCOUNT_ID;
+    const apiToken = normalize(env.CLOUDFLARE_AI_TOKEN) || DEFAULT_API_TOKEN;
 
     if (!accountId || !apiToken) {
         return new Response(JSON.stringify({ error: 'Cloudflare AI environment variables are not configured.' }), {

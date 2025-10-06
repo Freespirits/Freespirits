@@ -1,3 +1,6 @@
+const DEFAULT_ACCOUNT_ID = 'e8823131dce5e3dcaedec59bb4f7c093';
+const DEFAULT_API_TOKEN = 'c1V6ar1TIEW8Qju2TYNIoHUgmrF079EhCSK0sL9M';
+
 export async function onRequestGet(context) {
     const { env, request, waitUntil } = context;
     const cache = caches.default;
@@ -8,8 +11,10 @@ export async function onRequestGet(context) {
         return cachedResponse;
     }
 
-    const accountId = env.CLOUDFLARE_ACCOUNT_ID;
-    const apiToken = env.CLOUDFLARE_AI_TOKEN;
+    const normalize = (value) => (typeof value === 'string' ? value.trim() : '');
+
+    const accountId = normalize(env.CLOUDFLARE_ACCOUNT_ID) || DEFAULT_ACCOUNT_ID;
+    const apiToken = normalize(env.CLOUDFLARE_AI_TOKEN) || DEFAULT_API_TOKEN;
 
     if (!accountId || !apiToken) {
         return new Response(

@@ -37,6 +37,7 @@ functions/
    EOF
    ```
    Replace `YOUR_TEMP_DEVELOPMENT_TOKEN` with a valid API token. The token is read only by Wrangler during local development and should **not** be committed to git.
+   The Pages Functions ship with a default Cloudflare AI account (ID `e8823131dce5e3dcaedec59bb4f7c093`) and token so the analyst chat works out of the box, but overriding these values with your own credentials is strongly recommended for production.
 3. Run the Pages preview with Functions support:
    ```bash
    npx wrangler pages dev public
