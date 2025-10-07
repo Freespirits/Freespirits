@@ -28,6 +28,9 @@
             <a class="nav-link" data-nav-link data-page-target="breaches" href="/breach-archives.html"> <i data-lucide="shield-alert"></i> Breach Archives</a>
             <a class="nav-link" data-nav-link data-page-target="arsenal" href="/arsenal.html"> <i data-lucide="wrench"></i> Arsenal</a>
             <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> Contact</a>
+            <button class="nav-link nav-toggle" type="button" data-theme-toggle aria-pressed="false">
+                <i data-lucide="contrast"></i> <span data-theme-toggle-label>Accessibility Mode: Off</span>
+            </button>
         </nav>
         <section class="cyber-panel">
             <h2><i data-lucide="terminal"></i> The Arsenal: Tools &amp; Platforms</h2>
@@ -108,6 +111,38 @@
                             <p class="resource-item-description">
                                 Investigate Google accounts through public metadata from Gmail, Photos, Maps, and related services to build lawful intelligence profiles.
                             </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="resource-section">
+                <h3>Remote Access &amp; Monitoring Research</h3>
+                <p class="font-mono" style="color: rgba(255,255,255,0.7); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem;">
+                    Commodity remote-access trojans (RATs) and unauthorized RDP exposures remain favorite footholds for adversaries. Use these references to understand, detect, and harden against the tooling—not to operate it offensively outside sanctioned labs.
+                </p>
+                <ul class="resource-list compact">
+                    <li>
+                        <div class="resource-item">
+                            <p class="resource-item-title"><a href="https://docs.velociraptor.app/" target="_blank" rel="noopener noreferrer">Velociraptor DFIR</a></p>
+                            <p class="resource-item-description">Open-source endpoint visibility platform that provides remote triage, live response, and artifact collection with full audit logging—ideal for replacing risky shadow-IT RAT deployments.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item">
+                            <p class="resource-item-title"><a href="https://github.com/SigmaHQ/sigma" target="_blank" rel="noopener noreferrer">Sigma Detection Rules</a></p>
+                            <p class="resource-item-description">Portable analytics to flag RAT tradecraft such as suspicious RDP usage, reverse shells, or persistence keys. Convert to your SIEM and pair with hunt dashboards.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item">
+                            <p class="resource-item-title"><a href="https://learn.microsoft.com/windows-server/remote/remote-desktop-services/rds-security-best-practices" target="_blank" rel="noopener noreferrer">Secure RDP Deployments</a></p>
+                            <p class="resource-item-description">Official Microsoft hardening guidance covering network-level authentication, Just-In-Time (JIT) access, and Azure conditional access telemetry for RDP.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item">
+                            <p class="resource-item-title"><a href="https://github.com/mvt-project/mvt" target="_blank" rel="noopener noreferrer">Mobile Verification Toolkit</a></p>
+                            <p class="resource-item-description">Amnesty International's toolkit for detecting Pegasus and other mercenary spyware traces on Android and iOS devices—core for NSO Group incident assessments.</p>
                         </div>
                     </li>
                 </ul>
@@ -447,6 +482,63 @@
                     <li><div class="resource-item"><p class="resource-item-title"><a href="https://proxmark.com/cart" target="_blank" rel="noopener noreferrer">Proxmark3</a></p><p class="resource-item-description">RFID/NFC research platform supporting sniffing, cloning, and emulation of badge technologies.</p></div></li>
                     <li><div class="resource-item"><p class="resource-item-title"><a href="https://github.com/RfidResearchGroup/proxmark3" target="_blank" rel="noopener noreferrer">Proxmark3 Firmware</a></p><p class="resource-item-description">Open-source codebase powering Proxmark hardware deployments.</p></div></li>
                     <li><div class="resource-item"><p class="resource-item-title"><a href="https://flipperzero.one/" target="_blank" rel="noopener noreferrer">Flipper Zero</a></p><p class="resource-item-description">Multi-tool for pentesters featuring radio, RFID, infrared, and GPIO interfaces.</p></div></li>
+                <p class="highlight">
+                    Compact hardware implants and testing devices can help red-teamers evaluate defenses in real-world
+                    environments. Always obtain explicit authorization before deploying any of the equipment below.
+                </p>
+                <ul class="resource-list">
+                    <li>
+                        <div class="resource-item">
+                            <p class="resource-item-title"><a href="https://hak5.org/products/wifi-pineapple" target="_blank" rel="noopener noreferrer">Hak5 WiFi Pineapple</a></p>
+                            <p class="resource-item-description">
+                                Portable wireless auditing platform built to surface rogue access points and conduct controlled
+                                man-in-the-middle simulations. Modern models support cloud management, modular payloads, and
+                                detailed reporting for sanctioned assessments.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item">
+                            <p class="resource-item-title"><a href="https://hak5.org/products/usb-rubber-ducky" target="_blank" rel="noopener noreferrer">Hak5 USB Rubber Ducky</a></p>
+                            <p class="resource-item-description">
+                                Programmable keystroke injection tool that emulates a trusted USB keyboard. Red and blue teams
+                                rely on it to demonstrate the risk of unattended workstations and validate endpoint defenses
+                                against rapid payload delivery.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item">
+                            <p class="resource-item-title"><a href="https://hak5.org/products/key-croc" target="_blank" rel="noopener noreferrer">Hak5 Key Croc</a></p>
+                            <p class="resource-item-description">
+                                Network-enabled keylogging implant that bridges between a keyboard and host system. Within
+                                authorized exercises it highlights physical access exposure and captures keystrokes for
+                                defensive tuning.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item">
+                            <p class="resource-item-title"><a href="https://proxmark.com/cart" target="_blank" rel="noopener noreferrer">Proxmark3</a></p>
+                            <p class="resource-item-description">
+                                Advanced RFID/NFC research platform supporting sniffing, cloning, and emulation across common
+                                badge technologies to help teams stress-test physical access controls.
+                            </p>
+                            <div class="resource-item-links">
+                                <a href="https://proxmark.com/cart" target="_blank" rel="noopener noreferrer">Proxmark3 Kits</a>
+                                <a href="https://github.com/RfidResearchGroup/proxmark3" target="_blank" rel="noopener noreferrer">Open Source Firmware</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item">
+                            <p class="resource-item-title"><a href="https://flipperzero.one/" target="_blank" rel="noopener noreferrer">Flipper Zero</a></p>
+                            <p class="resource-item-description">
+                                Portable multi-tool for hardware hackers featuring sub-GHz radio, RFID, infrared, and GPIO
+                                interfaces. Ideal for quick reconnaissance of embedded targets during lab and field engagements.
+                            </p>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="resource-section">
