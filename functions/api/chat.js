@@ -6,8 +6,9 @@ const DEFAULT_SYSTEM_PROMPT = [
 ].join(' ');
 
 const DEFAULT_MODEL = '@cf/meta/llama-3-8b-instruct';
-const DEFAULT_ACCOUNT_ID = 'e8823131dce5e3dcaedec59bb4f7c093';
-const DEFAULT_API_TOKEN = 'c1V6ar1TIEW8Qju2TYNIoHUgmrF079EhCSK0sL9M';
+// Intentionally non-functional placeholders so real credentials must be supplied via env vars.
+const DEFAULT_ACCOUNT_ID = 'demo-account-id';
+const DEFAULT_API_TOKEN = 'demo-api-token';
 const CORS_HEADERS = Object.freeze({
     'content-type': 'application/json',
     'access-control-allow-origin': '*',
