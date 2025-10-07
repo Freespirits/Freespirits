@@ -112,7 +112,7 @@ test('onRequestGet uses default credentials when missing', async () => {
     assert.equal(payload.markdown, '### Recent Data Breaches\n* fallback detail');
     assert.equal(
         calls[0][0],
-        'https://api.cloudflare.com/client/v4/accounts/e8823131dce5e3dcaedec59bb4f7c093/ai/run/@cf/meta/llama-3-8b-instruct'
+        'https://api.cloudflare.com/client/v4/accounts/demo-account-id/ai/run/@cf/meta/llama-3-8b-instruct'
     );
-    assert.equal(calls[0][1].headers.Authorization, 'Bearer c1V6ar1TIEW8Qju2TYNIoHUgmrF079EhCSK0sL9M');
+    assert.equal(calls[0][1].headers.Authorization, 'Bearer demo-api-token');
 });

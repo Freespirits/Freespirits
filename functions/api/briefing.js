@@ -1,5 +1,6 @@
-const DEFAULT_ACCOUNT_ID = 'e8823131dce5e3dcaedec59bb4f7c093';
-const DEFAULT_API_TOKEN = 'c1V6ar1TIEW8Qju2TYNIoHUgmrF079EhCSK0sL9M';
+// Placeholders ensure deployments provide explicit credentials via environment variables.
+const DEFAULT_ACCOUNT_ID = 'demo-account-id';
+const DEFAULT_API_TOKEN = 'demo-api-token';
 
 export async function onRequestGet(context) {
     const { env, request, waitUntil } = context;

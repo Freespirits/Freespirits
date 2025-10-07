@@ -114,9 +114,9 @@ test('onRequestPost falls back to default credentials when missing', async () =>
     assert.equal(calls.length, 1);
     assert.equal(
         calls[0].input,
-        'https://api.cloudflare.com/client/v4/accounts/e8823131dce5e3dcaedec59bb4f7c093/ai/run/@cf/meta/llama-3-8b-instruct'
+        'https://api.cloudflare.com/client/v4/accounts/demo-account-id/ai/run/@cf/meta/llama-3-8b-instruct'
     );
-    assert.equal(calls[0].init.headers.Authorization, 'Bearer c1V6ar1TIEW8Qju2TYNIoHUgmrF079EhCSK0sL9M');
+    assert.equal(calls[0].init.headers.Authorization, 'Bearer demo-api-token');
 });
 
 test('onRequestPost surfaces upstream AI error details', async () => {
