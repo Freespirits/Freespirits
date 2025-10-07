@@ -35,7 +35,9 @@
         <section class="cyber-panel" aria-labelledby="protocols-heading">
             <h2 id="protocols-heading"><i data-lucide="circuit-board"></i> Network Protocols Field Guide</h2>
             <p class="highlight">
-                Knowing how data moves lets you defend it. Each protocol brief below mirrors the format of a classic field card—purpose, ports, mechanics, and a tangible use case. Keep it on hand when planning network segmentation, hardening ingress controls, or spotting suspicious traffic on the wire.
+                Knowing how data moves lets you defend it. Each protocol brief below mirrors the format of a classic field card—
+                purpose, ports, mechanics, and a tangible use case. Keep it on hand when planning network segmentation, hardening ingress controls,
+                or spotting suspicious traffic on the wire. All testing guidance presumes <strong>written authorization</strong> and is framed for defensive assessment.
             </p>
             <div class="protocols-grid">
                 <article class="protocol-card">
@@ -51,6 +53,7 @@
                         <li><strong>How it works:</strong> Clients authenticate, open a control session, and then spin up a secondary data channel to push or pull files—unencrypted by default.</li>
                         <li><strong>Real-life example:</strong> A web developer uploads site assets to a hosting provider using an FTP client.</li>
                         <li><strong>Ethical hacker tactics:</strong> Probe for anonymous logins, weak credentials, and cleartext credentials via passive sniffing before escalating to directory traversal or data exfiltration tests.</li>
+                        <li><strong>Assessment toolkit:</strong> Use <code>nmap --script ftp*</code> for enumeration and <code>Hydra</code> for credential testing, capturing traffic with Wireshark to evidence encryption gaps.</li>
                     </ul>
                 </article>
                 <article class="protocol-card">
@@ -66,6 +69,7 @@
                         <li><strong>How it works:</strong> Uses key exchange and strong ciphers to establish a secure channel, then transports shell access, file copy (SCP/SFTP), and tunneling.</li>
                         <li><strong>Real-life example:</strong> An engineer manages Linux servers from a laptop over an encrypted SSH session.</li>
                         <li><strong>Ethical hacker tactics:</strong> Enumerate banner info, attempt key or password brute force, and hunt for agent or jump-host misconfigurations that enable lateral movement or port forwarding abuse.</li>
+                        <li><strong>Assessment toolkit:</strong> Run <code>ssh-audit</code> for cipher hygiene, <code>ncrack</code> for credential resilience checks, and <code>BloodHound</code> when SSH ties into Active Directory trust paths.</li>
                     </ul>
                 </article>
                 <article class="protocol-card">
@@ -81,6 +85,7 @@
                         <li><strong>How it works:</strong> Sends keystrokes and responses in cleartext over a simple command-line session.</li>
                         <li><strong>Real-life example:</strong> Older network appliances that still expose Telnet for maintenance (best disabled or firewalled).</li>
                         <li><strong>Ethical hacker tactics:</strong> Capture credentials in transit, replay captured sessions, and exploit default accounts to demonstrate downgrade risks versus SSH.</li>
+                        <li><strong>Assessment toolkit:</strong> Validate exposure with <code>nmap -sV</code>, script credential tests with <code>Medusa</code>, and document sniffed sessions via tcpdump.</li>
                     </ul>
                 </article>
                 <article class="protocol-card">
@@ -96,6 +101,7 @@
                         <li><strong>How it works:</strong> Uses store-and-forward messaging with optional TLS to transfer mail from clients to servers and between MTAs.</li>
                         <li><strong>Real-life example:</strong> When you send an email, your client hands it to an SMTP server that routes it toward the recipient's domain.</li>
                         <li><strong>Ethical hacker tactics:</strong> Test for open relays, spoofing weaknesses, command injection in mail handlers, and downgrade attacks on STARTTLS to expose credential leakage.</li>
+                        <li><strong>Assessment toolkit:</strong> Leverage <code>swaks</code> for scripted SMTP conversations, <code>smtp-user-enum</code> for controlled user enumeration, and STARTTLS scanning with <code>testssl.sh</code>.</li>
                     </ul>
                 </article>
                 <article class="protocol-card">
@@ -111,6 +117,7 @@
                         <li><strong>How it works:</strong> Stateless request/response protocol where clients ask for resources and servers respond with headers and content.</li>
                         <li><strong>Real-life example:</strong> Browsing an internal wiki hosted over plain HTTP on a segmented intranet.</li>
                         <li><strong>Ethical hacker tactics:</strong> Perform reconnaissance for outdated frameworks, inject payloads (XSS, SQLi), and sniff unencrypted sessions to harvest tokens or credentials.</li>
+                        <li><strong>Assessment toolkit:</strong> Combine <code>Burp Suite</code> or <code>OWASP ZAP</code> for proxy analysis, <code>DirBuster</code> for content discovery, and <code>sqlmap</code> to validate injection exposures with change control.</li>
                     </ul>
                 </article>
                 <article class="protocol-card">
@@ -126,6 +133,7 @@
                         <li><strong>How it works:</strong> Wraps HTTP inside TLS, negotiating keys and ciphers so data and authentication remain confidential and tamper-evident.</li>
                         <li><strong>Real-life example:</strong> Secure online banking sessions that display the browser lock icon.</li>
                         <li><strong>Ethical hacker tactics:</strong> Enumerate certificate flaws, attempt TLS stripping via captive portals, and target application-layer bugs after decrypting traffic with authorized proxy certificates.</li>
+                        <li><strong>Assessment toolkit:</strong> Run <code>sslyze</code> or <code>testssl.sh</code> for cipher sweeps, <code>bettercap</code> for lab-based downgrade demonstrations, and <code>Burp Suite</code> for authenticated fuzzing.</li>
                     </ul>
                 </article>
                 <article class="protocol-card">
@@ -141,6 +149,7 @@
                         <li><strong>How it works:</strong> Recursive resolvers query authoritative servers, caching answers and returning the matching resource records.</li>
                         <li><strong>Real-life example:</strong> Every time you visit a website, your resolver asks DNS which IP address to contact.</li>
                         <li><strong>Ethical hacker tactics:</strong> Attempt zone transfers, seed cache-poison payloads in lab settings, and map subdomains to inform phishing or attack surface reduction exercises.</li>
+                        <li><strong>Assessment toolkit:</strong> Use <code>dig</code>/<code>nslookup</code> for record pulls, <code>dnsenum</code> for structured discovery, and <code>dnstwist</code> to highlight typosquat risks.</li>
                     </ul>
                 </article>
                 <article class="protocol-card">
@@ -156,6 +165,7 @@
                         <li><strong>How it works:</strong> Clients broadcast discovery, servers offer addressing info, and leases define how long the assignment lasts.</li>
                         <li><strong>Real-life example:</strong> A laptop joins an office Wi-Fi network and immediately receives an IP, gateway, and DNS settings via DHCP.</li>
                         <li><strong>Ethical hacker tactics:</strong> Launch rogue DHCP servers, exhaustion attacks, or option spoofing to demonstrate how clients can be redirected to malicious gateways.</li>
+                        <li><strong>Assessment toolkit:</strong> Monitor offers with <code>Wireshark</code>, emulate rogue servers via <code>Yersinia</code>, and visualize lease activity through <code>RogueDHCPDetector</code>.</li>
                     </ul>
                 </article>
                 <article class="protocol-card">
@@ -171,6 +181,7 @@
                         <li><strong>How it works:</strong> Managers query agents using MIB object identifiers; traps signal asynchronous events.</li>
                         <li><strong>Real-life example:</strong> A NOC dashboard polls switches and routers for interface statistics using SNMPv3.</li>
                         <li><strong>Ethical hacker tactics:</strong> Enumerate community strings, brute force SNMPv1/v2c, and pull configuration data to illustrate why SNMPv3 with ACLs and encryption is mandatory.</li>
+                        <li><strong>Assessment toolkit:</strong> Query MIBs with <code>snmpwalk</code>, leverage <code>onesixtyone</code> for community discovery, and audit trap destinations via <code>snmp-check</code>.</li>
                     </ul>
                 </article>
                 <article class="protocol-card">
@@ -186,6 +197,7 @@
                         <li><strong>How it works:</strong> Keeps mail on the server while clients maintain folder state, enabling multi-device access with near real-time updates.</li>
                         <li><strong>Real-life example:</strong> Checking corporate email from phone and laptop while keeping folders aligned.</li>
                         <li><strong>Ethical hacker tactics:</strong> Assess brute-force protections, downgrade STARTTLS when misconfigured, and script mailbox enumeration to prove the need for MFA and rate limits.</li>
+                        <li><strong>Assessment toolkit:</strong> Use <code>imap-open-relay</code> NSE scripts, <code>Hydra</code> for throttled credential testing, and <code>imap-tools</code> to confirm data at rest controls.</li>
                     </ul>
                 </article>
                 <article class="protocol-card">
@@ -201,6 +213,7 @@
                         <li><strong>How it works:</strong> Client connects, authenticates, retrieves messages, and typically deletes them from the server after download.</li>
                         <li><strong>Real-life example:</strong> Legacy desktop mail clients configured to pull mail to an offline archive.</li>
                         <li><strong>Ethical hacker tactics:</strong> Attempt credential stuffing, intercept cleartext logins on unsecured links, and replay message retrieval to demonstrate confidentiality gaps.</li>
+                        <li><strong>Assessment toolkit:</strong> Test controls with <code>nmap --script pop3*</code>, validate TLS strength using <code>openssl s_client</code>, and corroborate logging with SIEM queries.</li>
                     </ul>
                 </article>
                 <article class="protocol-card">
@@ -216,10 +229,203 @@
                         <li><strong>How it works:</strong> Provides file operations—list, upload, download, permissions—inside an SSH session with encryption and integrity.</li>
                         <li><strong>Real-life example:</strong> A security team exchanges forensic images with a partner via SFTP to maintain confidentiality.</li>
                         <li><strong>Ethical hacker tactics:</strong> Reuse compromised SSH keys, abuse weak chroot setups, and test for command execution via restricted file subsystem misconfigurations.</li>
+                        <li><strong>Assessment toolkit:</strong> Inspect server configs with <code>ssh -vvv</code>, emulate restricted user paths through <code>sftp</code> batch scripts, and monitor uploads with <code>auditd</code>.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>13. SMB (Server Message Block)</h3>
+                            <p class="protocol-purpose">Purpose: Share files, printers, and named pipes across LANs.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 445 (modern), TCP 139 (NetBIOS session).</li>
+                        <li><strong>How it works:</strong> Provides authenticated file operations and inter-process communication using negotiated dialects (SMBv1–v3).</li>
+                        <li><strong>Real-life example:</strong> Windows file servers delivering departmental shares with access control lists.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Identify legacy SMBv1, hunt for null sessions, relay captured hashes, and validate patch posture against known vulnerabilities.</li>
+                        <li><strong>Assessment toolkit:</strong> Enumerate shares via <code>smbclient</code> and <code>enum4linux</code>, simulate relay chains with <code>Impacket</code>, and scan signing status using <code>crackmapexec</code>.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>14. RDP (Remote Desktop Protocol)</h3>
+                            <p class="protocol-purpose">Purpose: Deliver graphical remote access to Windows systems.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 3389.</li>
+                        <li><strong>How it works:</strong> Encapsulates keyboard, mouse, and display data within an encrypted channel supporting Network Level Authentication (NLA).</li>
+                        <li><strong>Real-life example:</strong> Helpdesk technicians connecting to end-user workstations for support.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Detect exposed RDP gateways, review NLA enforcement, and test blue team monitoring of brute-force guardrails.</li>
+                        <li><strong>Assessment toolkit:</strong> Audit cipher suites with <code>rdp-sec-check</code>, perform safe password spray tests via <code>crowbar</code>, and capture session telemetry with <code>rdpscan</code>.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>15. LDAP / LDAPS</h3>
+                            <p class="protocol-purpose">Purpose: Query and modify directory services like Active Directory.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 389 (LDAP), TCP 636 (LDAPS), TCP 3268/3269 (Global Catalog).</li>
+                        <li><strong>How it works:</strong> Clients bind to directory servers and perform searches or updates using a hierarchical namespace.</li>
+                        <li><strong>Real-life example:</strong> Single sign-on workflows validating user credentials against Active Directory.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Investigate anonymous binds, misconfigured ACLs, and data exposure that fuels privilege escalation.</li>
+                        <li><strong>Assessment toolkit:</strong> Employ <code>ldapsearch</code>, <code>SharpHound</code>, and <code>ADExplorer</code> to chart permissions while validating TLS enforcement.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>16. Kerberos</h3>
+                            <p class="protocol-purpose">Purpose: Provide ticket-based authentication for domain services.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> UDP/TCP 88.</li>
+                        <li><strong>How it works:</strong> Clients obtain ticket-granting tickets (TGTs) from the Key Distribution Center (KDC) and request service tickets for resources.</li>
+                        <li><strong>Real-life example:</strong> Domain-joined Windows hosts authenticating to file shares without prompting for passwords.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Review pre-authentication policies, analyze service principal names for Kerberoasting exposure, and monitor golden ticket detection coverage.</li>
+                        <li><strong>Assessment toolkit:</strong> Capture metadata with <code>Rubeus</code>, enumerate SPNs via <code>setspn</code>, and validate detections using <code>Mimikatz</code> in a controlled lab.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>17. NTP (Network Time Protocol)</h3>
+                            <p class="protocol-purpose">Purpose: Synchronize clocks across networked systems.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> UDP 123.</li>
+                        <li><strong>How it works:</strong> Clients exchange timestamps with time servers to adjust local clocks.</li>
+                        <li><strong>Real-life example:</strong> Security appliances aligning log timestamps to support forensic correlation.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Check for monlist amplification, spoof upstream sources, and validate tamper detection on time skews.</li>
+                        <li><strong>Assessment toolkit:</strong> Query with <code>ntpq</code>, simulate anomalies via <code>ntpclient</code>, and graph drift in monitoring platforms.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>18. SIP (Session Initiation Protocol)</h3>
+                            <p class="protocol-purpose">Purpose: Set up, modify, and terminate VoIP sessions.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> UDP/TCP 5060 (plaintext), TCP/TLS 5061 (SIPS).</li>
+                        <li><strong>How it works:</strong> Exchanges INVITE and ACK messages to negotiate RTP media streams for voice or video.</li>
+                        <li><strong>Real-life example:</strong> Corporate PBX systems routing desk phone calls.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Enumerate extensions, test call routing abuse, and validate SRTP enforcement.</li>
+                        <li><strong>Assessment toolkit:</strong> Utilize <code>sip-cli</code>, <code>sipvicious</code> (friendly scanning mode), and <code>Wireshark</code> VoIP analysis to audit call setup.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>19. MQTT (Message Queuing Telemetry Transport)</h3>
+                            <p class="protocol-purpose">Purpose: Lightweight pub/sub messaging for IoT and IIoT devices.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 1883 (plaintext), TCP 8883 (TLS).</li>
+                        <li><strong>How it works:</strong> Clients publish and subscribe to broker topics, exchanging telemetry with minimal overhead.</li>
+                        <li><strong>Real-life example:</strong> Building automation sensors reporting status to a central broker.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Review anonymous or wildcard topic access, monitor QoS downgrade, and inspect retained messages for sensitive data.</li>
+                        <li><strong>Assessment toolkit:</strong> Connect using <code>mosquitto_sub</code>/<code>mosquitto_pub</code>, map topics with <code>MQTT Explorer</code>, and analyze TLS with <code>testssl.sh</code>.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>20. Redis</h3>
+                            <p class="protocol-purpose">Purpose: In-memory data structure store for caching and message brokering.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 6379 (default), TLS via 6380+.</li>
+                        <li><strong>How it works:</strong> Clients issue commands to manipulate key-value data, lists, sets, and pub/sub channels.</li>
+                        <li><strong>Real-life example:</strong> High-performance web apps caching session data in Redis clusters.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Identify unauthenticated instances, inspect CONFIG exposure, and validate sandbox escapes in testing sandboxes.</li>
+                        <li><strong>Assessment toolkit:</strong> Use <code>redis-cli</code> for audit queries, <code>nmap --script redis-info</code> for fast triage, and <code>RedisCommander</code> to visualize key hygiene.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>21. MySQL / MariaDB</h3>
+                            <p class="protocol-purpose">Purpose: Relational database management for applications and analytics.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> TCP 3306.</li>
+                        <li><strong>How it works:</strong> Clients authenticate and issue SQL queries to manipulate structured data.</li>
+                        <li><strong>Real-life example:</strong> Web CMS platforms persisting user data in a MySQL backend.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Review authentication methods, privilege separation, and replication channels for leakage.</li>
+                        <li><strong>Assessment toolkit:</strong> Verify exposure with <code>mysql</code> client, review permissions via <code>sqlmap --os-shell</code> only in labs, and baseline CIS compliance using <code>Lynis</code>.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>22. RADIUS (Remote Authentication Dial-In User Service)</h3>
+                            <p class="protocol-purpose">Purpose: Centralize AAA (authentication, authorization, accounting) for network access.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Port:</strong> UDP 1812 (authentication), UDP 1813 (accounting), legacy UDP 1645/1646.</li>
+                        <li><strong>How it works:</strong> Network devices forward credentials to a RADIUS server, which responds with access decisions and logs session usage.</li>
+                        <li><strong>Real-life example:</strong> Enterprise Wi-Fi enforcing 802.1X authentication against central identity stores.</li>
+                        <li><strong>Ethical hacker tactics:</strong> Validate shared secret complexity, examine PAP versus EAP-TLS usage, and test redundant server failover.</li>
+                        <li><strong>Assessment toolkit:</strong> Generate requests with <code>radtest</code>, sniff control traffic via <code>freeradius-wpe</code> in lab builds, and audit accounting records through SIEM dashboards.</li>
                     </ul>
                 </article>
             </div>
-            <p class="legal-note" style="margin-top: 2rem;">Reference only share with authorized teams. Harden legacy services, prefer encrypted transports, and always document change windows.</p>
+            <section class="protocols-grid" aria-label="Field Guide Add-ons" style="margin-top: 2rem;">
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>Field Notes: Investigation Workflow</h3>
+                            <p class="protocol-purpose">Structured approach to analyzing newly discovered services.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Fingerprint:</strong> Start with <code>nmap -sS -sV -O</code> (or passive Zeek logs) to catalog open ports, products, and operating systems without overwhelming the target.</li>
+                        <li><strong>Validate scope:</strong> Confirm the asset is in your rules of engagement before testing deeper functionality.</li>
+                        <li><strong>Layered inspection:</strong> Move from unauthenticated checks to credentialed reviews, logging every action for replay.</li>
+                        <li><strong>Escalation matrix:</strong> Pair technical findings with business impact—who owns the system, what data it touches, and how you will coordinate remediation.</li>
+                    </ul>
+                </article>
+                <article class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="protocol-icon" aria-hidden="true"></span>
+                        <div>
+                            <h3>Toolbox Quick Reference</h3>
+                            <p class="protocol-purpose">Common assessment utilities and the protocols they illuminate.</p>
+                        </div>
+                    </div>
+                    <ul class="protocol-points">
+                        <li><strong>Discovery:</strong> <code>nmap</code>, <code>masscan</code>, and <code>NAABU</code> to quickly map exposed surfaces while respecting rate limits.</li>
+                        <li><strong>Traffic capture:</strong> <code>Wireshark</code>, <code>tcpdump</code>, and <code>Arkime</code> for packet-level review and PCAP preservation.</li>
+                        <li><strong>Credential testing:</strong> <code>Hydra</code>, <code>ncrack</code>, and <code>Medusa</code> with throttled settings plus MFA awareness.</li>
+                        <li><strong>Service-specific:</strong> <code>Impacket</code> (SMB, RDP, Kerberos), <code>sqlmap</code> (databases), <code>Bettercap</code> (network manipulation) — always operate within a legal assessment window.</li>
+                    </ul>
+                </article>
+            </section>
+            <p class="legal-note" style="margin-top: 2rem;">Reference only share with authorized teams. Harden legacy services, prefer encrypted transports, and always document change windows. Testing guidance is solely for sanctioned security assessments.</p>
         </section>
         <footer>
             <div class="socials">
