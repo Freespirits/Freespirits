@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Hub | HackTech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="module" src="/assets/js/site.js" defer></script>
+    <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body data-page="knowledge">
+    <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+    <div class="scanline-overlay"></div>
+    <main class="container">
+        <header>
+            <h1 class="site-title">HackTech</h1>
+            <p class="site-subtitle">:: YOUR SOURCE FOR CYBER INTELLIGENCE ::</p>
+        </header>
+        <nav>
+            <a class="nav-link" data-nav-link data-page-target="home" href="/index.html"> <i data-lucide="scan"></i> Home</a>
+            <a class="nav-link" data-nav-link data-page-target="daily" href="/daily-briefing.html"> <i data-lucide="shield-check"></i> Daily Briefing</a>
+            <a class="nav-link" data-nav-link data-page-target="chat" href="/chat-console.html"> <i data-lucide="messages-square"></i> Analyst Chat</a>
+            <a class="nav-link" data-nav-link data-page-target="tutorials" href="/ethical-hacking-tutorials.html"> <i data-lucide="book-open-check"></i> Tutorials</a>
+            <a class="nav-link" data-nav-link data-page-target="knowledge" href="/knowledge-hub.html"> <i data-lucide="library"></i> Knowledge Hub</a>
+            <a class="nav-link" data-nav-link data-page-target="protocols" href="/network-protocols.html"> <i data-lucide="circuit-board"></i> Network Protocols</a>
+            <a class="nav-link" data-nav-link data-page-target="breaches" href="/breach-archives.html"> <i data-lucide="shield-alert"></i> Breach Archives</a>
+            <a class="nav-link" data-nav-link data-page-target="arsenal" href="/arsenal.html"> <i data-lucide="wrench"></i> Arsenal</a>
+            <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> Contact</a>
+            <button class="nav-link nav-toggle" type="button" data-theme-toggle aria-pressed="false">
+                <i data-lucide="contrast"></i> <span data-theme-toggle-label>Accessibility Mode: Off</span>
+            </button>
+        </nav>
+        <section class="cyber-panel">
+            <h2><i data-lucide="library"></i> Knowledge Hub Command Deck</h2>
+            <p class="highlight">
+                Curate the intelligence you need at operational speed. The Knowledge Hub distills HackTech's content into rapid-reference briefings, vetted playbooks, and tooling guidance so analysts can deploy the right resource in seconds.
+            </p>
+            <div class="knowledge-callouts">
+                <div class="knowledge-callout">
+                    <h3>Mission Profile</h3>
+                    <p>Use this deck as your launch point before any engagement, training sprint, or response drill.</p>
+                    <ul class="quick-reference-list">
+                        <li><strong>Stay oriented:</strong> Begin with the Daily Briefing to understand current threat activity.</li>
+                        <li><strong>Skill up fast:</strong> Follow the suggested learning lanes that match your objective and experience level.</li>
+                        <li><strong>Act ethically:</strong> Every resource emphasizes lawful, defensive-first operations and responsible disclosure.</li>
+                    </ul>
+                </div>
+                <div class="knowledge-callout">
+                    <h3>How to Engage</h3>
+                    <p>Pair curated knowledge with live analyst feedback to accelerate your decision cycles.</p>
+                    <ul class="quick-reference-list">
+                        <li><strong>Ask questions:</strong> Use the Analyst Chat to clarify procedures or tooling before execution.</li>
+                        <li><strong>Bookmark essentials:</strong> Pin the playbooks and cheat sheets below for your next incident retro or tabletop.</li>
+                        <li><strong>Share context:</strong> Coordinate with your team via the Contact channel when rolling out new defenses.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="cyber-panel">
+            <h2><i data-lucide="radar"></i> Quick Access Knowledge &amp; Tools</h2>
+            <p class="highlight">
+                Jump straight to the most requested HackTech destinations. Each tile blends narrative guidance with actionable tooling so you can move from reconnaissance to remediation without hunting through menus.
+            </p>
+            <div class="knowledge-grid">
+                <a class="data-card" href="/daily-briefing.html">
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">Daily Threat Feed</h3>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">Review prioritized alerts, exposure trends, and mitigation checklists refreshed every time you load the page.</p>
+                </a>
+                <a class="data-card" href="/ethical-hacking-tutorials.html">
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">Learning Pathways</h3>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">Navigate curated tutorial tracks that scaffold from fundamentals through advanced, exam-ready scenarios.</p>
+                </a>
+                <a class="data-card" href="/arsenal.html">
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">Tool Selection Matrix</h3>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">Identify lawful, community-maintained utilities with usage notes, environment guidance, and detection resources.</p>
+                </a>
+                <a class="data-card" href="/network-protocols.html">
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">Protocol Knowledge Base</h3>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">Access breakdowns of core network protocols, inspection tips, and defensive tuning suggestions for blue teams.</p>
+                </a>
+                <a class="data-card" href="/breach-archives.html">
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">Historical Breach Library</h3>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">Study annotated breach timelines to understand root causes, impact, and controls that would have prevented escalation.</p>
+                </a>
+                <a class="data-card" href="/chat-console.html">
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">Analyst Console</h3>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">Escalate questions or request tailored walkthroughs when you need deeper context or validation.</p>
+                </a>
+            </div>
+        </section>
+        <section class="cyber-panel">
+            <h2><i data-lucide="workflow"></i> Playbooks &amp; Deep Dives</h2>
+            <div class="resource-section">
+                <h3>Incident Response Launch Guides</h3>
+                <ul class="resource-list">
+                    <li>
+                        <div class="resource-item visualized">
+                            <div class="resource-item-visual" data-visual-theme="archive" data-symbol="🚨" aria-hidden="true"></div>
+                            <div class="resource-item-content">
+                                <p class="resource-item-title"><a href="https://www.cisa.gov/incident-response" target="_blank" rel="noopener noreferrer">CISA Incident Response Playbooks</a></p>
+                                <p class="resource-item-description">
+                                    Modular guidance for identification, containment, eradication, and recovery aligned with U.S. federal playbooks—ideal for customizing your organization's standard operating procedures.
+                                </p>
+                                <div class="resource-item-links">
+                                    <a href="https://www.cisa.gov/resources-tools/resources/federal-incident-response-playbooks" target="_blank" rel="noopener noreferrer">Download the playbooks</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item visualized">
+                            <div class="resource-item-visual" data-visual-theme="archive" data-symbol="🧭" aria-hidden="true"></div>
+                            <div class="resource-item-content">
+                                <p class="resource-item-title"><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener noreferrer">NIST Cybersecurity Framework 2.0</a></p>
+                                <p class="resource-item-description">
+                                    Map your controls and response maturity to the Identify–Protect–Detect–Respond–Recover lifecycle with profiles tailored for small teams through enterprise programs.
+                                </p>
+                                <div class="resource-item-links">
+                                    <a href="https://www.nist.gov/cyberframework/framework" target="_blank" rel="noopener noreferrer">Read the framework</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="resource-section">
+                <h3>Skill Acceleration Tracks</h3>
+                <ul class="resource-list compact">
+                    <li>
+                        <div class="resource-item visualized">
+                            <div class="resource-item-visual" data-visual-theme="environment" data-symbol="🧪" aria-hidden="true"></div>
+                            <div class="resource-item-content">
+                                <p class="resource-item-title"><a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer">OWASP Top Ten</a></p>
+                                <p class="resource-item-description">Ground yourself in the most common web application risks with mitigation techniques and testing checklists.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item visualized">
+                            <div class="resource-item-visual" data-visual-theme="environment" data-symbol="🛡️" aria-hidden="true"></div>
+                            <div class="resource-item-content">
+                                <p class="resource-item-title"><a href="https://attack.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE ATT&amp;CK Navigator</a></p>
+                                <p class="resource-item-description">Analyze adversary tradecraft, map defensive coverage, and prioritize detections using ATT&amp;CK matrices.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item visualized">
+                            <div class="resource-item-visual" data-visual-theme="environment" data-symbol="🎯" aria-hidden="true"></div>
+                            <div class="resource-item-content">
+                                <p class="resource-item-title"><a href="https://www.sans.org/uk/cyber-range/" target="_blank" rel="noopener noreferrer">SANS Cyber Range</a></p>
+                                <p class="resource-item-description">Hands-on labs for defenders and ethical hackers to rehearse detection, response, and purple team tactics.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="resource-section">
+                <h3>Operational Cheat Sheets</h3>
+                <ul class="resource-list compact">
+                    <li>
+                        <div class="resource-item visualized">
+                            <div class="resource-item-visual" data-visual-theme="osint" data-symbol="📚" aria-hidden="true"></div>
+                            <div class="resource-item-content">
+                                <p class="resource-item-title"><a href="https://www.sans.org/posters/" target="_blank" rel="noopener noreferrer">SANS DFIR Posters</a></p>
+                                <p class="resource-item-description">Printable, high-density reference sheets covering Windows artifacts, network triage, log analysis, and memory forensics.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item visualized">
+                            <div class="resource-item-visual" data-visual-theme="osint" data-symbol="🧵" aria-hidden="true"></div>
+                            <div class="resource-item-content">
+                                <p class="resource-item-title"><a href="https://github.com/REMnux/remnux-cli-cheat-sheet" target="_blank" rel="noopener noreferrer">REMnux CLI Cheat Sheet</a></p>
+                                <p class="resource-item-description">Essential commands for malware analysts working inside the REMnux reverse-engineering distribution.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="resource-item visualized">
+                            <div class="resource-item-visual" data-visual-theme="osint" data-symbol="🧠" aria-hidden="true"></div>
+                            <div class="resource-item-content">
+                                <p class="resource-item-title"><a href="https://www.first.org/cvss/" target="_blank" rel="noopener noreferrer">CVSS v4.0 Calculator</a></p>
+                                <p class="resource-item-description">Score vulnerabilities consistently and communicate risk using the updated Common Vulnerability Scoring System.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <footer>
+            <div class="socials">
+                <a href="https://facebook.com/YOUR_PAGE_HERE" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+            </div>
+            // HackTech &copy; 2024. Information for educational purposes only. //
+        </footer>
+    </main>
+</body>
+</html>

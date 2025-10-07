@@ -932,6 +932,72 @@ body.readable-mode .fallback-notice {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
+.knowledge-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.knowledge-callouts {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.knowledge-callout {
+    border: 1px solid rgba(0, 255, 136, 0.25);
+    border-radius: 0.85rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 18px rgba(0, 255, 136, 0.12);
+}
+
+.knowledge-callout h3 {
+    margin: 0 0 0.6rem;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    letter-spacing: 0.06em;
+    color: rgba(204, 255, 204, 0.9);
+}
+
+.knowledge-callout p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.65;
+}
+
+.quick-reference-list {
+    margin: 0.9rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.quick-reference-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.quick-reference-list li::before {
+    content: '▹';
+    color: var(--color-neon-primary);
+    margin-top: 0.15rem;
+}
+
+body.readable-mode .knowledge-callout {
+    background: var(--color-readable-surface);
+    border-color: var(--color-readable-border);
+    box-shadow: none;
+}
+
+body.readable-mode .quick-reference-list {
+    color: var(--color-readable-text);
+}
+
 footer {
     margin-top: 4rem;
     padding-top: 1.5rem;
