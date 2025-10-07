@@ -11,6 +11,10 @@ const fallbackBriefings = [
         generatedAt: '2024-04-02T08:00:00Z',
         markdown: `### Recent Data Breaches\n* **Fujitsu** reported a corporate network intrusion attributed to a credential-stuffing campaign abusing recycled VPN passwords. Impacted employees underwent forced resets and FIDO2 rollouts.\n### New Tools & Exploits\n* **CISA's RedEye 3.0** now parses Cobalt Strike beacon logs and can auto-generate containment runbooks—perfect for blue-team rehearsals.\n### Platform Updates\n* **BlackArch 2024.03.01** added 150+ new packages, including Kerbrute 2.0 and updated bloodhound.py, tightening support for Active Directory attack emulation.`,
     },
+    {
+        generatedAt: '2024-04-18T08:00:00Z',
+        markdown: `### Recent Data Breaches\n* **London Clinic Pegasus inquiry**: UK regulators disclosed that infrastructure tied to NSO Group's Pegasus spyware was used to surveil lawyers working the Post Office Horizon case. Mobile carriers rotated IMSI catchers, while the victims replaced handsets and deployed mobile EDR.\n### New Tools & Exploits\n* **Velociraptor 0.7.1** shipped enterprise-ready remote collection with granular RBAC, giving responders a sanctioned alternative to commodity RAT tooling when investigating lateral movement.\n### Platform Updates\n* **Microsoft Entra ID** added granular continuous access evaluation logs for Remote Desktop Protocol (RDP) sign-ins, closing blind spots defenders saw during the Storm-1811 social-engineering spree.`,
+    },
 ];
 
 function selectFallbackBriefing() {
