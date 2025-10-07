@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | HackTech</title>
+    <title>Profile README | HackTech</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <script type="module" src="/assets/js/site.js" defer></script>
-    <script type="module" src="/assets/js/contact.js" defer></script>
     <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
 </head>
-<body data-page="contact">
+<body data-page="profile">
     <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
     <div class="scanline-overlay"></div>
     <main class="container">
@@ -35,31 +34,42 @@
             </button>
         </nav>
         <section class="cyber-panel">
-            <h2><i data-lucide="mail"></i> Secure Contact</h2>
+            <h2><i data-lucide="file-text"></i> README: HackTech Operator Profile</h2>
             <p class="highlight">
-                Have questions or want to report a security concern? Use the form below. All communications should be for educational purposes only.
+                This profile README mirrors the intent of the original HackTech introduction: demonstrate a disciplined, ethics-first approach to cyber intelligence while showcasing the breadth of educational resources curated for the community.
             </p>
-            <div class="data-card" style="margin-bottom: 2rem;">
-                <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.85rem; line-height: 1.7;">
-                    <strong class="text-strong">Form integration tip:</strong> Messages are routed through our Cloudflare Pages Function and delivered via MailChannels. Update the <code>CONTACT_TO_EMAIL</code> environment variable to point at your preferred inbox—defaults to <code>hoya282@gmail.com</code>.
+            <div class="data-card">
+                <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.12em;">Mission Statement</h3>
+                <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.7;">
+                    HackTech exists to elevate defenders, researchers, and policy shapers with timely intelligence. We dissect breaches, catalogue tooling, and provide safe environments for experimentation—never encouraging unauthorized access.
                 </p>
             </div>
-            <form action="/api/contact" method="POST" data-contact-form>
-                <div>
-                    <label for="handle">HANDLE / ALIAS</label>
-                    <input type="text" id="handle" name="handle" placeholder="Security_Researcher_01" required>
+            <div class="grid grid-two" style="margin-top: 1.5rem;">
+                <div class="data-card">
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.12em;">What You'll Find</h3>
+                    <ul class="font-mono" style="color: rgba(255,255,255,0.8); font-size: 0.85rem; line-height: 1.8; padding-left: 1.2rem;">
+                        <li>Daily intelligence briefs backed by Workers AI fallbacks for continuity.</li>
+                        <li>Breach archives with lessons learned for IR playbooks and tabletop drills.</li>
+                        <li>Tooling roundups that emphasize lawful usage, detection, and hardening.</li>
+                        <li>Contact workflows using Cloudflare Pages Functions and MailChannels.</li>
+                    </ul>
                 </div>
-                <div>
-                    <label for="reply_to">YOUR CONTACT EMAIL</label>
-                    <input type="email" id="reply_to" name="reply_to" placeholder="Your Contact Email (Optional)">
+                <div class="data-card">
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.12em;">Operating Guidelines</h3>
+                    <ul class="font-mono" style="color: rgba(255,255,255,0.8); font-size: 0.85rem; line-height: 1.8; padding-left: 1.2rem;">
+                        <li>Respect legal boundaries—every capability showcased is for sanctioned research.</li>
+                        <li>Prioritize transparency: document methodologies and share defensive indicators.</li>
+                        <li>Champion accessibility so new analysts can on-ramp quickly and ethically.</li>
+                        <li>Secure communications: prefer encrypted channels and vetted infrastructure.</li>
+                    </ul>
                 </div>
-                <div>
-                    <label for="message">MESSAGE</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Enter your message here..." required></textarea>
-                </div>
-                <button type="submit">Transmit Data Packet</button>
-                <p class="form-status" data-contact-status role="status" aria-live="polite"></p>
-            </form>
+            </div>
+            <div class="data-card" style="margin-top: 1.5rem;">
+                <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.12em;">Connect &amp; Contribute</h3>
+                <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.7;">
+                    Ready to collaborate? Use the contact form to propose research partnerships, submit detection analytics, or surface threat reports that deserve amplification. Responsible disclosure is mandatory; HackTech will never publish exploit code without accompanying mitigations.
+                </p>
+            </div>
         </section>
         <footer>
             <div class="socials">
