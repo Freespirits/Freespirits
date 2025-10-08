@@ -3,7 +3,6 @@ import assert from 'node:assert/strict';
 
 import { onRequestGet } from '../functions/api/briefing.js';
 
-const originalFetch = globalThis.fetch;
 const originalCaches = globalThis.caches;
 
 beforeEach(() => {
@@ -19,22 +18,9 @@ beforeEach(() => {
             },
         },
     };
-
-    globalThis.fetch = async () =>
-        new Response(
-            JSON.stringify({
-                result: {
-                    response: '### Recent Data Breaches\n* breach detail',
-                },
-            }),
-            {
-                headers: { 'content-type': 'application/json' },
-            }
-        );
 });
 
 after(() => {
-    globalThis.fetch = originalFetch;
     if (originalCaches === undefined) {
         delete globalThis.caches;
     } else {
@@ -42,26 +28,10 @@ after(() => {
     }
 });
 
-test('onRequestGet returns AI response payload and caches the result', async () => {
+test('onRequestGet returns archived payload and caches the result', async () => {
     const waitUntilPromises = [];
-    const fetchCalls = [];
-
-    globalThis.fetch = async (...args) => {
-        fetchCalls.push(args);
-        return new Response(
-            JSON.stringify({
-                result: {
-                    response: '### Recent Data Breaches\n* breach detail',
-                },
-            }),
-            {
-                headers: { 'content-type': 'application/json' },
-            }
-        );
-    };
 
     const context = {
-        env: { CLOUDFLARE_ACCOUNT_ID: 'acct', CLOUDFLARE_AI_TOKEN: 'token' },
         request: new Request('https://example.com/api/briefing'),
         waitUntil(promise) {
             waitUntilPromises.push(promise);
@@ -72,9 +42,10 @@ test('onRequestGet returns AI response payload and caches the result', async () 
     assert.equal(response.status, 200);
 
     const body = await response.clone().json();
-    assert.equal(body.markdown, '### Recent Data Breaches\n* breach detail');
+    assert.match(body.markdown, /Recent Data Breaches/);
     assert.ok(typeof body.generatedAt === 'string' && body.generatedAt.length > 0);
     assert.doesNotThrow(() => new Date(body.generatedAt));
+    assert.match(body.notice, /Workers AI feed retired/i);
 
     await Promise.all(waitUntilPromises);
 
@@ -82,37 +53,16 @@ test('onRequestGet returns AI response payload and caches the result', async () 
     assert.ok(cachedResponse, 'cache should contain a cloned response');
 
     const secondResponse = await onRequestGet({ ...context, waitUntil: () => {} });
-    assert.equal(fetchCalls.length, 1, 'AI fetch should only happen once');
     assert.equal((await secondResponse.clone().json()).markdown, body.markdown);
 });
 
-test('onRequestGet uses default credentials when missing', async () => {
-    const calls = [];
-    globalThis.fetch = async (...args) => {
-        calls.push(args);
-        return new Response(
-            JSON.stringify({
-                result: {
-                    response: '### Recent Data Breaches\n* fallback detail',
-                },
-            }),
-            {
-                headers: { 'content-type': 'application/json' },
-            }
-        );
-    };
-
+test('onRequestGet still responds when no cache exists', async () => {
     const response = await onRequestGet({
-        env: {},
         request: new Request('https://example.com/api/briefing'),
     });
 
     assert.equal(response.status, 200);
     const payload = await response.clone().json();
-    assert.equal(payload.markdown, '### Recent Data Breaches\n* fallback detail');
-    assert.equal(
-        calls[0][0],
-        'https://api.cloudflare.com/client/v4/accounts/demo-account-id/ai/run/@cf/meta/llama-3-8b-instruct'
-    );
-    assert.equal(calls[0][1].headers.Authorization, 'Bearer demo-api-token');
+    assert.ok(payload.markdown.includes('###'));
+    assert.ok(payload.notice.includes('Workers AI'));
 });

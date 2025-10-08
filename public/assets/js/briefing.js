@@ -54,7 +54,7 @@ async function fetchDailyBriefing() {
         }
 
         if (typeof payload?.markdown === 'string') {
-            renderBriefing(payload.markdown, payload.generatedAt);
+            renderBriefing(payload.markdown, payload.generatedAt, { notice: payload.notice });
         } else {
             throw new Error('Malformed response payload');
         }
@@ -81,7 +81,7 @@ function escapeHtml(value) {
 }
 
 function renderBriefing(rawText, generatedAt, options = {}) {
-    const { isFallback = false } = options;
+    const { isFallback = false, notice = null } = options;
     const container = document.getElementById('briefing-content');
     if (!container) return;
 
@@ -100,11 +100,13 @@ function renderBriefing(rawText, generatedAt, options = {}) {
         '</div>',
     ].join('');
 
-    const fallbackNotice = isFallback
-        ? '<p class="fallback-notice">Live feed temporarily offline — displaying a curated training briefing instead.</p>'
-        : '';
+    const statusMessage = notice
+        ? `<p class="fallback-notice">${escapeHtml(notice)}</p>`
+        : isFallback
+          ? '<p class="fallback-notice">Live feed temporarily offline — displaying a curated training briefing instead.</p>'
+          : '';
 
-    container.innerHTML = `<div class="data-card">${metaBlock}${htmlContent}${fallbackNotice}</div>`;
+    container.innerHTML = `<div class="data-card">${metaBlock}${htmlContent}${statusMessage}</div>`;
 }
 
 function renderError(message) {

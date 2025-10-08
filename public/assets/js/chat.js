@@ -1,7 +1,7 @@
 const systemMessage = {
     role: 'system',
     content:
-        'You are a world-class cybersecurity analyst supporting HackTech operators across briefings and training missions. Provide concise, technically accurate insights, emphasize lawful defensive actions, and suggest next steps when helpful.',
+        'Inform the user that the live HackTech analyst feed is offline while Cloudflare Workers AI access is retired. Provide encouraging guidance to review archived briefings and training materials instead of real-time answers.',
 };
 
 const conversation = [systemMessage];
@@ -207,7 +207,7 @@ async function transmitMessage(event) {
         }
 
         const payload = await response.json();
-        const reply = extractReply(payload);
+        const reply = extractReply(payload) || payload.notice;
 
         if (!reply) {
             throw new Error('Empty response from analyst');
@@ -222,7 +222,7 @@ async function transmitMessage(event) {
         const reason = error instanceof Error && error.message ? ` (${error.message})` : '';
         appendMessage(
             'assistant',
-            `Signal lost while contacting the analyst. Check your connection and try again.${reason}`.trim()
+            `Analyst uplink remains offline. Reference the archived briefing intel for now.${reason}`.trim()
         );
     } finally {
         setBusyState(false);
@@ -246,12 +246,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     appendMessage(
         'assistant',
-        'Welcome back, operative. I can expand on briefing intel, craft training plans, or outline mitigation steps. What signal should we decode first?'
+        'Signal relay archived. The live analyst is offline while Workers AI access is retooled. Explore the prompts or briefing archives while we rebuild the pipeline.'
     );
     conversation.push({
         role: 'assistant',
         content:
-            'Welcome back, operative. I can expand on briefing intel, craft training plans, or outline mitigation steps. What signal should we decode first?',
+            'Signal relay archived. The live analyst is offline while Workers AI access is retooled. Explore the prompts or briefing archives while we rebuild the pipeline.',
     });
 
     form.addEventListener('submit', transmitMessage);
