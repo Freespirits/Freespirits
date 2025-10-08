@@ -3,6 +3,12 @@ const PLACEHOLDER_ACCOUNT_ID = 'demo-account-id';
 const PLACEHOLDER_API_TOKEN = 'demo-api-token';
 const DEFAULT_GATEWAY = 'demo-gateway';
 const DEFAULT_MODEL = '@cf/meta/llama-3-8b-instruct';
+const TOKEN_ENV_FALLBACKS = [
+    'CLOUDFLARE_AI_TOKEN',
+    'AI_GATEWAY_API_KEY',
+    'CLOUDFLARE_API_TOKEN',
+    'WORKERS_AI_TOKEN',
+];
 
 function resolveBriefingEndpoint(env, accountId) {
     const model = (env.CLOUDFLARE_AI_MODEL || '').trim() || DEFAULT_MODEL;
@@ -41,7 +47,14 @@ export async function onRequestGet(context) {
     const normalize = (value) => (typeof value === 'string' ? value.trim() : '');
 
     const accountId = normalize(env.CLOUDFLARE_ACCOUNT_ID);
-    const apiToken = normalize(env.CLOUDFLARE_AI_TOKEN);
+    const apiToken = TOKEN_ENV_FALLBACKS.reduce((selected, key) => {
+        if (selected) {
+            return selected;
+        }
+
+        const candidate = normalize(env?.[key]);
+        return candidate || '';
+    }, '');
 
     if (
         !accountId ||

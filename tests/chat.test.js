@@ -108,6 +108,40 @@ test('onRequestPost returns a configuration error when credentials are missing',
     assert.equal(calls.length, 0, 'request should not be forwarded without credentials');
 });
 
+test('onRequestPost accepts Workers AI gateway token fallbacks', async () => {
+    const requests = [];
+    globalThis.fetch = async (input, init) => {
+        requests.push({ input, init });
+        return new Response(
+            JSON.stringify({
+                result: {
+                    response: 'Fallback token response',
+                },
+            }),
+            {
+                headers: { 'content-type': 'application/json' },
+            }
+        );
+    };
+
+    const request = new Request('https://example.com/api/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ messages: [{ role: 'user', content: 'Ping' }] }),
+    });
+
+    const response = await onRequestPost({
+        env: { CLOUDFLARE_ACCOUNT_ID: 'acct', AI_GATEWAY_API_KEY: 'gateway-key' },
+        request,
+    });
+
+    assert.equal(response.status, 200);
+    const payload = await response.clone().json();
+    assert.equal(payload.reply, 'Fallback token response');
+    assert.equal(requests.length, 1);
+    assert.match(requests[0].init.headers.Authorization, /gateway-key/);
+});
+
 test('onRequestPost surfaces upstream AI error details', async () => {
     globalThis.fetch = async () =>
         new Response(JSON.stringify({ errors: [{ message: 'Invalid token' }] }), {
