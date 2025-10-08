@@ -155,6 +155,8 @@ test('onRequestPost rejects unsupported methods', async () => {
     });
 
     assert.equal(response.status, 405);
+    assert.equal(response.headers.get('allow'), 'POST, OPTIONS');
+    assert.match(response.headers.get('access-control-allow-headers'), /authorization/);
 });
 
 test('onRequestPost prefers client system prompt and removes leading assistant', async () => {
