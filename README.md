@@ -30,7 +30,8 @@ functions/
    cat <<'EOF' > .dev.vars
    CLOUDFLARE_ACCOUNT_ID=e8823131dce5e3dcaedec59bb4f7c093
    CLOUDFLARE_AI_TOKEN=YOUR_TEMP_DEVELOPMENT_TOKEN
-   # Optional overrides if you are using an AI Gateway or a different model
+   # Optional overrides if you are using a custom AI Gateway or a different model
+   # CLOUDFLARE_AI_GATEWAY_ID=vck_2v6dyFw9v3TbdmuMDXuJnPD2QWD4M5bRQV5iFQm8nU3aDKW7iT2NAZuo
    # CLOUDFLARE_AI_BASE_URL=https://gateway.ai.cloudflare.com/v1/ACCOUNT/GATEWAY
    # CLOUDFLARE_AI_MODEL=@cf/meta/llama-3-8b-instruct
    MIDJOURNEY_PROXY_URL=https://your-midjourney-proxy.example.com
@@ -50,7 +51,8 @@ functions/
 3. In the Pages project settings, add the following environment variables under **Functions → Environment variables**:
    - `CLOUDFLARE_ACCOUNT_ID` → `e8823131dce5e3dcaedec59bb4f7c093`
  - `CLOUDFLARE_AI_TOKEN` → (create a [Cloudflare API token](https://dash.cloudflare.com/profile/api-tokens) with the **AI** scope and paste it here)
-  - `CLOUDFLARE_AI_BASE_URL` (optional) → Base URL for a [Cloudflare AI Gateway](https://developers.cloudflare.com/workers-ai/ai-gateway/) or alternate endpoint. Leave unset to call the default Workers AI API directly.
+  - `CLOUDFLARE_AI_GATEWAY_ID` (optional) → Override the default AI Gateway identifier (`vck_2v6dyFw9v3TbdmuMDXuJnPD2QWD4M5bRQV5iFQm8nU3aDKW7iT2NAZuo`).
+  - `CLOUDFLARE_AI_BASE_URL` (optional) → Base URL for a [Cloudflare AI Gateway](https://developers.cloudflare.com/workers-ai/ai-gateway/) or alternate endpoint. Leave unset to use the default gateway associated with this project.
   - `CLOUDFLARE_AI_MODEL` (optional) → Workers AI model slug (defaults to `@cf/meta/llama-3-8b-instruct`).
   - `MIDJOURNEY_PROXY_URL` → URL of your deployed [midjourney-proxy](https://github.com/novicezk/midjourney-proxy) instance (for example, `https://your-midjourney-proxy.example.com`)
 4. Trigger a deploy. Cloudflare will publish every file inside `public` and execute `functions/api/briefing.js` for `/api/briefing` requests.
@@ -63,7 +65,7 @@ functions/
 
 ## Updating integrations
 
-- **Daily Briefing**: The front end calls `/api/briefing`, which in turn invokes Cloudflare's `@cf/meta/llama-3-8b-instruct` model. Adjust the prompt in `functions/api/briefing.js` or point it at a different [Cloudflare AI model](https://developers.cloudflare.com/workers-ai/models/) by changing the endpoint path.
+- **Daily Briefing**: The front end calls `/api/briefing`, which in turn invokes Cloudflare's `@cf/meta/llama-3-8b-instruct` model via the configured AI Gateway. Adjust the prompt in `functions/api/briefing.js` or point it at a different [Cloudflare AI model](https://developers.cloudflare.com/workers-ai/models/) by changing the endpoint path or gateway configuration.
 - **Midjourney deck**: Configure `MIDJOURNEY_PROXY_URL` to point at your Midjourney proxy. Pages Functions expose `/api/midjourney/*` as a CORS-enabled pass-through so the embedded Lobe Midjourney UI can route imagine/upscale calls securely. Hit `/api/midjourney/status` to confirm the proxy is reachable—responses include a summarized payload from `/mj`.
 - **Contact form**: Replace `YOUR_UNIQUE_FORMSPREE_ENDPOINT` in `public/contact.html` with the endpoint provided by Formspree (or swap in your preferred provider).
 

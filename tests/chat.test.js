@@ -2,6 +2,7 @@ import { test, beforeEach, after } from 'node:test';
 import assert from 'node:assert/strict';
 
 import { onRequestPost } from '../functions/api/chat.js';
+import { DEFAULT_GATEWAY_ID, DEFAULT_MODEL } from '../lib/cloudflare-ai.js';
 
 const originalFetch = globalThis.fetch;
 
@@ -64,7 +65,11 @@ test('onRequestPost forwards chat history and returns analyst reply', async () =
     assert.equal(forwarded.messages[0].role, 'system');
     assert.equal(forwarded.messages[1].role, 'user');
     assert.equal(forwarded.messages[2].role, 'assistant');
-    assert.equal(requests[0].input, 'https://api.cloudflare.com/client/v4/accounts/acct/ai/run/@cf/meta/llama-3-8b-instruct');
+    const normalizedModel = DEFAULT_MODEL.replace(/^\/+/, '');
+    assert.equal(
+        requests[0].input,
+        `https://gateway.ai.cloudflare.com/v1/acct/${DEFAULT_GATEWAY_ID}/${normalizedModel}`
+    );
 });
 
 test('onRequestPost rejects invalid payloads', async () => {

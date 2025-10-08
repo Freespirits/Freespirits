@@ -1,3 +1,5 @@
+import { resolveAiEndpoint } from '../../lib/cloudflare-ai.js';
+
 export async function onRequestGet(context) {
     const { env, request, waitUntil } = context;
     const cache = caches.default;
@@ -25,22 +27,32 @@ export async function onRequestGet(context) {
     const userPrompt = `Summarize today\'s most significant cybersecurity developments. Include:\n\n1. One major, publicly disclosed data breach.\n2. One new or updated tool relevant to ethical hacking or defense.\n3. One significant update to a major security operating system like Kali Linux or Parrot OS.\n\nFormat the response with headings for "Recent Data Breaches", "New Tools & Exploits", and "Platform Updates".`;
 
     try {
-        const aiResponse = await fetch(
-            `https://api.cloudflare.com/client/v4/accounts/${accountId}/ai/run/@cf/meta/llama-3-8b-instruct`,
-            {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${apiToken}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    messages: [
-                        { role: 'system', content: systemPrompt },
-                        { role: 'user', content: userPrompt },
-                    ],
-                }),
-            }
-        );
+        let endpoint;
+        try {
+            endpoint = resolveAiEndpoint(env, accountId);
+        } catch (error) {
+            return new Response(
+                JSON.stringify({ error: error.message }),
+                {
+                    status: 500,
+                    headers: { 'content-type': 'application/json' },
+                }
+            );
+        }
+
+        const aiResponse = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: userPrompt },
+                ],
+            }),
+        });
 
         if (!aiResponse.ok) {
             const errorText = await aiResponse.text();
