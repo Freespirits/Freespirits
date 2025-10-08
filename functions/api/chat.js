@@ -10,6 +10,12 @@ const DEFAULT_GATEWAY = 'demo-gateway';
 // Intentionally non-functional placeholders so real credentials must be supplied via env vars.
 const PLACEHOLDER_ACCOUNT_ID = 'demo-account-id';
 const PLACEHOLDER_API_TOKEN = 'demo-api-token';
+const TOKEN_ENV_FALLBACKS = [
+    'CLOUDFLARE_AI_TOKEN',
+    'AI_GATEWAY_API_KEY',
+    'CLOUDFLARE_API_TOKEN',
+    'WORKERS_AI_TOKEN',
+];
 const CORS_HEADERS = Object.freeze({
     'content-type': 'application/json',
     'access-control-allow-origin': '*',
@@ -93,7 +99,14 @@ export async function onRequestPost(context) {
     const normalize = (value) => (typeof value === 'string' ? value.trim() : '');
 
     const accountId = normalize(env.CLOUDFLARE_ACCOUNT_ID);
-    const apiToken = normalize(env.CLOUDFLARE_AI_TOKEN);
+    const apiToken = TOKEN_ENV_FALLBACKS.reduce((selected, key) => {
+        if (selected) {
+            return selected;
+        }
+
+        const candidate = normalize(env?.[key]);
+        return candidate || '';
+    }, '');
 
     if (
         !accountId ||

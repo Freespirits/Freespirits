@@ -21,6 +21,8 @@ The worker expects the following environment variables:
 | `CLOUDFLARE_AI_MODEL` | (Optional) Override the default model. |
 | `CLOUDFLARE_AI_BASE_URL` | (Optional) Full URL to the gateway; otherwise the worker builds it from account + gateway. |
 
+> **Token fallback compatibility:** The worker will also accept the token via `AI_GATEWAY_API_KEY`, `CLOUDFLARE_API_TOKEN`, or `WORKERS_AI_TOKEN` environment variables. Use whichever name best matches your deployment secrets manager; the first non-empty value is used.
+
 ### Wrangler configuration (local / CI)
 
 Add the variables via `wrangler` so that local development and deployments use the correct values:

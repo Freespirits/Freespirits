@@ -108,3 +108,31 @@ test('onRequestGet returns a configuration error when credentials are missing', 
     assert.match(payload.error, /environment variables are not configured/i);
     assert.equal(calls.length, 0, 'request should not be forwarded without credentials');
 });
+
+test('onRequestGet accepts Workers AI gateway token fallbacks', async () => {
+    const requests = [];
+    globalThis.fetch = async (...args) => {
+        requests.push(args);
+        return new Response(
+            JSON.stringify({
+                result: {
+                    response: '### Recent Data Breaches\n* fallback token breach',
+                },
+            }),
+            { headers: { 'content-type': 'application/json' } }
+        );
+    };
+
+    const context = {
+        env: { CLOUDFLARE_ACCOUNT_ID: 'acct', AI_GATEWAY_API_KEY: 'gateway-key', CLOUDFLARE_AI_GATEWAY: 'intel-gateway' },
+        request: new Request('https://example.com/api/briefing'),
+        waitUntil() {},
+    };
+
+    const response = await onRequestGet(context);
+    assert.equal(response.status, 200);
+    const payload = await response.clone().json();
+    assert.equal(payload.markdown, '### Recent Data Breaches\n* fallback token breach');
+    assert.equal(requests.length, 1);
+    assert.match(requests[0][1].headers.Authorization, /gateway-key/);
+});
