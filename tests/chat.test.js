@@ -66,7 +66,7 @@ test('onRequestPost forwards chat history and returns analyst reply', async () =
     assert.equal(forwarded.messages[2].role, 'assistant');
     assert.equal(
         requests[0].input,
-        'https://gateway.ai.cloudflare.com/v1/acct/my-gateway/workers-ai/@cf/meta/llama-3.1-8b-instruct'
+                'https://gateway.ai.cloudflare.com/v1/acct/my-gateway/workers-ai/@cf/meta/llama-3-8b-instruct'
     );
 });
 
@@ -213,14 +213,14 @@ test('onRequestPost supports custom model endpoint configuration', async () => {
             CLOUDFLARE_ACCOUNT_ID: 'acct',
             CLOUDFLARE_AI_TOKEN: 'token',
             CLOUDFLARE_AI_BASE_URL: 'https://gateway.ai.cloudflare.com/v1/acct/gateway/workers-ai',
-            CLOUDFLARE_AI_MODEL: '@cf/meta/llama-3.1-8b-instruct',
+            CLOUDFLARE_AI_MODEL: '@cf/meta/llama-3-8b-instruct',
         },
         request,
     });
 
     assert.equal(
         requests[0].input,
-        'https://gateway.ai.cloudflare.com/v1/acct/gateway/workers-ai/@cf/meta/llama-3.1-8b-instruct'
+                'https://gateway.ai.cloudflare.com/v1/acct/gateway/workers-ai/@cf/meta/llama-3-8b-instruct'
     );
 });
 

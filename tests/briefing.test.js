@@ -87,7 +87,7 @@ test('onRequestGet returns AI response payload and caches the result', async () 
 
     assert.equal(
         fetchCalls[0][0],
-        'https://gateway.ai.cloudflare.com/v1/acct/intel-gateway/workers-ai/@cf/meta/llama-3.1-8b-instruct'
+                'https://gateway.ai.cloudflare.com/v1/acct/intel-gateway/workers-ai/@cf/meta/llama-3-8b-instruct'
     );
 });
 
