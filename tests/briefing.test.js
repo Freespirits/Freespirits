@@ -2,6 +2,7 @@ import { test, beforeEach, after } from 'node:test';
 import assert from 'node:assert/strict';
 
 import { onRequestGet } from '../functions/api/briefing.js';
+import { DEFAULT_GATEWAY_ID, DEFAULT_MODEL } from '../lib/cloudflare-ai.js';
 
 const originalFetch = globalThis.fetch;
 const originalCaches = globalThis.caches;
@@ -110,9 +111,10 @@ test('onRequestGet uses default credentials when missing', async () => {
     assert.equal(response.status, 200);
     const payload = await response.clone().json();
     assert.equal(payload.markdown, '### Recent Data Breaches\n* fallback detail');
+    const normalizedModel = DEFAULT_MODEL.replace(/^\/+/, '');
     assert.equal(
         calls[0][0],
-        'https://api.cloudflare.com/client/v4/accounts/demo-account-id/ai/run/@cf/meta/llama-3-8b-instruct'
+        `https://gateway.ai.cloudflare.com/v1/demo-account-id/${DEFAULT_GATEWAY_ID}/workers-ai/${normalizedModel}`
     );
     assert.equal(calls[0][1].headers.Authorization, 'Bearer demo-api-token');
 });

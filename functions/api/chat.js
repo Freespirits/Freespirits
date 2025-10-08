@@ -1,11 +1,11 @@
+import { resolveAiEndpoint } from '../../lib/cloudflare-ai.js';
+
 const DEFAULT_SYSTEM_PROMPT = [
     'You are the on-call HackTech cyber intelligence analyst embedded in a defensive operations team.',
     'Respond with precise, actionable insight rooted in cybersecurity best practices.',
     'Reference known frameworks (MITRE ATT&CK, NIST, CIS) when useful and keep answers under 220 words unless additional detail is requested.',
     'Use paragraphs or concise lists rather than markdown headings.',
 ].join(' ');
-
-const DEFAULT_MODEL = '@cf/meta/llama-3-8b-instruct';
 // Intentionally non-functional placeholders so real credentials must be supplied via env vars.
 const DEFAULT_ACCOUNT_ID = 'demo-account-id';
 const DEFAULT_API_TOKEN = 'demo-api-token';
@@ -55,25 +55,6 @@ function sanitizeMessages(rawMessages) {
         systemPrompt: systemPrompt || DEFAULT_SYSTEM_PROMPT,
         conversation: conversation.slice(-12),
     };
-}
-
-function resolveModelEndpoint(env, accountId) {
-    const model = (env.CLOUDFLARE_AI_MODEL || '').trim() || DEFAULT_MODEL;
-    const baseUrl = (env.CLOUDFLARE_AI_BASE_URL || '').trim();
-
-    if (!baseUrl) {
-        return `https://api.cloudflare.com/client/v4/accounts/${accountId}/ai/run/${model.replace(/^\//, '')}`;
-    }
-
-    try {
-        const parsed = new URL(baseUrl);
-        if (!parsed.pathname.endsWith('/')) {
-            parsed.pathname = `${parsed.pathname}/`;
-        }
-        return `${parsed.toString()}${model.replace(/^\//, '')}`;
-    } catch (error) {
-        throw new Error('CLOUDFLARE_AI_BASE_URL must be a valid absolute URL.');
-    }
 }
 
 export async function onRequestPost(context) {
@@ -126,7 +107,7 @@ export async function onRequestPost(context) {
 
     let endpoint;
     try {
-        endpoint = resolveModelEndpoint(env, accountId);
+        endpoint = resolveAiEndpoint(env, accountId);
     } catch (error) {
         return new Response(JSON.stringify({ error: error.message }), {
             status: 500,

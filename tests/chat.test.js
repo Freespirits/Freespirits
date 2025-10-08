@@ -2,6 +2,7 @@ import { test, beforeEach, after } from 'node:test';
 import assert from 'node:assert/strict';
 
 import { onRequestPost } from '../functions/api/chat.js';
+import { DEFAULT_GATEWAY_ID, DEFAULT_MODEL } from '../lib/cloudflare-ai.js';
 
 const originalFetch = globalThis.fetch;
 
@@ -64,7 +65,11 @@ test('onRequestPost forwards chat history and returns analyst reply', async () =
     assert.equal(forwarded.messages[0].role, 'system');
     assert.equal(forwarded.messages[1].role, 'user');
     assert.equal(forwarded.messages[2].role, 'assistant');
-    assert.equal(requests[0].input, 'https://api.cloudflare.com/client/v4/accounts/acct/ai/run/@cf/meta/llama-3-8b-instruct');
+    const normalizedModel = DEFAULT_MODEL.replace(/^\/+/, '');
+    assert.equal(
+        requests[0].input,
+        `https://gateway.ai.cloudflare.com/v1/acct/${DEFAULT_GATEWAY_ID}/workers-ai/${normalizedModel}`
+    );
 });
 
 test('onRequestPost rejects invalid payloads', async () => {
@@ -112,9 +117,10 @@ test('onRequestPost falls back to default credentials when missing', async () =>
     const payload = await response.clone().json();
     assert.equal(payload.reply, 'Fallback operational.');
     assert.equal(calls.length, 1);
+    const normalizedModel = DEFAULT_MODEL.replace(/^\/+/, '');
     assert.equal(
         calls[0].input,
-        'https://api.cloudflare.com/client/v4/accounts/demo-account-id/ai/run/@cf/meta/llama-3-8b-instruct'
+        `https://gateway.ai.cloudflare.com/v1/demo-account-id/${DEFAULT_GATEWAY_ID}/workers-ai/${normalizedModel}`
     );
     assert.equal(calls[0].init.headers.Authorization, 'Bearer demo-api-token');
 });
@@ -222,12 +228,15 @@ test('onRequestPost supports custom model endpoint configuration', async () => {
             CLOUDFLARE_ACCOUNT_ID: 'acct',
             CLOUDFLARE_AI_TOKEN: 'token',
             CLOUDFLARE_AI_BASE_URL: 'https://gateway.ai.cloudflare.com/v1/acct/gateway',
-            CLOUDFLARE_AI_MODEL: '@cf/meta/llama-3-8b-instruct',
+            CLOUDFLARE_AI_MODEL: '@cf/meta/llama-3.1-8b-instruct',
         },
         request,
     });
 
-    assert.equal(requests[0].input, 'https://gateway.ai.cloudflare.com/v1/acct/gateway/@cf/meta/llama-3-8b-instruct');
+    assert.equal(
+        requests[0].input,
+        'https://gateway.ai.cloudflare.com/v1/acct/gateway/workers-ai/@cf/meta/llama-3.1-8b-instruct'
+    );
 });
 
 test('onRequestPost extracts replies from OpenAI-style choices arrays', async () => {
