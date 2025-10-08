@@ -1,4 +1,4 @@
-name = "# wrangler.toml
+
 name = 'gpt-oss-120b'
 account_id = "00000000000000000000000000000000"
 pages_build_output_dir = "./public"
