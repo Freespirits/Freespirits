@@ -5,7 +5,8 @@ const DEFAULT_SYSTEM_PROMPT = [
     'Use paragraphs or concise lists rather than markdown headings.',
 ].join(' ');
 
-const DEFAULT_MODEL = '@cf/meta/llama-3-8b-instruct';
+const DEFAULT_MODEL = '@cf/meta/llama-3.1-8b-instruct';
+const DEFAULT_GATEWAY = 'demo-gateway';
 // Intentionally non-functional placeholders so real credentials must be supplied via env vars.
 const DEFAULT_ACCOUNT_ID = 'demo-account-id';
 const DEFAULT_API_TOKEN = 'demo-api-token';
@@ -60,9 +61,12 @@ function sanitizeMessages(rawMessages) {
 function resolveModelEndpoint(env, accountId) {
     const model = (env.CLOUDFLARE_AI_MODEL || '').trim() || DEFAULT_MODEL;
     const baseUrl = (env.CLOUDFLARE_AI_BASE_URL || '').trim();
+    const gatewaySlug = (env.CLOUDFLARE_AI_GATEWAY || '').trim();
 
     if (!baseUrl) {
-        return `https://api.cloudflare.com/client/v4/accounts/${accountId}/ai/run/${model.replace(/^\//, '')}`;
+        const normalizedGateway = (gatewaySlug || DEFAULT_GATEWAY).replace(/^\/+|\/+$/g, '');
+        const normalizedModel = model.replace(/^\/+/, '');
+        return `https://gateway.ai.cloudflare.com/v1/${accountId}/${normalizedGateway}/workers-ai/${normalizedModel}`;
     }
 
     try {

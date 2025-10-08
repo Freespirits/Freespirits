@@ -1,6 +1,32 @@
 // Placeholders ensure deployments provide explicit credentials via environment variables.
 const DEFAULT_ACCOUNT_ID = 'demo-account-id';
 const DEFAULT_API_TOKEN = 'demo-api-token';
+const DEFAULT_GATEWAY = 'demo-gateway';
+const DEFAULT_MODEL = '@cf/meta/llama-3.1-8b-instruct';
+
+function resolveBriefingEndpoint(env, accountId) {
+    const model = (env.CLOUDFLARE_AI_MODEL || '').trim() || DEFAULT_MODEL;
+    const baseUrl = (env.CLOUDFLARE_AI_BASE_URL || '').trim();
+    const gatewaySlug = (env.CLOUDFLARE_AI_GATEWAY || '').trim();
+
+    if (!baseUrl) {
+        const normalizedGateway = (gatewaySlug || DEFAULT_GATEWAY).replace(/^\/+|\/+$/g, '');
+        const normalizedModel = model.replace(/^\/+/, '');
+        return `https://gateway.ai.cloudflare.com/v1/${accountId}/${normalizedGateway}/workers-ai/${normalizedModel}`;
+    }
+
+    const normalizedModel = model.replace(/^\//, '');
+
+    try {
+        const parsed = new URL(baseUrl);
+        if (!parsed.pathname.endsWith('/')) {
+            parsed.pathname = `${parsed.pathname}/`;
+        }
+        return `${parsed.toString()}${normalizedModel}`;
+    } catch (error) {
+        throw new Error('CLOUDFLARE_AI_BASE_URL must be a valid absolute URL.');
+    }
+}
 
 export async function onRequestGet(context) {
     const { env, request, waitUntil } = context;
@@ -31,22 +57,20 @@ export async function onRequestGet(context) {
     const userPrompt = `Summarize today\'s most significant cybersecurity developments. Include:\n\n1. One major, publicly disclosed data breach.\n2. One new or updated tool relevant to ethical hacking or defense.\n3. One significant update to a major security operating system like Kali Linux or Parrot OS.\n\nFormat the response with headings for "Recent Data Breaches", "New Tools & Exploits", and "Platform Updates".`;
 
     try {
-        const aiResponse = await fetch(
-            `https://api.cloudflare.com/client/v4/accounts/${accountId}/ai/run/@cf/meta/llama-3-8b-instruct`,
-            {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${apiToken}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    messages: [
-                        { role: 'system', content: systemPrompt },
-                        { role: 'user', content: userPrompt },
-                    ],
-                }),
-            }
-        );
+        const endpoint = resolveBriefingEndpoint(env, accountId);
+        const aiResponse = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: userPrompt },
+                ],
+            }),
+        });
 
         if (!aiResponse.ok) {
             const errorText = await aiResponse.text();

@@ -61,7 +61,7 @@ test('onRequestGet returns AI response payload and caches the result', async () 
     };
 
     const context = {
-        env: { CLOUDFLARE_ACCOUNT_ID: 'acct', CLOUDFLARE_AI_TOKEN: 'token' },
+        env: { CLOUDFLARE_ACCOUNT_ID: 'acct', CLOUDFLARE_AI_TOKEN: 'token', CLOUDFLARE_AI_GATEWAY: 'intel-gateway' },
         request: new Request('https://example.com/api/briefing'),
         waitUntil(promise) {
             waitUntilPromises.push(promise);
@@ -84,6 +84,11 @@ test('onRequestGet returns AI response payload and caches the result', async () 
     const secondResponse = await onRequestGet({ ...context, waitUntil: () => {} });
     assert.equal(fetchCalls.length, 1, 'AI fetch should only happen once');
     assert.equal((await secondResponse.clone().json()).markdown, body.markdown);
+
+    assert.equal(
+        fetchCalls[0][0],
+        'https://gateway.ai.cloudflare.com/v1/acct/intel-gateway/workers-ai/@cf/meta/llama-3.1-8b-instruct'
+    );
 });
 
 test('onRequestGet uses default credentials when missing', async () => {
@@ -112,7 +117,7 @@ test('onRequestGet uses default credentials when missing', async () => {
     assert.equal(payload.markdown, '### Recent Data Breaches\n* fallback detail');
     assert.equal(
         calls[0][0],
-        'https://api.cloudflare.com/client/v4/accounts/demo-account-id/ai/run/@cf/meta/llama-3-8b-instruct'
+        'https://gateway.ai.cloudflare.com/v1/demo-account-id/demo-gateway/workers-ai/@cf/meta/llama-3.1-8b-instruct'
     );
     assert.equal(calls[0][1].headers.Authorization, 'Bearer demo-api-token');
 });
