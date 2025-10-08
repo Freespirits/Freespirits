@@ -2,7 +2,7 @@
 const PLACEHOLDER_ACCOUNT_ID = 'demo-account-id';
 const PLACEHOLDER_API_TOKEN = 'demo-api-token';
 const DEFAULT_GATEWAY = 'demo-gateway';
-const DEFAULT_MODEL = '@cf/meta/llama-3.1-8b-instruct';
+const DEFAULT_MODEL = '@cf/meta/llama-3-8b-instruct';
 
 function resolveBriefingEndpoint(env, accountId) {
     const model = (env.CLOUDFLARE_AI_MODEL || '').trim() || DEFAULT_MODEL;

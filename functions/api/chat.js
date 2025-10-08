@@ -5,7 +5,7 @@ const DEFAULT_SYSTEM_PROMPT = [
     'Use paragraphs or concise lists rather than markdown headings.',
 ].join(' ');
 
-const DEFAULT_MODEL = '@cf/meta/llama-3.1-8b-instruct';
+const DEFAULT_MODEL = '@cf/meta/llama-3-8b-instruct';
 const DEFAULT_GATEWAY = 'demo-gateway';
 // Intentionally non-functional placeholders so real credentials must be supplied via env vars.
 const PLACEHOLDER_ACCOUNT_ID = 'demo-account-id';
