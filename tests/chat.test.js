@@ -24,4 +24,6 @@ test('onRequestPost continues to guard unsupported methods', async () => {
     });
 
     assert.equal(response.status, 405);
+    assert.equal(response.headers.get('allow'), 'POST, OPTIONS');
+    assert.match(response.headers.get('access-control-allow-headers'), /authorization/);
 });
