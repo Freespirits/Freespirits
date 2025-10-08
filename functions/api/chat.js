@@ -14,7 +14,7 @@ const CORS_HEADERS = Object.freeze({
     'content-type': 'application/json',
     'access-control-allow-origin': '*',
     'access-control-allow-methods': 'POST,OPTIONS',
-    'access-control-allow-headers': 'content-type',
+    'access-control-allow-headers': 'content-type, authorization',
 });
 
 function sanitizeMessages(rawMessages) {
@@ -86,7 +86,7 @@ export async function onRequestPost(context) {
     if (request.method !== 'POST') {
         return new Response('Method Not Allowed', {
             status: 405,
-            headers: { ...CORS_HEADERS, Allow: 'POST' },
+            headers: { ...CORS_HEADERS, Allow: 'POST, OPTIONS' },
         });
     }
 
