@@ -18,3 +18,7 @@ The following production-impacting conflicts are present in the Worker and Pages
 ## Contact relay defaults
 - The contact form handler hard-codes `CONTACT_TO_EMAIL` to `hoya282@gmail.com` whenever the environment variable is missing.【F:functions/api/contact.js†L1-L88】
 - **Action:** Provide the correct destination email (for example, `security@freespirits.io`) via environment variables to avoid misrouting sensitive inquiries.
+
+---
+
+Refer to [`cloudflare-ai-configuration.md`](./cloudflare-ai-configuration.md) for step-by-step instructions on supplying the required Cloudflare credentials and deploying the worker with real tokens.
