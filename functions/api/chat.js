@@ -8,8 +8,8 @@ const DEFAULT_SYSTEM_PROMPT = [
 const DEFAULT_MODEL = '@cf/meta/llama-3.1-8b-instruct';
 const DEFAULT_GATEWAY = 'demo-gateway';
 // Intentionally non-functional placeholders so real credentials must be supplied via env vars.
-const DEFAULT_ACCOUNT_ID = 'demo-account-id';
-const DEFAULT_API_TOKEN = 'demo-api-token';
+const PLACEHOLDER_ACCOUNT_ID = 'demo-account-id';
+const PLACEHOLDER_API_TOKEN = 'demo-api-token';
 const CORS_HEADERS = Object.freeze({
     'content-type': 'application/json',
     'access-control-allow-origin': '*',
@@ -92,10 +92,15 @@ export async function onRequestPost(context) {
 
     const normalize = (value) => (typeof value === 'string' ? value.trim() : '');
 
-    const accountId = normalize(env.CLOUDFLARE_ACCOUNT_ID) || DEFAULT_ACCOUNT_ID;
-    const apiToken = normalize(env.CLOUDFLARE_AI_TOKEN) || DEFAULT_API_TOKEN;
+    const accountId = normalize(env.CLOUDFLARE_ACCOUNT_ID);
+    const apiToken = normalize(env.CLOUDFLARE_AI_TOKEN);
 
-    if (!accountId || !apiToken) {
+    if (
+        !accountId ||
+        !apiToken ||
+        accountId === PLACEHOLDER_ACCOUNT_ID ||
+        apiToken === PLACEHOLDER_API_TOKEN
+    ) {
         return new Response(JSON.stringify({ error: 'Cloudflare AI environment variables are not configured.' }), {
             status: 500,
             headers: CORS_HEADERS,

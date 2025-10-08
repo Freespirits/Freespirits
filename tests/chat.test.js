@@ -87,20 +87,11 @@ test('onRequestPost rejects invalid payloads', async () => {
     assert.match(payload.error, /message/i);
 });
 
-test('onRequestPost falls back to default credentials when missing', async () => {
+test('onRequestPost returns a configuration error when credentials are missing', async () => {
     const calls = [];
     globalThis.fetch = async (input, init = {}) => {
         calls.push({ input, init });
-        return new Response(
-            JSON.stringify({
-                result: {
-                    response: 'Fallback operational.',
-                },
-            }),
-            {
-                headers: { 'content-type': 'application/json' },
-            }
-        );
+        throw new Error('fetch should not be invoked without credentials');
     };
 
     const request = new Request('https://example.com/api/chat', {
@@ -111,15 +102,10 @@ test('onRequestPost falls back to default credentials when missing', async () =>
 
     const response = await onRequestPost({ env: {}, request });
 
-    assert.equal(response.status, 200);
+    assert.equal(response.status, 500);
     const payload = await response.clone().json();
-    assert.equal(payload.reply, 'Fallback operational.');
-    assert.equal(calls.length, 1);
-    assert.equal(
-        calls[0].input,
-        'https://gateway.ai.cloudflare.com/v1/demo-account-id/demo-gateway/workers-ai/@cf/meta/llama-3.1-8b-instruct'
-    );
-    assert.equal(calls[0].init.headers.Authorization, 'Bearer demo-api-token');
+    assert.match(payload.error, /environment variables are not configured/i);
+    assert.equal(calls.length, 0, 'request should not be forwarded without credentials');
 });
 
 test('onRequestPost surfaces upstream AI error details', async () => {
