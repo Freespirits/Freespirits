@@ -91,20 +91,11 @@ test('onRequestGet returns AI response payload and caches the result', async () 
     );
 });
 
-test('onRequestGet uses default credentials when missing', async () => {
+test('onRequestGet returns a configuration error when credentials are missing', async () => {
     const calls = [];
     globalThis.fetch = async (...args) => {
         calls.push(args);
-        return new Response(
-            JSON.stringify({
-                result: {
-                    response: '### Recent Data Breaches\n* fallback detail',
-                },
-            }),
-            {
-                headers: { 'content-type': 'application/json' },
-            }
-        );
+        throw new Error('fetch should not be invoked without credentials');
     };
 
     const response = await onRequestGet({
@@ -112,12 +103,8 @@ test('onRequestGet uses default credentials when missing', async () => {
         request: new Request('https://example.com/api/briefing'),
     });
 
-    assert.equal(response.status, 200);
+    assert.equal(response.status, 500);
     const payload = await response.clone().json();
-    assert.equal(payload.markdown, '### Recent Data Breaches\n* fallback detail');
-    assert.equal(
-        calls[0][0],
-        'https://gateway.ai.cloudflare.com/v1/demo-account-id/demo-gateway/workers-ai/@cf/meta/llama-3.1-8b-instruct'
-    );
-    assert.equal(calls[0][1].headers.Authorization, 'Bearer demo-api-token');
+    assert.match(payload.error, /environment variables are not configured/i);
+    assert.equal(calls.length, 0, 'request should not be forwarded without credentials');
 });

@@ -1,6 +1,6 @@
 # Cloudflare Workers AI Configuration (Chat & Daily Briefing)
 
-The project uses Cloudflare Workers AI to power both the `/api/chat` endpoint (the Analyst Chat console) and the `/api/briefing` endpoint (the Daily Briefing feed). By default, the worker code ships with "demo" credentials so it will fail until real values are supplied. Follow the steps below to connect the application to a real Cloudflare account and token.
+The project uses Cloudflare Workers AI to power both the `/api/chat` endpoint (the Analyst Chat console) and the `/api/briefing` endpoint (the Daily Briefing feed). By default, the worker code ships with "demo" credentials so it will fail until real values are supplied. The API handlers now detect those placeholders and return a clear configuration error instead of forwarding the request. Follow the steps below to connect the application to a real Cloudflare account and token.
 
 ## 1. Gather credentials
 
