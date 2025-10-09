@@ -31,11 +31,11 @@ I break things (legally) so you don’t get broken into. I deliver **clear, repr
 ---
 
 ## Methodology (Standards-Aligned)
-- **Scoping & Threat Modeling:** assets, data flows, abuse cases, impact map  
-- **Recon & Mapping:** OSINT, content discovery, API enumerations, attack surface diff  
+- **Scoping & Threat Modeling:** assets, data flows, abuse cases, impact map
+- **Recon & Mapping:** OSINT, content discovery, API enumerations, attack surface diff
 - **Exploitation:** safe PoCs, **no destructive payloads**; chain to business impact  
 - **Post-Exploitation:** data access proof, least-privilege escalation checks  
-- **Reporting:** CVSS/CWEs, reproducible steps, screenshots, **fix-first guidance**  
+- **Reporting:** CVSS/CWEs, reproducible steps, screenshots, **fix-first guidance**
 - **Validation:** retest window + remediation verification
 
 > References: PTES · OWASP WSTG/MASVS/MSTG · NIST 800-115 · OSSTMM
@@ -43,10 +43,10 @@ I break things (legally) so you don’t get broken into. I deliver **clear, repr
 ---
 
 ## Tooling (Representative)
-`Burp Suite Pro` · `ffuf` · `httpx` · `nuclei` · `kxss` · `gf` · `waybackurls` · `amass` · `Subfinder`  
-`Mitmproxy` · `Frida` · `objection` · `jadx` · `apktool` · `radare2`  
-`BloodHound` · `SharpHound` · `CrackMapExec` · `Rubeus`  
-Cloud: `prowler` · `ScoutSuite` · `CloudFox` · IaC checks (`tfsec`, `checkov`)  
+`Burp Suite Pro` · `ffuf` · `httpx` · `nuclei` · `kxss` · `gf` · `waybackurls` · `amass` · `Subfinder`
+`Mitmproxy` · `Frida` · `objection` · `jadx` · `apktool` · `radare2`
+`BloodHound` · `SharpHound` · `CrackMapExec` · `Rubeus`
+Cloud: `prowler` · `ScoutSuite` · `CloudFox` · IaC checks (`tfsec`, `checkov`)
 Scripting: `Python`/`Go` + custom one-offs in `Tools/`
 
 ---
@@ -112,23 +112,23 @@ I follow **coordinated disclosure**. For vendors/programs:
 ---
 
 ## Contact
-- **Email:** security@freespirits.io  
-- **Signal:** +44 7123 456789 (on request)  
-- **PGP:** see “Responsible Disclosure”  
-- **Booking:** [https://calendly.com/freespirits/consult](https://calendly.com/freespirits/consult)  
+- **Email:** security@freespirits.io
+- **Signal:** +44 7123 456789 (on request)
+- **PGP:** see “Responsible Disclosure”
+- **Booking:** [https://calendly.com/freespirits/consult](https://calendly.com/freespirits/consult)
 
 ---
 
 ### Quick Facts
-- Based in: London, UK · Timezone: Europe/London (UTC+1)  
-- Languages: Python, Go, JavaScript, Bash, English, French  
-- Insurance: Professional liability insured  
+- Based in: London, UK · Timezone: Europe/London (UTC+1)
+- Languages: Python, Go, JavaScript, Bash, English, French
+- Insurance: Professional liability insured
 - Availability: 2 weeks lead time, 2 projects/month capacity
 
 ---
 
 ## Support / Hire
-If you need a **web/API, mobile, cloud, or red-team** assessment with **tight SLAs and crisp deliverables**, reach out.  
+If you need a **web/API, mobile, cloud, or red-team** assessment with **tight SLAs and crisp deliverables**, reach out.
 I also advise engineering teams on **secure design reviews** and **SDLC hardening**.
 
 ---
@@ -136,7 +136,74 @@ I also advise engineering teams on **secure design reviews** and **SDLC hardenin
 <!-- Optional GitHub flair below -->
 <details>
   <summary>📊 GitHub Stats</summary>
-  
-  ![GitHub Streak](https://streak-stats.demolab.com?user=Freespirits&theme=default)  
+
+  ![GitHub Streak](https://streak-stats.demolab.com?user=Freespirits&theme=default)
   ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Freespirits&layout=compact)
 </details>
+
+---
+
+## HackTech Project Overview
+
+This repository also contains a static, multi-page rebuild of the original HackTech experience so it can be deployed directly to [Cloudflare Pages](https://developers.cloudflare.com/pages/) or any static host. The new structure mirrors all of the existing content—Daily Briefing, Breach Archives, Arsenal, and Contact—while separating reusable assets so they can be cached efficiently by Cloudflare's CDN.
+
+### Project structure
+
+```
+  public/
+    index.html                # Landing page
+    daily-briefing.html       # Static notice about the retired daily briefing feed
+    chat-console.html         # Analyst console replaced with a retirement notice
+    ethical-hacking-tutorials.html # Curated training tracks and resources
+    breach-archives.html      # Historical case studies
+    arsenal.html              # Curated tooling collection
+    contact.html              # Secure contact form instructions
+  assets/
+    css/styles.css            # Shared visual design
+    js/matrix.js              # Matrix rain background effect
+    js/site.js                # Navigation + lucide bootstrap
+    js/briefing.js            # Front-end script that renders the retirement notice
+functions/
+  api/briefing.js             # Pages Function returning a 410 Gone retirement response
+```
+
+### Local development
+
+1. Install [Wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/) if you have not already.
+2. Create a `.dev.vars` file in the project root with any secrets required for optional integrations:
+   ```bash
+   cat <<'EOF' > .dev.vars
+   MIDJOURNEY_PROXY_URL=https://your-midjourney-proxy.example.com
+   EOF
+   ```
+   The daily briefing and chat console are now static retirement notices and no longer require Cloudflare Workers AI credentials.
+3. Run the Pages preview with Functions support:
+   ```bash
+   npx wrangler pages dev public
+   ```
+4. Open the printed URL in your browser to view the site. The `/api/briefing` route now returns a 410 Gone response signalling that the feed has been retired.
+
+### Deploying to Cloudflare Pages
+
+1. Create (or select) a Cloudflare Pages project from the dashboard.
+2. Connect the repository, set the **Framework preset** to **None**, and the **Build output directory** to `public`.
+3. In the Pages project settings, add any optional environment variables under **Functions → Environment variables**:
+   - `MIDJOURNEY_PROXY_URL` → URL of your deployed [midjourney-proxy](https://github.com/novicezk/midjourney-proxy) instance (for example, `https://your-midjourney-proxy.example.com`)
+4. Trigger a deploy. Cloudflare will publish every file inside `public` and execute `functions/api/briefing.js` for `/api/briefing` requests, which now return the 410 Gone retirement notice.
+5. If you prefer deploying from the CLI, run:
+   ```bash
+   npx wrangler pages deploy public
+   ```
+   When prompted, select the Pages project you configured above. Wrangler will reuse the environment variables defined in the dashboard.
+
+### Updating integrations
+
+- **Daily Briefing**: The front end now renders a static retirement notice. `/api/briefing` returns a 410 Gone response so any legacy clients know the feed is offline.
+- **Midjourney deck**: Configure `MIDJOURNEY_PROXY_URL` to point at your Midjourney proxy. Pages Functions expose `/api/midjourney/*` as a CORS-enabled pass-through so the embedded Lobe Midjourney UI can route imagine/upscale calls securely. Hit `/api/midjourney/status` to confirm the proxy is reachable—responses include a summarized payload from `/mj`.
+- **Contact form**: Replace `YOUR_UNIQUE_FORMSPREE_ENDPOINT` in `public/contact.html` with the endpoint provided by Formspree (or swap in your preferred provider).
+
+### Notes
+
+- Navigation highlighting is driven by the `data-page` attribute on `<body>`—set this value on any new page for consistent behaviour.
+- Lucide icons load from the official CDN; replace with a pinned version if you prefer long-term stability.
+- All styling uses the handcrafted CSS in `assets/css/styles.css` so you can tune the cyber aesthetic without editing each page.
