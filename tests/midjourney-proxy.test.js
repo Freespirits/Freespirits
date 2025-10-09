@@ -64,6 +64,31 @@ test('proxyToMidjourney forwards path, query, headers, and method', async () => 
     assert.equal(body, '{"jobs":[]}');
 });
 
+test('proxyToMidjourney accepts string path params from optional catch-alls', async () => {
+    const requests = [];
+    globalThis.fetch = async (input, init) => {
+        requests.push({ input, init });
+        return new Response('{"jobs":[]}', {
+            status: 200,
+            headers: { 'content-type': 'application/json' },
+        });
+    };
+
+    const request = new Request('https://hacktech.example/api/midjourney/mj/status');
+
+    const response = await proxyToMidjourney(
+        {
+            env: { MIDJOURNEY_PROXY_URL: 'https://proxy.example.com/base' },
+            request,
+        },
+        'mj/status'
+    );
+
+    assert.equal(response.status, 200);
+    assert.equal(requests.length, 1);
+    assert.equal(requests[0].input, 'https://proxy.example.com/base/mj/status');
+});
+
 test('proxyToMidjourney forwards request bodies for mutations', async () => {
     const requests = [];
     globalThis.fetch = async (input, init) => {
