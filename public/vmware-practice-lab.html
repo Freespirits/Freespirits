@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VMware Practice Lab | HackTech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="module" src="/assets/js/site.js" defer></script>
+    <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body data-page="lab">
+    <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+    <div class="scanline-overlay"></div>
+    <main class="container">
+        <header>
+            <h1 class="site-title">HackTech</h1>
+            <p class="site-subtitle">:: YOUR SOURCE FOR CYBER INTELLIGENCE ::</p>
+        </header>
+        <nav>
+            <a class="nav-link" data-nav-link data-page-target="home" href="/index.html"> <i data-lucide="scan"></i> Home</a>
+            <a class="nav-link" data-nav-link data-page-target="daily" href="/daily-briefing.html"> <i data-lucide="shield-check"></i> Daily Briefing</a>
+            <a class="nav-link" data-nav-link data-page-target="chat" href="/chat-console.html"> <i data-lucide="messages-square"></i> Analyst Chat</a>
+            <a class="nav-link" data-nav-link data-page-target="tutorials" href="/ethical-hacking-tutorials.html"> <i data-lucide="book-open-check"></i> Tutorials</a>
+            <a class="nav-link" data-nav-link data-page-target="knowledge" href="/knowledge-hub.html"> <i data-lucide="library"></i> Knowledge Hub</a>
+            <a class="nav-link" data-nav-link data-page-target="protocols" href="/network-protocols.html"> <i data-lucide="circuit-board"></i> Network Protocols</a>
+            <a class="nav-link" data-nav-link data-page-target="breaches" href="/breach-archives.html"> <i data-lucide="shield-alert"></i> Breach Archives</a>
+            <a class="nav-link" data-nav-link data-page-target="arsenal" href="/arsenal.html"> <i data-lucide="wrench"></i> Arsenal</a>
+            <a class="nav-link" data-nav-link data-page-target="lab" href="/vmware-practice-lab.html"> <i data-lucide="server"></i> Practice Lab</a>
+            <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> Contact</a>
+            <button class="nav-link nav-toggle" type="button" data-theme-toggle aria-pressed="false">
+                <i data-lucide="contrast"></i> <span data-theme-toggle-label>Accessibility Mode: Off</span>
+            </button>
+        </nav>
+        <section class="cyber-panel" aria-labelledby="lab-overview">
+            <h2 id="lab-overview"><i data-lucide="server-cog"></i> VMware Practice Lab Overview</h2>
+            <p class="highlight">
+                Stand up a repeatable, ethics-first environment for sharpening exploitation, detection, and response tradecraft. This guide walks through building a compact VMware Workstation/Fusion lab that mirrors production-style segmentation without risking live infrastructure.
+            </p>
+            <div class="resource-section">
+                <h3>Objectives</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title">Isolated virtual network</p><p class="resource-item-description">Configure segmented VLANs and a pivot-friendly topology that never bridges to the internet unless explicitly required.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Red vs Blue workflows</p><p class="resource-item-description">Install dedicated attacker, victim, and monitoring systems to rehearse offensive maneuvers alongside defensive detections.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Rapid snapshots</p><p class="resource-item-description">Capture golden images of each host to fast-forward resets after high-impact exploit attempts or malware detonation.</p></div></li>
+                </ul>
+            </div>
+        </section>
+        <section class="cyber-panel" aria-labelledby="lab-topology">
+            <h2 id="lab-topology"><i data-lucide="network"></i> Reference Topology</h2>
+            <div class="resource-section">
+                <h3>Suggested Virtual Machines</h3>
+                <ul class="resource-list">
+                    <li><div class="resource-item"><p class="resource-item-title">Attacker Node (Kali Linux)</p><p class="resource-item-description">Primary offensive box with tools such as Burp Suite, Metasploit, BloodHound, and CrackMapExec. Allocate 2 vCPU / 4 GB RAM.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Victim Workstation (Windows 10/11)</p><p class="resource-item-description">Patched baseline with vulnerable software snapshots (e.g., intentionally outdated browsers) for phishing and post-exploitation drills.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Server Segment (Windows Server + Ubuntu)</p><p class="resource-item-description">Domain Controller plus Linux services (web, file share) to practice privilege escalation, AD misconfigurations, and lateral movement.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Monitoring Stack (Security Onion or Wazuh)</p><p class="resource-item-description">Instrument the lab with network sensors and host agents to visualize attack telemetry and tune detections.</p></div></li>
+                </ul>
+            </div>
+            <div class="resource-section">
+                <h3>Network Layout</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title">Mgmt Network (Host-Only)</p><p class="resource-item-description">Used for administrative access to VMware and management services. No routing outside of the hypervisor.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Corp LAN (Custom Host-Only)</p><p class="resource-item-description">Contains the victim workstation, domain controller, and monitoring stack. Simulates a production subnet.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Attack Net (NAT)</p><p class="resource-item-description">Provides controlled outbound internet access for tool updates while still isolating inbound connectivity.</p></div></li>
+                </ul>
+            </div>
+        </section>
+        <section class="cyber-panel" aria-labelledby="lab-build">
+            <h2 id="lab-build"><i data-lucide="construction"></i> Build Checklist</h2>
+            <div class="resource-section">
+                <h3>Prerequisites</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title">VMware Platform</p><p class="resource-item-description">VMware Workstation Pro (Windows/Linux) or VMware Fusion Pro (macOS) with virtualization extensions enabled in BIOS/UEFI.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Hardware Baseline</p><p class="resource-item-description">Minimum 32 GB RAM, 8 physical cores, and 500 GB SSD recommended for smooth multi-VM operation.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">ISO Library</p><p class="resource-item-description">Collect installer media for Kali, Windows, Ubuntu Server, Security Onion, and any additional tooling VMs.</p></div></li>
+                </ul>
+            </div>
+            <div class="resource-section">
+                <h3>Need the Windows build?</h3>
+                <p>Download VMware Workstation Pro directly from VMware for Windows hosts to begin building the lab immediately.</p>
+                <a class="cta-button" href="https://www.vmware.com/go/getworkstation-win" target="_blank" rel="noopener noreferrer">Download Workstation Pro for Windows</a>
+            </div>
+            <div class="resource-section">
+                <h3>Deployment Flow</h3>
+                <ol class="ordered-list">
+                    <li>Enable virtualization support, install VMware, and create custom host-only networks via the Virtual Network Editor.</li>
+                    <li>Provision the attacker VM first and validate outbound NAT connectivity for package updates and tool installs.</li>
+                    <li>Deploy the domain controller and victim workstation on the corporate LAN, joining them to the same Active Directory domain.</li>
+                    <li>Harden segmentation by disabling shared folders/clipboard and restricting promiscuous mode to sensors that need it.</li>
+                    <li>Install the monitoring stack, mirror traffic with a virtual TAP (SPAN) port, and forward logs to the SIEM component.</li>
+                    <li>Create clean snapshots of every VM after base configuration, then branch new snapshots for specialized scenarios.</li>
+                </ol>
+            </div>
+        </section>
+        <section class="cyber-panel" aria-labelledby="lab-scenarios">
+            <h2 id="lab-scenarios"><i data-lucide="target"></i> Training Scenarios</h2>
+            <div class="resource-section">
+                <h3>Offensive Plays</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title">Phishing to Domain Admin</p><p class="resource-item-description">Craft a malicious payload with MSFVenom, deliver via spear-phish, and chain privilege escalation through Kerberoasting.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Web Exploitation Pipeline</p><p class="resource-item-description">Exploit a vulnerable CMS hosted on the Ubuntu server, pivot through file shares, and exfiltrate simulated crown jewels.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Ransomware Simulation</p><p class="resource-item-description">Detonate a controlled sample to rehearse containment, response runbooks, and backup restoration drills.</p></div></li>
+                </ul>
+            </div>
+            <div class="resource-section">
+                <h3>Defensive Plays</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title">Detection Engineering</p><p class="resource-item-description">Ingest Sysmon + Zeek telemetry, build Sigma or Elastic rules, and validate detections against attack replays.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Incident Response Drills</p><p class="resource-item-description">Practice triage on cloned snapshots: collect volatile data, memory images, and craft structured timeline reports.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Purple Team Iterations</p><p class="resource-item-description">Coordinate red/blue exercises with MITRE ATT&CK mapping to measure coverage and share remediation insights.</p></div></li>
+                </ul>
+            </div>
+        </section>
+        <section class="cyber-panel" aria-labelledby="lab-next-steps">
+            <h2 id="lab-next-steps"><i data-lucide="rocket"></i> Next Steps &amp; Enhancements</h2>
+            <div class="resource-section">
+                <h3>Keep Expanding</h3>
+                <ul class="resource-list compact">
+                    <li><div class="resource-item"><p class="resource-item-title">Infrastructure as Code</p><p class="resource-item-description">Automate rebuilds using VMware PowerCLI, Terraform, or Ansible to version-control your lab topology.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Adversary Emulation</p><p class="resource-item-description">Layer Caldera, Atomic Red Team, or Prelude Operator to script repeatable adversary behaviors.</p></div></li>
+                    <li><div class="resource-item"><p class="resource-item-title">Hybrid Cloud</p><p class="resource-item-description">Bridge to a small AWS or Azure subscription with a VPN appliance to rehearse multi-cloud incident response.</p></div></li>
+                </ul>
+            </div>
+            <p class="highlight">Document every build, test, and lesson learned. Treat the lab like production: version changes, baseline snapshots, and enforce rules of engagement for anyone operating inside.</p>
+        </section>
+        <footer>
+            <div class="socials">
+                <a href="https://facebook.com/YOUR_PAGE_HERE" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+            </div>
+            // HackTech &copy; 2024. Information for educational purposes only. //
+        </footer>
+    </main>
+</body>
+</html>
