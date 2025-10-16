@@ -18,54 +18,7 @@ function applyReadableMode(isEnabled) {
     }
 }
 
-function enhanceSiteTitles() {
-    const titles = document.querySelectorAll('.site-title');
-
-    titles.forEach((title) => {
-        if (title.dataset.enhanced === 'true') {
-            return;
-        }
-
-        const rawText = (title.textContent || '').trim();
-        if (!rawText) {
-            return;
-        }
-
-        const words = rawText.split(/\s+/);
-        const fragment = document.createDocumentFragment();
-
-        words.forEach((word, wordIndex) => {
-            const wordWrapper = document.createElement('span');
-            wordWrapper.className = 'site-title__word';
-
-            Array.from(word).forEach((char, charIndex) => {
-                const charWrapper = document.createElement('span');
-                charWrapper.className = 'site-title__char';
-                charWrapper.textContent = char;
-                charWrapper.style.setProperty('--char-index', String(charIndex));
-                charWrapper.style.setProperty('--wire-word-shift', `${wordIndex * 18}deg`);
-                wordWrapper.appendChild(charWrapper);
-            });
-
-            fragment.appendChild(wordWrapper);
-
-            if (wordIndex < words.length - 1) {
-                const spaceWrapper = document.createElement('span');
-                spaceWrapper.className = 'site-title__space';
-                spaceWrapper.textContent = '\u00a0';
-                fragment.appendChild(spaceWrapper);
-            }
-        });
-
-        title.dataset.enhanced = 'true';
-        title.setAttribute('aria-label', rawText);
-        title.textContent = '';
-        title.appendChild(fragment);
-    });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-    enhanceSiteTitles();
     startMatrixRain();
     if (window.lucide?.createIcons) {
         window.lucide.createIcons();
