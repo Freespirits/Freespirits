@@ -48,11 +48,6 @@ body.readable-mode .site-title {
     text-shadow: none;
 }
 
-body.readable-mode .site-title::before,
-body.readable-mode .site-title::after {
-    display: none;
-}
-
 body.readable-mode .site-subtitle {
     color: rgba(203, 213, 225, 0.7);
 }
@@ -89,85 +84,19 @@ header {
     letter-spacing: 0.35em;
     margin: 0;
     color: var(--color-neon-primary);
-    text-shadow: 0 0 12px rgba(0, 255, 136, 0.55);
-    position: relative;
+    text-shadow:
+        0 1px 0 rgba(0, 0, 0, 0.6),
+        0 2px 0 rgba(0, 0, 0, 0.55),
+        0 3px 0 rgba(0, 0, 0, 0.5),
+        0 4px 0 rgba(0, 0, 0, 0.45),
+        0 5px 12px rgba(0, 0, 0, 0.65),
+        0 0 18px rgba(0, 255, 136, 0.55),
+        0 0 32px rgba(0, 255, 170, 0.45),
+        0 0 48px rgba(0, 255, 200, 0.3);
     display: inline-block;
     padding: 1.35rem clamp(1.75rem, 3.5vw, 3rem);
-    isolation: isolate;
-    overflow: hidden;
-}
-
-.site-title::before,
-.site-title::after {
-    content: attr(data-text);
-    position: absolute;
-    inset: 0;
-    color: var(--color-neon-secondary);
-    mix-blend-mode: screen;
-    text-shadow: 0 0 14px rgba(0, 255, 136, 0.6);
-    pointer-events: none;
-}
-
-.site-title::before {
-    animation: glitch-top 2.4s infinite steps(2, end);
-    clip-path: inset(0 0 40% 0);
-    transform: translate(-0.08em, -0.04em);
-}
-
-.site-title::after {
-    animation: glitch-bottom 2.4s infinite steps(2, end);
-    clip-path: inset(60% 0 0 0);
-    transform: translate(0.08em, 0.04em);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .site-title::before,
-    .site-title::after {
-        animation: none;
-        transform: none;
-    }
-}
-
-@keyframes glitch-top {
-    0% {
-        transform: translate(-0.08em, -0.04em);
-    }
-    20% {
-        transform: translate(0.12em, -0.02em);
-    }
-    40% {
-        transform: translate(-0.16em, -0.08em);
-    }
-    60% {
-        transform: translate(0.08em, -0.06em);
-    }
-    80% {
-        transform: translate(-0.12em, -0.02em);
-    }
-    100% {
-        transform: translate(-0.08em, -0.04em);
-    }
-}
-
-@keyframes glitch-bottom {
-    0% {
-        transform: translate(0.08em, 0.04em);
-    }
-    20% {
-        transform: translate(-0.1em, 0.02em);
-    }
-    40% {
-        transform: translate(0.14em, 0.08em);
-    }
-    60% {
-        transform: translate(-0.06em, 0.06em);
-    }
-    80% {
-        transform: translate(0.12em, 0.02em);
-    }
-    100% {
-        transform: translate(0.08em, 0.04em);
-    }
+    transform: perspective(900px) rotateX(12deg);
+    transform-origin: center top;
 }
 
 .site-subtitle {
