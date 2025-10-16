@@ -153,7 +153,6 @@ This repository also contains a static, multi-page rebuild of the original HackT
   public/
     index.html                # Landing page
     daily-briefing.html       # Static notice about the retired daily briefing feed
-    chat-console.html         # Analyst console replaced with a retirement notice
     ethical-hacking-tutorials.html # Curated training tracks and resources
     breach-archives.html      # Historical case studies
     arsenal.html              # Curated tooling collection
@@ -176,7 +175,7 @@ functions/
    MIDJOURNEY_PROXY_URL=https://your-midjourney-proxy.example.com
    EOF
    ```
-   The daily briefing and chat console are now static retirement notices and no longer require Cloudflare Workers AI credentials.
+   The daily briefing now renders a static retirement notice and no longer requires Cloudflare Workers AI credentials.
 3. Run the Pages preview with Functions support:
    ```bash
    npx wrangler pages dev public
@@ -199,6 +198,7 @@ functions/
 ### Updating integrations
 
 - **Daily Briefing**: The front end now renders a static retirement notice. `/api/briefing` returns a 410 Gone response so any legacy clients know the feed is offline.
+- **Analyst Chat**: The public-facing console has been removed. `/api/chat` continues to respond with a 410 Gone status to signal the integration's retirement.
 - **Midjourney deck**: Configure `MIDJOURNEY_PROXY_URL` to point at your Midjourney proxy. Pages Functions expose `/api/midjourney/*` as a CORS-enabled pass-through so the embedded Lobe Midjourney UI can route imagine/upscale calls securely. Hit `/api/midjourney/status` to confirm the proxy is reachable—responses include a summarized payload from `/mj`.
 - **Contact form**: Replace `YOUR_UNIQUE_FORMSPREE_ENDPOINT` in `public/contact.html` with the endpoint provided by Formspree (or swap in your preferred provider).
 

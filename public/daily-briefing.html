@@ -11,7 +11,6 @@
     <script type="module" src="/assets/js/site.js" defer></script>
     <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
     <script src="/assets/js/briefing.js" defer></script>
-    <script src="/assets/js/chat.js" defer></script>
 </head>
 <body data-page="daily">
     <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
@@ -24,7 +23,6 @@
         <nav>
             <a class="nav-link" data-nav-link data-page-target="home" href="/index.html"> <i data-lucide="scan"></i> Home</a>
             <a class="nav-link" data-nav-link data-page-target="daily" href="/daily-briefing.html"> <i data-lucide="shield-check"></i> Daily Briefing</a>
-            <a class="nav-link" data-nav-link data-page-target="chat" href="/chat-console.html"> <i data-lucide="messages-square"></i> Analyst Chat</a>
             <a class="nav-link" data-nav-link data-page-target="tutorials" href="/ethical-hacking-tutorials.html"> <i data-lucide="book-open-check"></i> Tutorials</a>
             <a class="nav-link" data-nav-link data-page-target="knowledge" href="/knowledge-hub.html"> <i data-lucide="library"></i> Knowledge Hub</a>
             <a class="nav-link" data-nav-link data-page-target="protocols" href="/network-protocols.html"> <i data-lucide="circuit-board"></i> Network Protocols</a>
@@ -53,23 +51,6 @@
                 </div>
             </section>
 
-            <section class="cyber-panel" id="analyst-chat" aria-labelledby="analyst-chat-heading">
-                <h2 id="analyst-chat-heading"><i data-lucide="messages-square"></i> AI Chat (Free Version)</h2>
-                <div class="chat-wrapper" data-chat-wrapper>
-                    <div class="chat-thread" id="chat-thread" aria-live="polite" aria-busy="false"></div>
-                    <form id="chat-form" class="chat-form" autocomplete="off">
-                        <label class="sr-only" for="chat-input">Send a message to the HackTech analyst</label>
-                        <textarea id="chat-input" class="chat-input font-mono" name="message" rows="3" placeholder="Ask the analyst to expand on any threat, mitigation, or tooling..." required></textarea>
-                        <div class="chat-actions">
-                            <span class="chat-hint font-mono">Shift + Enter for new line</span>
-                            <button type="submit" class="chat-send" data-chat-send>
-                                <span>Transmit</span>
-                                <i data-lucide="send"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </section>
         </div>
         <footer>
             <div class="socials">
