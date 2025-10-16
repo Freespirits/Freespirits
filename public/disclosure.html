@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hack Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script type="module" src="/assets/js/site.js" defer></script>
+    <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body data-page="disclosure">
+    <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+    <div class="scanline-overlay"></div>
+    <main class="container">
+        <header>
+            <h1 class="site-title" data-text="Hack Tech">Hack Tech</h1>
+            <p class="site-subtitle">:: YOUR SOURCE FOR CYBER INTELLIGENCE ::</p>
+        </header>
+        <nav>
+            <a class="nav-link" data-nav-link data-page-target="home" href="/index.html"> <i data-lucide="scan"></i> Home</a>
+            <a class="nav-link" data-nav-link data-page-target="daily" href="/daily-briefing.html"> <i data-lucide="shield-check"></i> Daily Briefing</a>
+            <a class="nav-link" data-nav-link data-page-target="chat" href="/chat-console.html"> <i data-lucide="messages-square"></i> Analyst Chat</a>
+            <a class="nav-link" data-nav-link data-page-target="tutorials" href="/ethical-hacking-tutorials.html"> <i data-lucide="book-open-check"></i> Tutorials</a>
+            <a class="nav-link" data-nav-link data-page-target="knowledge" href="/knowledge-hub.html"> <i data-lucide="library"></i> Knowledge Hub</a>
+            <a class="nav-link" data-nav-link data-page-target="protocols" href="/network-protocols.html"> <i data-lucide="circuit-board"></i> Network Protocols</a>
+            <a class="nav-link" data-nav-link data-page-target="breaches" href="/breach-archives.html"> <i data-lucide="shield-alert"></i> Breach Archives</a>
+            <a class="nav-link" data-nav-link data-page-target="arsenal" href="/arsenal.html"> <i data-lucide="wrench"></i> Arsenal</a>
+            <a class="nav-link" data-nav-link data-page-target="lab" href="/vmware-practice-lab.html"> <i data-lucide="server"></i> Practice Lab</a>
+            <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> Contact</a>
+            <a class="nav-link" data-nav-link data-page-target="disclosure" href="/disclosure.html"> <i data-lucide="file-text"></i> Disclosure</a>
+            <button class="nav-link nav-toggle" type="button" data-theme-toggle aria-pressed="false">
+                <i data-lucide="contrast"></i> <span data-theme-toggle-label>Accessibility Mode: Off</span>
+            </button>
+        </nav>
+
+        <section class="cyber-panel">
+            <h2><i data-lucide="shield"></i> Vulnerability Disclosure Program</h2>
+            <p class="highlight">
+                We invite good-faith security research that helps us protect the founders, operators, and customers who rely on Hack Tech. This page outlines what is in scope, how to report responsibly, and the protections we extend to researchers who follow the rules below.
+            </p>
+        </section>
+
+        <section class="cyber-panel">
+            <h2><i data-lucide="target"></i> Scope of Testing</h2>
+            <div class="data-card-grid">
+                <article class="data-card">
+                    <h3 class="font-mono">In Scope</h3>
+                    <ul>
+                        <li>hacktech.app and *.hacktech.app production domains</li>
+                        <li>Cloudflare Pages and Workers surfaces serving our customer portal</li>
+                        <li>APIs documented at <code>https://api.hacktech.app/v1</code></li>
+                        <li>Latest mobile builds distributed through our official TestFlight channel</li>
+                    </ul>
+                </article>
+                <article class="data-card">
+                    <h3 class="font-mono">Out of Scope</h3>
+                    <ul>
+                        <li>Third-party vendors, including payment and identity providers</li>
+                        <li>Physical or social engineering attacks against Hack Tech staff or customers</li>
+                        <li>Denial-of-service, stress, or load testing that impacts availability</li>
+                        <li>Automated scanning that generates excessive traffic or spam</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="cyber-panel">
+            <h2><i data-lucide="check-circle"></i> Do / Do Not</h2>
+            <div class="data-card-grid">
+                <article class="data-card">
+                    <h3 class="font-mono">Do</h3>
+                    <ul>
+                        <li>Respect privacy; stop testing and report immediately if you access customer data.</li>
+                        <li>Limit testing to accounts you own or have explicit permission to use.</li>
+                        <li>Provide detailed reproduction steps, proof-of-concept payloads, and impact analysis.</li>
+                        <li>Allow a reasonable remediation window before discussing findings publicly.</li>
+                    </ul>
+                </article>
+                <article class="data-card">
+                    <h3 class="font-mono">Do Not</h3>
+                    <ul>
+                        <li>Exfiltrate, manipulate, or destroy data encountered during testing.</li>
+                        <li>Exploit issues for financial gain or pivot into customer environments.</li>
+                        <li>Share vulnerabilities with third parties without our written consent.</li>
+                        <li>Use automated tools that degrade service quality for legitimate users.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="cyber-panel">
+            <h2><i data-lucide="scale"></i> Legal Safe Harbor</h2>
+            <p>
+                Hack Tech will not pursue civil or criminal action, nor will we submit complaints to law enforcement, against researchers who engage in good-faith testing, adhere to the guidelines on this page, and report vulnerabilities promptly. Good faith means accessing only what is necessary to demonstrate a vulnerability, avoiding privacy violations, and providing us with a reasonable amount of time to remediate before any disclosure.
+            </p>
+            <p>
+                If legal action is initiated by a third party against you and you have complied with this policy, we will make it clear that your actions were authorized and in line with industry-standard coordinated disclosure practices.
+            </p>
+        </section>
+
+        <section class="cyber-panel">
+            <h2><i data-lucide="mail-question"></i> Reporting &amp; PGP Contact</h2>
+            <p class="highlight">
+                Send us your findings using encrypted email whenever possible. Include all relevant request logs, screenshots, exploit chains, and mitigation ideas so our engineers can validate quickly.
+            </p>
+            <div class="data-card" style="margin-bottom: 1.5rem;">
+                <dl>
+                    <div>
+                        <dt>Primary email</dt>
+                        <dd><a href="mailto:security@hacktech.app">security@hacktech.app</a></dd>
+                    </div>
+                    <div>
+                        <dt>Subject line</dt>
+                        <dd>[Hack Tech Disclosure] &lt;Brief summary&gt;</dd>
+                    </div>
+                    <div>
+                        <dt>PGP fingerprint</dt>
+                        <dd class="font-mono">1F3A C4D2 9B68 7A20 45C9  0E3F A7B1 6C4D 9E12 5F8B</dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="data-card">
+                <h3 class="font-mono">PGP Public Key Block</h3>
+                <pre class="font-mono" style="white-space: pre-wrap; overflow-wrap: anywhere;">
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mDMEZaQx1hYJKwYBBAHaRw8BAQdAUWXxwXob2s0M6E6mJv1xgO0cINx1e5lFr10F
+XvM7zMFrLEtIYWNrIFRlY2ggU2VjdXJpdHkgPGNlcnRAaGFja3RlY2guYXBwPoiQ
+BBMWCAA4FiEEHzrE0ptiBiglyUXJoYPYuydBG+IFAmWkMdYCGwMFCwkIBwIGFQoJ
+CAsCBBYCAwECHgECF4AACgkQoYPYuydBG+JLwAD/Q2Jo2pk+uQj0Jczk0BtDXLir
+yk8BeDVSGsk87aFYgZkA/2N26X4Tofn4JRpD6/lol5DBSllp8xZlLJ7r6j9Tw3cF
+uDgEZaQx1hIKKwYBBAGXVQEFAQEHQGL9s/zB1jI0G9dLMZP1oXo64LQGZGCxV5ZW
+8/kCV4jWA1EwAwEIB4h4BBgWCAAqFiEEHzrE0ptiBiglyUXJoYPYuydBG+IFAmWk
+MdYCGwwACgkQoYPYuydBG+KXwAD/eWy00oJE6O/rCqBy6yDeB+rle3AKOp7FQomC
+v8BTfHcBANU2cXv0N8VkuZGZW0LU1HRsmzjvjLNy3R7kUDXhKhcE
+=J9qy
+-----END PGP PUBLIC KEY BLOCK-----
+                </pre>
+            </div>
+        </section>
+
+        <footer>
+            <div class="socials">
+                <a href="https://facebook.com/YOUR_PAGE_HERE" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+            </div>
+            // HackTech &copy; 2024. Information for educational purposes only. //
+        </footer>
+    </main>
+</body>
+</html>
