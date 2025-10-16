@@ -2,10 +2,10 @@
 
 The following production-impacting conflicts are present in the Worker and Pages operations codebase.
 
-## Cloudflare Workers AI integrations (daily briefing & analyst chat)
-- Both `functions/api/briefing.js` and `functions/api/chat.js` ship with placeholder credentials (`demo-account-id`, `demo-api-token`, `demo-gateway`).【F:functions/api/briefing.js†L1-L55】【F:functions/api/chat.js†L8-L103】
-- When those defaults are used, the Workers AI gateway returns 401 responses, which the chat handler surfaces as operational errors (`Unable to retrieve analyst response`).【F:functions/api/chat.js†L160-L201】【a02637†L1-L17】
-- **Action:** Set the environment variables to the real Cloudflare account (`CLOUDFLARE_ACCOUNT_ID=e8823131dce5e3dcaedec59bb4f7c093`), API token, and gateway/model before deploying. Update `wrangler.toml` or the Pages project variables accordingly.
+## Cloudflare Workers AI integrations (daily briefing)
+- `functions/api/briefing.js` still ships with placeholder credentials (`demo-account-id`, `demo-api-token`, `demo-gateway`).【F:functions/api/briefing.js†L1-L55】
+- The public analyst chat console has been removed. `/api/chat` only returns a retirement notice so no Workers AI configuration is required for that route.【F:functions/api/chat.js†L1-L35】
+- **Action:** If you plan to re-enable the automated briefing, set the environment variables to the real Cloudflare account (`CLOUDFLARE_ACCOUNT_ID=e8823131dce5e3dcaedec59bb4f7c093`), API token, and gateway/model before deploying. Update `wrangler.toml` or the Pages project variables accordingly.
 
 ## Wrangler configuration
 - The root `wrangler.toml` currently points to the all-zero placeholder account ID, so any `wrangler` deploys will target a non-existent account.【F:wrangler.toml†L1-L4】
