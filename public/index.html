@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,56 +12,59 @@
     <script type="module" src="https://unpkg.com/lucide@latest" defer></script>
 </head>
 <body data-page="home">
+    <button class="language-toggle" type="button" aria-label="החלפת שפה">
+        שינוי שפה
+    </button>
     <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
     <div class="scanline-overlay"></div>
     <main class="container">
         <header>
             <h1 class="site-title" data-text="Hack Tech">Hack Tech</h1>
-            <p class="site-subtitle">:: YOUR SOURCE FOR CYBER INTELLIGENCE ::</p>
+            <p class="site-subtitle">:: המקור שלך למודיעין סייבר ::</p>
         </header>
         <nav>
-            <a class="nav-link" data-nav-link data-page-target="home" href="/index.html"> <i data-lucide="scan"></i> Home</a>
-            <a class="nav-link" data-nav-link data-page-target="daily" href="/daily-briefing.html"> <i data-lucide="shield-check"></i> Daily Briefing</a>
-            <a class="nav-link" data-nav-link data-page-target="tutorials" href="/ethical-hacking-tutorials.html"> <i data-lucide="book-open-check"></i> Tutorials</a>
-            <a class="nav-link" data-nav-link data-page-target="knowledge" href="/knowledge-hub.html"> <i data-lucide="library"></i> Knowledge Hub</a>
-            <a class="nav-link" data-nav-link data-page-target="protocols" href="/network-protocols.html"> <i data-lucide="circuit-board"></i> Network Protocols</a>
-            <a class="nav-link" data-nav-link data-page-target="breaches" href="/breach-archives.html"> <i data-lucide="shield-alert"></i> Breach Archives</a>
-            <a class="nav-link" data-nav-link data-page-target="arsenal" href="/arsenal.html"> <i data-lucide="wrench"></i> Arsenal</a>
-            <a class="nav-link" data-nav-link data-page-target="lab" href="/vmware-practice-lab.html"> <i data-lucide="server"></i> Practice Lab</a>
-            <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> Contact</a>
-            <a class="nav-link" data-nav-link data-page-target="disclosure" href="/disclosure.html"> <i data-lucide="file-text"></i> Disclosure</a>
+            <a class="nav-link" data-nav-link data-page-target="home" href="/index.html"> <i data-lucide="scan"></i> עמוד הבית</a>
+            <a class="nav-link" data-nav-link data-page-target="daily" href="/daily-briefing.html"> <i data-lucide="shield-check"></i> תדריך יומי</a>
+            <a class="nav-link" data-nav-link data-page-target="tutorials" href="/ethical-hacking-tutorials.html"> <i data-lucide="book-open-check"></i> מדריכי האקינג אתי</a>
+            <a class="nav-link" data-nav-link data-page-target="knowledge" href="/knowledge-hub.html"> <i data-lucide="library"></i> מרכז הידע</a>
+            <a class="nav-link" data-nav-link data-page-target="protocols" href="/network-protocols.html"> <i data-lucide="circuit-board"></i> פרוטוקולי רשת</a>
+            <a class="nav-link" data-nav-link data-page-target="breaches" href="/breach-archives.html"> <i data-lucide="shield-alert"></i> ארכיון פרצות</a>
+            <a class="nav-link" data-nav-link data-page-target="arsenal" href="/arsenal.html"> <i data-lucide="wrench"></i> ארסנל כלים</a>
+            <a class="nav-link" data-nav-link data-page-target="lab" href="/vmware-practice-lab.html"> <i data-lucide="server"></i> מעבדת תרגול</a>
+            <a class="nav-link" data-nav-link data-page-target="contact" href="/contact.html"> <i data-lucide="mail"></i> צור קשר</a>
+            <a class="nav-link" data-nav-link data-page-target="disclosure" href="/disclosure.html"> <i data-lucide="file-text"></i> גילוי נאות</a>
             <button class="nav-link nav-toggle" type="button" data-theme-toggle aria-pressed="false">
-                <i data-lucide="contrast"></i> <span data-theme-toggle-label>Accessibility Mode: Off</span>
+                <i data-lucide="contrast"></i> <span data-theme-toggle-label>מצב נגישות: כבוי</span>
             </button>
         </nav>
         <section class="cyber-panel hero-panel">
             <div class="hero-header">
-                <p class="hero-eyebrow font-mono">Israel-based offensive security team</p>
-                <h2><i data-lucide="activity"></i> Offensive security &amp; training for startups and SMBs</h2>
+                <p class="hero-eyebrow font-mono">צוות אבטחת מידע התקפי מבוסס בישראל</p>
+                <h2><i data-lucide="activity"></i> אבטחה התקפית והכשרות לסטארטאפים ולעסקים קטנים ובינוניים</h2>
             </div>
             <p class="highlight hero-lede">
-                Web, mobile, and cloud pentests delivered with prioritized, easy-to-ship fixes in 10 days. We embed with founders and engineering leads to close exploitable gaps before they become customer-facing incidents.
+                בדיקות חדירה לאתרים, למובייל ולענן עם תיקונים ממוקדים וקלים ליישום בתוך 10 ימים. אנחנו משתלבים עם המייסדים וראשי ההנדסה כדי לסגור פערים ניתנים לניצול לפני שהם הופכים לתקריות מול לקוחות.
             </p>
             <div class="hero-actions">
                 <a class="cta-button hero-primary" href="/contact.html">
-                    <span>Book a consult</span>
+                    <span>קבעו ייעוץ</span>
                     <i data-lucide="calendar"></i>
                 </a>
                 <a class="cta-button hero-secondary" href="#sample-report">
-                    <span>See sample report</span>
+                    <span>צפו בדוח לדוגמה</span>
                     <i data-lucide="file-text"></i>
                 </a>
             </div>
         </section>
 
         <section class="cyber-panel credibility-panel">
-            <div class="credential-badges" aria-label="Professional certifications">
+            <div class="credential-badges" aria-label="הסמכות מקצועיות">
                 <span class="credential-badge">OSCP</span>
                 <span class="credential-badge">CEH</span>
                 <span class="credential-badge">eJPT</span>
             </div>
-            <div class="logo-strip" aria-label="Client collaborations">
-                <span class="logo-strip-label font-mono">Worked with:</span>
+            <div class="logo-strip" aria-label="שיתופי פעולה עם לקוחות">
+                <span class="logo-strip-label font-mono">עבדנו עם:</span>
                 <ul class="logo-strip-list">
                     <li>Tel Aviv Fintech Hub</li>
                     <li>Horizon Agritech</li>
@@ -72,185 +75,185 @@
         </section>
 
         <section class="cyber-panel" id="sample-report">
-            <h2><i data-lucide="file-text"></i> Sample remediation report excerpt</h2>
+            <h2><i data-lucide="file-text"></i> קטע מתוך דוח תיקון לדוגמה</h2>
             <p class="highlight">
-                Every engagement ships with executive-ready summaries, developer reproduction steps, and validated fixes. Here&rsquo;s an excerpt from a recent SaaS pentest package.
+                כל התקשרות מגיעה עם סיכומים מוכנים להנהלה, צעדי שחזור למפתחים ותיקונים מאומתים. הנה קטע מתוך חבילת בדיקות חדירה עדכנית לשירות SaaS.
             </p>
             <div class="sample-report-grid">
                 <article class="sample-report-card">
-                    <h3 class="font-mono">Finding</h3>
-                    <p>Critical IDOR in customer billing API exposed invoice metadata for unauthenticated users.</p>
+                    <h3 class="font-mono">ממצא</h3>
+                    <p>פגיעות IDOR קריטית ב-API לחיוב לקוחות חשפה נתוני חשבוניות למשתמשים לא מאומתים.</p>
                 </article>
                 <article class="sample-report-card">
-                    <h3 class="font-mono">Exploit Path</h3>
-                    <p>Demonstrated via Postman collection with replay-safe tokens and annotated screenshots for each request sequence.</p>
+                    <h3 class="font-mono">נתיב ניצול</h3>
+                    <p>הודגם באמצעות אוסף Postman עם אסימונים בטוחים לחזרה וצילומי מסך ממוסברים לכל רצף בקשות.</p>
                 </article>
                 <article class="sample-report-card">
-                    <h3 class="font-mono">Remediation</h3>
-                    <p>Implemented tenant-scoped authorization middleware and contract tests. Fix validated within 48 hours and regression automation provided.</p>
+                    <h3 class="font-mono">תיקון</h3>
+                    <p>יושמה שכבת הרשאות המוגבלת לכל דייר ובדיקות חוזה. התיקון אומת בתוך 48 שעות ונמסרה אוטומציה לרגרסיה.</p>
                 </article>
             </div>
         </section>
 
         <section class="cyber-panel" id="case-studies">
-            <h2><i data-lucide="briefcase"></i> Redacted case studies</h2>
+            <h2><i data-lucide="briefcase"></i> מחקרי מקרה אנונימיים</h2>
             <div class="case-study-grid">
                 <article class="case-study-card">
                     <header>
-                        <h3>Seed-stage fintech platform</h3>
-                        <p class="font-mono">Problem &rarr; Approach &rarr; Impact</p>
+                        <h3>פלטפורמת פינטק בשלב סיד</h3>
+                        <p class="font-mono">בעיה • גישה • השפעה</p>
                     </header>
                     <dl>
                         <div>
-                            <dt>Problem</dt>
-                            <dd>Investors requested proof of secure payment flows before Series A. Internal QA lacked adversarial testing capability.</dd>
+                            <dt>בעיה</dt>
+                            <dd>משקיעים דרשו הוכחת אבטחת תהליכי תשלום לפני סבב A. לצוות ה-QA הפנימי חסר ידע בבדיקות אדוורסריות.</dd>
                         </div>
                         <div>
-                            <dt>Approach</dt>
-                            <dd>Executed 9-day web and mobile assessment with OWASP ASVS mapping, plus tabletop review of fraud escalation paths with product owners.</dd>
+                            <dt>גישה</dt>
+                            <dd>בוצעה הערכה של אתרי אינטרנט ומובייל במשך 9 ימים עם מיפוי OWASP ASVS, יחד עם סקירת שולחן של מסלולי הסלמה להונאות עם בעלי המוצר.</dd>
                         </div>
                         <div>
-                            <dt>Impact</dt>
-                            <dd>Closed 6 high-risk findings, shipped MFA rollout plan, and supplied investor-ready assurance memo that accelerated the funding round.</dd>
+                            <dt>השפעה</dt>
+                            <dd>נסגרו 6 ממצאים בסיכון גבוה, גובש תוכנית לפריסת MFA והוכן מזכר הבטחת אבטחה שהאיץ את סבב הגיוס.</dd>
                         </div>
                     </dl>
                 </article>
                 <article class="case-study-card">
                     <header>
-                        <h3>Healthcare IoT vendor</h3>
-                        <p class="font-mono">Problem &rarr; Approach &rarr; Impact</p>
+                        <h3>ספק IoT בתחום הבריאות</h3>
+                        <p class="font-mono">בעיה • גישה • השפעה</p>
                     </header>
                     <dl>
                         <div>
-                            <dt>Problem</dt>
-                            <dd>Hospital clients flagged device API downtime caused by unauthenticated configuration endpoints.</dd>
+                            <dt>בעיה</dt>
+                            <dd>לקוחות בתי חולים התריעו על השבתות API שנגרמו מנקודות תצורה ללא אימות.</dd>
                         </div>
                         <div>
-                            <dt>Approach</dt>
-                            <dd>Performed cloud review and firmware analysis, then paired with DevOps to harden IAM policies and implement signed command validation.</dd>
+                            <dt>גישה</dt>
+                            <dd>בוצעו סקירת ענן וניתוח קושחה, ואז עבודה משותפת עם צוותי DevOps לחיזוק מדיניות IAM וליישום אימות פקודות חתומות.</dd>
                         </div>
                         <div>
-                            <dt>Impact</dt>
-                            <dd>Eliminated anonymous control access, reduced false alarms by 72%, and secured renewal of the vendor&rsquo;s largest hospital contract.</dd>
+                            <dt>השפעה</dt>
+                            <dd>בוטלה גישת שליטה אנונימית, הופחתו אזעקות שווא ב-72%, והובטח חידוש החוזה עם בית החולים הגדול ביותר של הספק.</dd>
                         </div>
                     </dl>
                 </article>
                 <article class="case-study-card">
                     <header>
-                        <h3>Logistics SaaS scale-up</h3>
-                        <p class="font-mono">Problem &rarr; Approach &rarr; Impact</p>
+                        <h3>חברת SaaS ללוגיסטיקה בצמיחה</h3>
+                        <p class="font-mono">בעיה • גישה • השפעה</p>
                     </header>
                     <dl>
                         <div>
-                            <dt>Problem</dt>
-                            <dd>Customer trust team detected suspicious partner logins with elevated privileges and needed external validation before launch in the EU.</dd>
+                            <dt>בעיה</dt>
+                            <dd>צוות אמון הלקוחות זיהה כניסות חשודות של שותפים בעלי הרשאות גבוהות ונדרש אימות חיצוני לפני השקה באיחוד האירופי.</dd>
                         </div>
                         <div>
-                            <dt>Approach</dt>
-                            <dd>Delivered purple-team engagement combining adversarial simulations, SCIM provisioning audit, and training workshops for support engineers.</dd>
+                            <dt>גישה</dt>
+                            <dd>בוצעה התקשרות Purple Team המשלבת סימולציות תוקפניות, ביקורת פרוביז'נינג SCIM והדרכות לצוותי התמיכה.</dd>
                         </div>
                         <div>
-                            <dt>Impact</dt>
-                            <dd>Hardened partner SSO, cut privilege misuse alerts by 60%, and trained 45 staff on rapid triage playbooks ahead of EU go-live.</dd>
+                            <dt>השפעה</dt>
+                            <dd>חוזקה כניסת ה-SSO של השותפים, צומצמו התראות על שימוש לרעה בהרשאות ב-60%, ו-45 עובדים הוכשרו לתרחישי תגובה מהירים לפני ההשקה באיחוד האירופי.</dd>
                         </div>
                     </dl>
                 </article>
             </div>
         </section>
         <section class="cyber-panel">
-            <h2><i data-lucide="rss"></i> Operations Center System News</h2>
+            <h2><i data-lucide="rss"></i> חדשות מערכת ממרכז המבצעים</h2>
             <p class="highlight">
-                Weekly situational updates from the HackTech release crew. Review the latest platform changes, infrastructure maintenance, and analyst advisories published after last week&rsquo;s deployment window.
+                עדכונים שבועיים מצוות ההפצה של HackTech. עיינו בשינויים האחרונים בפלטפורמה, בתחזוקת התשתית ובהתרעות האנליסטים שפורסמו לאחר חלון הפריסה האחרון.
             </p>
             <div class="status-feed">
                 <article class="status-item">
                     <header class="status-item-header">
-                        <time datetime="2025-04-22">22 Apr 2025</time>
-                        <h3>Platform Release 2025.04 Goes Live</h3>
+                        <time datetime="2025-04-22">22 אפריל 2025</time>
+                        <h3>השקת גרסת פלטפורמה 2025.04</h3>
                     </header>
                     <p>
-                        The April release refreshes the static knowledge packs to mirror the cloud deployment completed late last week and folds in the newest tutorial cross-links highlighted in the news brief.
+                        גרסת אפריל מרעננת את חבילות הידע הסטטיות כך שישקפו את פריסת הענן שהושלמה בסוף השבוע האחרון ומשלבת את ההצלבות החדשות למדריכים שהודגשו בתדריך החדשות.
                     </p>
                     <ul class="status-item-details">
                         <li>
-                            <span class="status-item-detail-label">Highlights</span>
-                            <span>Daily Briefing archive now references the March–April mitigation rundowns referenced in the 18 Apr news post.</span>
+                            <span class="status-item-detail-label">עיקרי הדברים</span>
+                            <span>ארכיון התדריך היומי מפנה כעת לסיכומי המיתון של מרץ–אפריל שהוזכרו בפרסום החדשות מ-18 באפריל.</span>
                         </li>
                         <li>
-                            <span class="status-item-detail-label">Action</span>
-                            <span>Content owners verified all `/knowledge-hub` citations and added redirects for retired tools.</span>
+                            <span class="status-item-detail-label">פעולה</span>
+                            <span>בעלי התוכן אימתו את כל הציטוטים של `/knowledge-hub` והוסיפו הפניות לכלים שיצאו משימוש.</span>
                         </li>
                     </ul>
                 </article>
                 <article class="status-item">
                     <header class="status-item-header">
-                        <time datetime="2025-04-20">20 Apr 2025</time>
-                        <h3>Site News &amp; Intel Brief Recap</h3>
+                        <time datetime="2025-04-20">20 אפריל 2025</time>
+                        <h3>חדשות האתר וסיכום תדריך המודיעין</h3>
                     </header>
                     <p>
-                        Last week&rsquo;s analyst news release summarised credential-stuffing probes against financial SaaS tenants and called for refreshed response drills across teams.
+                        פרסום החדשות של האנליסטים בשבוע שעבר סיכם ניסיונות מילוי פרטים נגד דיירי SaaS פיננסיים וקרא לרענון תרגולי התגובה בכל הצוותים.
                     </p>
                     <ul class="status-item-details">
                         <li>
-                            <span class="status-item-detail-label">Mitigation</span>
-                            <span>Recommended rollout of adaptive MFA prompts to all shared consoles before 30 Apr.</span>
+                            <span class="status-item-detail-label">הפחתה</span>
+                            <span>הומלץ ליישם פרומפטים של MFA אדפטיבי לכל הקונסולות המשותפות עד 30 באפריל.</span>
                         </li>
                         <li>
-                            <span class="status-item-detail-label">Reference</span>
-                            <span>Updated breach archive entries with latest MITRE ATT&amp;CK mappings cited in the release.</span>
+                            <span class="status-item-detail-label">הפניה</span>
+                            <span>עודכנו רשומות ארכיון הפרצות עם מיפויי MITRE ATT&amp;CK העדכניים המוזכרים בפרסום.</span>
                         </li>
                     </ul>
                 </article>
                 <article class="status-item">
                     <header class="status-item-header">
-                        <time datetime="2025-04-19">19 Apr 2025</time>
-                        <h3>Infrastructure Maintenance Advisory</h3>
+                        <time datetime="2025-04-19">19 אפריל 2025</time>
+                        <h3>הודעת תחזוקת תשתית</h3>
                     </header>
                     <p>
-                        Cloudflare Pages and Workers schedules confirmed a low-risk maintenance window following the mid-April rollout. No downtime observed, but monitoring hooks were tuned for the next cycle.
+                        צוותי Cloudflare Pages ו-Workers אישרו חלון תחזוקה בסיכון נמוך לאחר ההשקה של אמצע אפריל. לא נצפתה השבתה, אך חיבורי הניטור כוילו מחדש למחזור הבא.
                     </p>
                     <ul class="status-item-details">
                         <li>
-                            <span class="status-item-detail-label">Status</span>
-                            <span>All worker routes responded within baseline latency during the health-check sprint.</span>
+                            <span class="status-item-detail-label">סטטוס</span>
+                            <span>כל מסלולי ה-Worker הגיבו בטווח הלטנטיות הבסיסי במהלך סבב בדיקות הבריאות.</span>
                         </li>
                         <li>
-                            <span class="status-item-detail-label">Next</span>
-                            <span>Prepare May release notes draft with expanded system news coverage for distribution on 3 May.</span>
+                            <span class="status-item-detail-label">הבא</span>
+                            <span>להכין טיוטת הערות גרסת מאי עם הרחבה של כיסוי חדשות המערכת לפרסום ב-3 במאי.</span>
                         </li>
                     </ul>
                 </article>
             </div>
         </section>
         <section class="cyber-panel">
-            <h2><i data-lucide="library"></i> Knowledge Hub &amp; Rapid Tools</h2>
+            <h2><i data-lucide="library"></i> מרכז הידע וכלים מהירים</h2>
             <p class="highlight">
-                Need answers fast? Jump into the Knowledge Hub for curated playbooks, cheat sheets, and tooling primers that keep analysts ready for the next escalation.
+                צריכים תשובות מידיות? היכנסו למרכז הידע עבור ספרי הפעלה, צ'יטשיטס והיכרות עם כלים שמחזיקים את האנליסטים מוכנים להסלמה הבאה.
             </p>
             <div class="grid grid-two">
                 <a class="data-card" href="/knowledge-hub.html">
-                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">Knowledge Hub</h3>
-                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">Centralize critical guidance—incident response checklists, learning paths, and cheat sheets—so your team can act decisively.</p>
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">מרכז הידע</h3>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">רכזו הנחיות קריטיות—צ'ק-ליסטים לתגובה לאירועים, מסלולי למידה וצ'יטשיטס—כדי שהצוות שלכם יוכל לפעול בביטחון.</p>
                 </a>
                 <a class="data-card" href="/arsenal.html">
-                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">Tool Arsenal</h3>
-                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">Browse vetted, ethical tooling organized by mission profile and paired with defensive detection resources.</p>
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">ארסנל הכלים</h3>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">עיינו בכלים אתיים שנבדקו, המאורגנים לפי פרופיל משימה ומצורפים למשאבי גילוי הגנתיים.</p>
                 </a>
             </div>
         </section>
         <section class="cyber-panel">
-            <h2><i data-lucide="message-circle"></i> Guided Training &amp; Practice</h2>
+            <h2><i data-lucide="message-circle"></i> הדרכה מודרכת ותרגול</h2>
             <p class="highlight">
-                Dive into structured tutorials and lab environments to reinforce skills at your own pace. Each resource is curated to keep operators sharp, informed, and ready for mission-critical response.
+                צללו למדריכים מובנים ולסביבות מעבדה כדי לחזק את המיומנויות בקצב שלכם. כל משאב נבחר כך שהצוותים יישארו חדים, מעודכנים ומוכנים לתגובה קריטית.
             </p>
             <div class="grid grid-two">
                 <a class="data-card" href="/ethical-hacking-tutorials.html">
-                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">Ethical Hacking Tutorials</h3>
-                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">Work through structured learning paths, labs, and certification prep engineered to reinforce lawful security operations.</p>
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">מדריכי האקינג אתי</h3>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">עבדו דרך מסלולי למידה, מעבדות והכנה להסמכות שתוכננו לחזק פעילות אבטחה חוקית.</p>
                 </a>
                 <a class="data-card" href="/vmware-practice-lab.html">
-                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">VMware Practice Lab</h3>
-                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">Blueprint a segmented VMware range with attacker, victim, and monitoring nodes to rehearse red, blue, and purple team workflows.</p>
+                    <h3 class="font-mono" style="color: var(--color-neon-primary); letter-spacing: 0.1em;">מעבדת תרגול VMware</h3>
+                    <p class="font-mono" style="color: rgba(255,255,255,0.75); font-size: 0.9rem;">תכננו טווח VMware מפולח עם צמתי תוקף, מטרה וניטור כדי לתרגל תרחישי Red, Blue ו-Purple Team.</p>
                 </a>
             </div>
         </section>
@@ -260,7 +263,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                 </a>
             </div>
-            // HackTech &copy; 2024. Information for educational purposes only. //
+            // HackTech &copy; 2024. המידע מיועד למטרות לימודיות בלבד. //
         </footer>
     </main>
 </body>
