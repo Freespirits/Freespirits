@@ -12,7 +12,7 @@ export const onRequestPost = async ({ request, env }) => {
             }, 400, request);
         }
 
-        const toEmail = (env.CONTACT_TO_EMAIL || 'hoya282@gmail.com').trim();
+        const toEmail = (env.CONTACT_TO_EMAIL || 'admin@hack-tech.org').trim();
         if (!toEmail) {
             return createResponse({
                 status: 'error',
