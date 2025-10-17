@@ -5,7 +5,7 @@
 
 <p align="center">
   <a href="https://www.linkedin.com/in/freespirits"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white"></a>
-  <a href="mailto:security@freespirits.io"><img alt="Email" src="https://img.shields.io/badge/Contact-security@freespirits.io-black"></a>
+  <a href="mailto:admin@hack-tech.org"><img alt="Email" src="https://img.shields.io/badge/Contact-admin@hack--tech.org-black"></a>
   <a href="https://keybase.io/freespirits"><img alt="PGP" src="https://img.shields.io/badge/PGP-verify-313131"></a>
   <img alt="Hire" src="https://img.shields.io/badge/Availability-Engagements%20Open-success">
   <img alt="Ethics" src="https://img.shields.io/badge/Ethical-Yes-brightgreen">
@@ -77,7 +77,7 @@ Scripting: `Python`/`Go` + custom one-offs in `Tools/`
 
 ## Responsible Disclosure
 I follow **coordinated disclosure**. For vendors/programs:
-1. Email **security@freespirits.io** (PGP below) with steps and impact.  
+1. Email **admin@hack-tech.org** (PGP below) with steps and impact.
 2. I avoid data retention and use minimal proof data.  
 3. 90-day default window unless agreed otherwise.
 
@@ -112,7 +112,7 @@ I follow **coordinated disclosure**. For vendors/programs:
 ---
 
 ## Contact
-- **Email:** security@freespirits.io
+- **Email:** admin@hack-tech.org
 - **Signal:** +44 7123 456789 (on request)
 - **PGP:** see “Responsible Disclosure”
 - **Booking:** [https://calendly.com/freespirits/consult](https://calendly.com/freespirits/consult)

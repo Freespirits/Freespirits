@@ -16,8 +16,8 @@ The following production-impacting conflicts are present in the Worker and Pages
 - **Action:** Configure `MIDJOURNEY_PROXY_URL` in the Pages/Worker environment to restore `/api/midjourney/*` routing.
 
 ## Contact relay defaults
-- The contact form handler hard-codes `CONTACT_TO_EMAIL` to `hoya282@gmail.com` whenever the environment variable is missing.【F:functions/api/contact.js†L1-L88】
-- **Action:** Provide the correct destination email (for example, `security@freespirits.io`) via environment variables to avoid misrouting sensitive inquiries.
+- The contact form handler hard-codes `CONTACT_TO_EMAIL` to `admin@hack-tech.org` whenever the environment variable is missing.【F:functions/api/contact.js†L1-L88】
+- **Action:** Provide the correct destination email (for example, `admin@hack-tech.org`) via environment variables to avoid misrouting sensitive inquiries.
 
 ---
 
