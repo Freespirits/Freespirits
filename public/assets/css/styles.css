@@ -958,69 +958,6 @@ body.readable-mode .chat-thread {
     font-size: 0.9rem;
 }
 
-.language-toggle {
-    position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
-    z-index: 30;
-    padding: 0.65rem 1.4rem;
-    border: none;
-    border-radius: 999px;
-    background: radial-gradient(circle at 20% 20%, rgba(0, 255, 136, 0.95), rgba(0, 204, 68, 0.8));
-    color: #04190b;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 0 14px rgba(0, 255, 136, 0.75), 0 0 28px rgba(0, 204, 68, 0.5);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.language-toggle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 18px rgba(0, 255, 136, 0.85), 0 0 36px rgba(0, 204, 68, 0.55);
-}
-
-.language-toggle:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.8);
-    outline-offset: 4px;
-}
-
-body[dir="rtl"] .nav-link {
-    flex-direction: row-reverse;
-    text-align: right;
-}
-
-body[dir="rtl"] .hero-header,
-body[dir="rtl"] .hero-lede,
-body[dir="rtl"] .highlight,
-body[dir="rtl"] .case-study-card dd,
-body[dir="rtl"] .case-study-card dt,
-body[dir="rtl"] .status-item p,
-body[dir="rtl"] .status-item-details,
-body[dir="rtl"] .status-item-header,
-body[dir="rtl"] .data-card p,
-body[dir="rtl"] footer {
-    text-align: right;
-}
-
-body[dir="rtl"] .hero-actions {
-    justify-content: flex-end;
-}
-
-body[dir="rtl"] .logo-strip-list {
-    direction: rtl;
-}
-
-@media (max-width: 640px) {
-    .language-toggle {
-        top: 1rem;
-        right: 1rem;
-        padding: 0.55rem 1rem;
-        font-size: 0.75rem;
-    }
-}
-
 .chat-message header {
     display: flex;
     align-items: center;

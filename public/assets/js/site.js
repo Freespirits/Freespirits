@@ -14,7 +14,7 @@ function applyReadableMode(isEnabled) {
 
     const label = toggle.querySelector('[data-theme-toggle-label]');
     if (label) {
-        label.textContent = `מצב נגישות: ${isEnabled ? 'פעיל' : 'כבוי'}`;
+        label.textContent = `Accessibility Mode: ${isEnabled ? 'On' : 'Off'}`;
     }
 }
 
