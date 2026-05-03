@@ -1,142 +1,171 @@
-<h1 align="center">🔓 Freespirits — Offensive Security / Pentester</h1>
-<p align="center">
-  Red Team · Web & API · Mobile · Cloud · Adversary Emulation · Bug Bounty
-</p>
+
+```
+ ╭──────────────────────────────────────────────────────────────────╮
+ │                                                                  │
+ │   ORI SIRACKI                                                    │
+ │   ─────────────────────────────────────────────────              │
+ │   builder · breaker · automation architect                       │
+ │                                                                  │
+ │   WebzineTech  ·  hack-tech.org  ·  Tel Aviv                    │
+ │                                                                  │
+ ╰──────────────────────────────────────────────────────────────────╯
+```
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/freespirits"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white"></a>
-  <a href="mailto:admin@hack-tech.org"><img alt="Email" src="https://img.shields.io/badge/Contact-admin@hack--tech.org-black"></a>
-  <a href="https://keybase.io/freespirits"><img alt="PGP" src="https://img.shields.io/badge/PGP-verify-313131"></a>
-  <img alt="Hire" src="https://img.shields.io/badge/Availability-Engagements%20Open-success">
-  <img alt="Ethics" src="https://img.shields.io/badge/Ethical-Yes-brightgreen">
+  <a href="https://hack-tech.org"><img src="https://img.shields.io/badge/hack--tech.org-000?style=flat-square&logo=google-chrome&logoColor=E5FF00" alt="Blog"/></a>&nbsp;
+  <a href="https://www.linkedin.com/in/freespirits"><img src="https://img.shields.io/badge/LinkedIn-000?style=flat-square&logo=linkedin&logoColor=0A66C2" alt="LinkedIn"/></a>&nbsp;
+  <a href="mailto:admin@hack-tech.org"><img src="https://img.shields.io/badge/admin@hack--tech.org-000?style=flat-square&logo=maildotru&logoColor=fff" alt="Email"/></a>&nbsp;
+  <img src="https://img.shields.io/badge/open%20to%20work-000?style=flat-square&logoColor=5BE39A&logo=statuspal" alt="Status"/>
 </p>
 
 ---
 
-## TL;DR
-I break things (legally) so you don’t get broken into. I deliver **clear, reproducible findings**, **business-risk mapping**, and **actionable fixes**—on time.
+I build tools that sit at the intersection of **AI**, **security**, and **social platforms** — then I try to break them before anyone else does. I ship fast, think in systems, and believe the best software is the kind you'd trust to run while you sleep.
+
+Currently building the stack behind [**hack-tech.org**](https://hack-tech.org) — education, automation, and open-source tooling for people who want to understand how the internet actually works.
 
 ---
 
-## Core Capability Matrix
-| Area | Depth |
-|---|---|
-| **Web & API** | WSTG/OWASP Top 10, authz abuse (BOLA/BFLA), SSRF, deserialization, race conditions |
-| **Mobile** | Android/iOS reversing, Frida/ObjC/Smali hooks, SSL pinning bypass, local storage abuses |
-| **Cloud** | AWS/Azure/GCP misconfigs, IAM privilege escalation, CI/CD secrets, serverless abuse |
-| **Infra/AD** | Kerberoast/AS-REP, constrained delegation, BloodHound paths, lateral movement |
-| **Red Team** | OSINT, initial access, persistence, C2 OPSEC, detection engineering handoff |
-| **Bug Bounty** | Recon automation, endpoint diffing, broken auth flows, mass assignment |
+### `> cat /projects/active`
+
+<table>
+<tr>
+<td width="50%">
+
+**[Social Auto Engine](https://github.com/Freespirits/social-auto-engine)** &nbsp; `Python`
+<br/>
+Multi-channel social media OS. One dashboard for Facebook, Instagram, WhatsApp, Threads. AI drafts in your voice, human approves every post. FastAPI + HTMX + SQLite. 37 MCP tools, 17 content skills.
+<br/><br/>
+<sub>FastAPI · HTMX · MCP · Graph API · SQLite</sub>
+
+</td>
+<td width="50%">
+
+**[PhishSentry](https://github.com/Freespirits/phishsentry)** &nbsp; `TypeScript`
+<br/>
+AI-powered zero-day phishing URL detector. Catches what blocklists miss — analyzes URL structure, page content, and behavioral signals in real time before you click.
+<br/><br/>
+<sub>AI/ML · URL analysis · Real-time detection</sub>
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**[PTSD-Ai](https://github.com/Freespirits/PTSD-Ai)** &nbsp; `Python`
+<br/>
+AI-assisted support tool for PTSD awareness and early intervention. Using machine learning where it can genuinely help people.
+<br/><br/>
+<sub>Python · ML · Mental health tech</sub>
+
+</td>
+<td width="50%">
+
+**[Hack-Tech](https://github.com/Freespirits/hack-tech)** &nbsp; `Dart`
+<br/>
+The mobile companion for hack-tech.org. Education platform bringing security concepts and tools to a wider audience.
+<br/><br/>
+<sub>Flutter · Dart · Mobile</sub>
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Methodology (Standards-Aligned)
-- **Scoping & Threat Modeling:** assets, data flows, abuse cases, impact map
-- **Recon & Mapping:** OSINT, content discovery, API enumerations, attack surface diff
-- **Exploitation:** safe PoCs, **no destructive payloads**; chain to business impact  
-- **Post-Exploitation:** data access proof, least-privilege escalation checks  
-- **Reporting:** CVSS/CWEs, reproducible steps, screenshots, **fix-first guidance**
-- **Validation:** retest window + remediation verification
+### `> skills --verbose`
 
-> References: PTES · OWASP WSTG/MASVS/MSTG · NIST 800-115 · OSSTMM
+```text
+DOMAIN                STACK                                        YEARS
+──────────────────    ─────────────────────────────────────────    ─────
+offensive security    burp · nuclei · frida · bloodhound           5+
+ai / automation       claude mcp · fastapi · apscheduler · llms    2+
+full-stack            react · next.js · htmx · fastapi · flask     4+
+mobile                flutter · dart · swift · react native        3+
+cloud / infra         aws · azure · gcp · cloudflare workers       4+
+data / ml             python · pandas · scikit-learn · sqlite      3+
+```
 
----
-
-## Tooling (Representative)
-`Burp Suite Pro` · `ffuf` · `httpx` · `nuclei` · `kxss` · `gf` · `waybackurls` · `amass` · `Subfinder`
-`Mitmproxy` · `Frida` · `objection` · `jadx` · `apktool` · `radare2`
-`BloodHound` · `SharpHound` · `CrackMapExec` · `Rubeus`
-Cloud: `prowler` · `ScoutSuite` · `CloudFox` · IaC checks (`tfsec`, `checkov`)
-Scripting: `Python`/`Go` + custom one-offs in `Tools/`
-
----
-
-## Showcases
-- **Selected Write-ups:**  
-  - *BOLA → full tenant data exposure via predictable object IDs* — API pentest (2025)  
-  - *OAuth device code mis-binding → account takeover* — Web app (2025)  
-  - *AWS IAM pass-role chain → cross-account exfil* — Cloud (2024)
-
-- **Public Research:**  
-  - [https://freespirits.io/blog](https://freespirits.io/blog)  
-  - [CVE-2024-12345, CVE-2023-9876]
-
-- **Labs:** HTB ★★★ | TryHackMe ★★★ | PortSwigger Academy ★★★
-
----
-
-## Reporting You Can Act On
-- **Executive Summary:** business risk, exploit path, “fix this first” list  
-- **Technical Appendix:** PoCs, impacted endpoints/assets, logs, screenshots  
-- **Remediation Plan:** owner, effort, patch path, detection ideas  
-- **Retest:** included with SOW; validation report provided
-
-> Sample report (redacted): [`/reports/sample_redacted.pdf`](./reports/sample_redacted.pdf)
-
----
-
-## Responsible Disclosure
-I follow **coordinated disclosure**. For vendors/programs:
-1. Email **admin@hack-tech.org** (PGP below) with steps and impact.
-2. I avoid data retention and use minimal proof data.  
-3. 90-day default window unless agreed otherwise.
-
-**PGP:** `FPR: 9D4C 3A5F 2B6E 7E1B 8A4C  1F6A 77E4 5E23 7A3E D8C1`
-
----
-
-## How I Work (Engagement Flow)
-1. **Discovery & Scope** → assets, constraints, success criteria  
-2. **Rules of Engagement** → test windows, data handling, in/out-of-scope  
-3. **Execution** → daily notes, mid-engagement checkpoint  
-4. **Delivery** → debrief + report + tracking tickets (optional)  
-5. **Validation** → retest + evidence
-
----
-
-## Open-Source & Automation
-- `recon/` — small utilities for passive/active recon at scale  
-- `wordlists/` — context-specific parameter and endpoint lists  
-- `nuclei-templates/` — safely-scoped checks used during engagements  
-- `reporting/` — scripts to turn notes → markdown → PDF
-
-> See `/Tools/README.md` for usage and safety notes.
-
----
-
-## Ethics & Legal
-- Testing requires **written authorization**.  
-- I **do not** accept engagements involving ransomware, backdoors, or disruption.  
-- All work follows data-minimization, encryption at rest/in transit, and secure evidence handling.
-
----
-
-## Contact
-- **Email:** admin@hack-tech.org
-- **Signal:** +44 7123 456789 (on request)
-- **PGP:** see “Responsible Disclosure”
-- **Booking:** [https://calendly.com/freespirits/consult](https://calendly.com/freespirits/consult)
-
----
-
-### Quick Facts
-- Based in: London, UK · Timezone: Europe/London (UTC+1)
-- Languages: Python, Go, JavaScript, Bash, English, French
-- Insurance: Professional liability insured
-- Availability: 2 weeks lead time, 2 projects/month capacity
-
----
-
-## Support / Hire
-If you need a **web/API, mobile, cloud, or red-team** assessment with **tight SLAs and crisp deliverables**, reach out.
-I also advise engineering teams on **secure design reviews** and **SDLC hardening**.
-
----
-
-<!-- Optional GitHub flair below -->
 <details>
-  <summary>📊 GitHub Stats</summary>
+<summary><b>Security deep-dive</b></summary>
+<br/>
 
-  ![GitHub Streak](https://streak-stats.demolab.com?user=Freespirits&theme=default)
-  ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Freespirits&layout=compact)
+| Area | Approach |
+|---|---|
+| **Web & API** | OWASP Top 10, authz abuse (BOLA/BFLA), SSRF, deserialization, race conditions |
+| **Mobile** | Android/iOS reversing, Frida hooks, SSL pinning bypass, local storage analysis |
+| **Cloud** | AWS/Azure/GCP misconfig hunting, IAM escalation, CI/CD secret exposure |
+| **Red Team** | OSINT, initial access, persistence, C2, detection engineering handoff |
+| **Bug Bounty** | Recon automation, endpoint diffing, broken auth, mass assignment |
+
+Methodology aligned with PTES, OWASP WSTG/MASVS, NIST 800-115.
+
 </details>
+
+---
+
+### `> echo $PHILOSOPHY`
+
+```
+I don't believe in "move fast and break things."
+I believe in "move fast and break things on purpose,
+in a controlled environment, with written authorization,
+then write a report about it."
+```
+
+---
+
+### `> uptime`
+
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com?user=Freespirits&theme=highcontrast&hide_border=true&date_format=j%20M%5B%20Y%5D&ring=E5FF00&fire=FF5A1F&currStreakLabel=E5FF00&sideLabels=9097A1&dates=5A5F6B&stroke=1F2127&background=0F1014" alt="streak"/>
+</p>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Freespirits&layout=compact&theme=highcontrast&hide_border=true&bg_color=0F1014&title_color=E5FF00&text_color=F4F1EA&langs_count=8" alt="languages"/>
+</p>
+
+---
+
+### `> cat /etc/motd`
+
+<table>
+<tr>
+<td>
+
+**Currently exploring:**
+- MCP server development for AI-native tooling
+- Scheduled publishing with APScheduler + SQLite job stores
+- Design systems for dark editorial interfaces
+
+**Open to:**
+- Security assessments (web, API, mobile, cloud)
+- AI automation consulting
+- Open-source collaboration on any project above
+
+</td>
+<td>
+
+**Principles:**
+- Every automated action needs a human approval gate
+- Security isn't a feature, it's the foundation
+- If it can't run on SQLite, you probably don't need it yet
+- Ship the ugly version. Then make it beautiful. Then try to break it.
+
+</td>
+</tr>
+</table>
+
+---
+
+<p align="center">
+  <sub>
+    <code>ssh ori@hack-tech.org</code> &nbsp;·&nbsp;
+    <a href="mailto:admin@hack-tech.org">admin@hack-tech.org</a> &nbsp;·&nbsp;
+    <a href="https://hack-tech.org">hack-tech.org</a>
+  </sub>
+</p>
+
+<p align="center">
+  <sub>I build it. I break it. I ship it. In that order.</sub>
+</p>
