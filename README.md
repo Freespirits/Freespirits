@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Freespirits/Freespirits/main/assets/guy-fawkes-banner-dark.svg">
+  <img src="https://raw.githubusercontent.com/Freespirits/Freespirits/main/assets/guy-fawkes-banner-light.svg" alt="ASCII art of a hooded Guy Fawkes figure in a field of colorful stars" width="100%">
+</picture>
+
 <p align="center">
   <img src="assets/header.svg" width="100%" alt="Ori Siracki — security researcher · ai builder · full-stack dev"/>
 </p>
