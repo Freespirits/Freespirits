@@ -19,22 +19,52 @@ I build tools at the intersection of **security** and **AI automation**, then st
 
 <br/>
 
+### Featured work
+
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### Featured work
+**[ClaudeGuardIL](https://github.com/Freespirits/claudeguard-il)**
 
-**[Social Auto Engine](https://github.com/Freespirits/social-auto-engine)** — multi-channel social media platform with AI content, approval workflows, and 37 MCP tools. `Python`
+Security auditing for Claude Code: exposed secrets, access rules, and configuration risks, with ranked findings, source evidence, and hardening guidance in Hebrew and English.
 
-**[PhishSentry](https://github.com/Freespirits/phishsentry)** — AI-powered zero-day phishing URL detector. `TypeScript`
-
-**[PTSD-Ai](https://github.com/Freespirits/PTSD-Ai)** — ML-assisted early intervention for mental health. `Python`
-
-**[Hack-Tech](https://github.com/Freespirits/hack-tech)** — security education platform and mobile app. `Dart`
+`JavaScript` · [Install the plugin](https://github.com/Freespirits/claudeguard-il#two-ways-to-use-it)
 
 </td>
 <td width="50%" valign="top">
+
+**[Vet-Holim](https://github.com/Freespirits/Vet-calculator)**
+
+Veterinary dosage and toxicity calculators, clinical references, and a searchable toxic-plant library. An installable web app with offline support and interfaces in 14 languages.
+
+`TypeScript · React` · [Open the live app](https://vet-holim.work)
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+**[Android ADB Skill](https://github.com/Freespirits/android-control-skill)**
+
+Give coding agents control of Android phones and emulators through a tested CLI: inspect screens, target UI elements, perform gestures, and debug apps.
+
+`Python · ADB` · [Watch the demo](https://github.com/Freespirits/android-control-skill/blob/main/assets/demo.mp4)
+
+</td>
+<td width="50%" valign="top">
+
+**[Hachiko-Usage](https://github.com/Freespirits/hachiko-usage)**
+
+A Windows desktop pet that keeps Claude Code session and weekly usage limits visible above the taskbar. Two characters, tray controls, and a downloadable installer.
+
+`Python · PySide6` · [Download for Windows](https://github.com/Freespirits/hachiko-usage/releases/latest)
+
+</td>
+</tr>
+</table>
+
+<br/>
 
 ### Stack
 
@@ -46,10 +76,6 @@ frontend    htmx · react · next.js · flutter
 data        sqlite · postgres · pandas
 infra       aws · azure · gcp · docker
 ```
-
-</td>
-</tr>
-</table>
 
 <br/>
 
