@@ -25,20 +25,20 @@ I build tools at the intersection of **security** and **AI automation**, then st
 <tr>
 <td width="50%" valign="top">
 
+**[Social Auto Engine](https://github.com/Freespirits/social-auto-engine)**
+
+Self-hosted social media publishing with AI-assisted content creation, a human approval queue, and MCP tools for Claude. Connect Facebook, Instagram, Threads, WhatsApp, and LinkedIn.
+
+`Python · FastAPI · HTMX` · [MCP setup guide](https://github.com/Freespirits/social-auto-engine/blob/main/docs/try-mcp.md)
+
+</td>
+<td width="50%" valign="top">
+
 **[ClaudeGuardIL](https://github.com/Freespirits/claudeguard-il)**
 
 Security auditing for Claude Code: exposed secrets, access rules, and configuration risks, with ranked findings, source evidence, and hardening guidance in Hebrew and English.
 
 `JavaScript` · [Install the plugin](https://github.com/Freespirits/claudeguard-il#two-ways-to-use-it)
-
-</td>
-<td width="50%" valign="top">
-
-**[Vet-Holim](https://github.com/Freespirits/Vet-calculator)**
-
-Veterinary dosage and toxicity calculators, clinical references, and a searchable toxic-plant library. An installable web app with offline support and interfaces in 14 languages.
-
-`TypeScript · React` · [Open the live app](https://vet-holim.work)
 
 </td>
 </tr>
